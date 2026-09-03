@@ -1,0 +1,7 @@
+"use client";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { Container } from "@/components/ui/Container";
+import { FadeUp } from "@/components/motion/FadeUp";
+import { home } from "@/content/home";
+export function FinalCta() { return <section className="relative overflow-hidden py-32 md:py-44"><div className="pointer-events-none absolute bottom-[-300px] left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,rgba(25,211,208,.12),transparent_65%)]" /><Container className="relative text-center"><FadeUp><span className="mb-6 block font-mono text-[11px] uppercase tracking-[.18em] text-accent">{home.finalCta.label}</span><h2 className="mx-auto max-w-[760px] font-display text-[clamp(2.8rem,6vw,5.5rem)] font-medium leading-[.95] tracking-[-.06em] text-white">{home.finalCta.title}</h2><p className="mx-auto mt-7 max-w-[560px] text-[17px] text-text-secondary">{home.finalCta.body}</p><div className="mt-9 flex justify-center gap-6"><Link href={home.finalCta.cta.href} className="inline-flex h-12 items-center gap-2 rounded-[9px] bg-white px-6 text-[14px] font-semibold text-bg-dark transition-colors hover:bg-accent">{home.finalCta.cta.label}<ArrowUpRight className="h-4 w-4" /></Link><Link href={home.finalCta.secondary.href} className="inline-flex items-center gap-2 text-[14px] text-text-secondary hover:text-white">{home.finalCta.secondary.label}<ArrowUpRight className="h-4 w-4" /></Link></div></FadeUp></Container></section>; }
