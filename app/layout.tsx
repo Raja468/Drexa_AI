@@ -6,10 +6,25 @@ const geist = Geist({ subsets: ['latin'], variable: '--font-body', display: 'swa
 const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-display', display: 'swap' })
 
 export const metadata: Metadata = {
-  title: 'Drexa AI — Build what thinks forward.',
-  description: 'Drexa AI is an independent technology studio building intelligent systems, AI products, and digital experiences for ambitious teams.',
+  title: 'DREXA AI — AI Automation & Software Development Studio',
+  description: 'We build AI systems, automation, and digital products that help businesses work smarter and grow faster. Free consultation available.',
   generator: 'Drexa AI',
+  metadataBase: new URL('https://drexa.tech'),
   icons: { icon: '/logo.png' },
+  openGraph: {
+    title: 'DREXA AI — AI Automation & Software Development Studio',
+    description: 'We build AI systems, automation, and digital products that help businesses work smarter and grow faster.',
+    url: 'https://drexa.tech',
+    siteName: 'DREXA AI',
+    type: 'website',
+    images: [{ url: '/logo.png', width: 512, height: 512, alt: 'DREXA AI' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'DREXA AI — AI Automation & Software Development Studio',
+    description: 'We build AI systems, automation, and digital products that help businesses work smarter and grow faster.',
+    images: ['/logo.png'],
+  },
 }
 
 export const viewport: Viewport = { colorScheme: 'dark', themeColor: '#070908' }
