@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'We build AI systems, automation, and digital products that help businesses work smarter and grow faster. Free consultation available.',
   generator: 'Drexa AI',
   metadataBase: new URL('https://drexa.tech'),
-  icons: { icon: '/logo.png' },
+  icons: { icon: '/circular-app-icon-2.png' },
   openGraph: {
     title: 'DREXA AI — AI Automation & Software Development Studio',
     description: 'We build AI systems, automation, and digital products that help businesses work smarter and grow faster.',
