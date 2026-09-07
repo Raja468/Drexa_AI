@@ -31,8 +31,8 @@ export async function POST(req: Request) {
     const resend = new Resend(apiKey);
 
     await resend.emails.send({
-      from: process.env.CONTACT_FROM_EMAIL || "Drexa AI <noreply@drexa.ai>",
-      to: process.env.CONTACT_TO_EMAIL || "hello@drexa.ai",
+      from: process.env.CONTACT_FROM_EMAIL || "Drexa AI <noreply@drexa.tech>",
+      to: process.env.CONTACT_TO_EMAIL || "hello@drexa.tech",
       subject: `New inquiry from ${name}${company ? ` (${company})` : ""}`,
       replyTo: email,
       text: [

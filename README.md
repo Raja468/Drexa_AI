@@ -1,6 +1,6 @@
 # Drexa AI — Marketing Site
 
-Production-quality marketing site for [Drexa AI](https://drexa.ai), a multi-service tech agency (AI / LLM, web & software, cybersecurity).
+Production-quality marketing site for [Drexa AI](https://drexa.tech), a multi-service tech agency (AI / LLM, web & software, cybersecurity).
 
 ## Stack
 

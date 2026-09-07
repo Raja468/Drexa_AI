@@ -1,7 +1,7 @@
 export const site = {
   brand: "DREXA AI",
   tagline: "Digital products. AI. Automation.",
-  email: "hello@drexa.ai",
+  email: "hello@drexa.tech",
   copyrightYear: 2026,
 } as const;
 

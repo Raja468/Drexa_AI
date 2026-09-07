@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://drexa.ai";
+  const base = "https://drexa.tech";
   const now = new Date();
   return [
     { url: `${base}/`, lastModified: now, priority: 1 },
