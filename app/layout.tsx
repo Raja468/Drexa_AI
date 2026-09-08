@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   description: 'We build AI systems, automation, and digital products that help businesses work smarter and grow faster. Free consultation available.',
   generator: 'Drexa AI',
   metadataBase: new URL('https://drexa.tech'),
-  icons: { icon: '/circular-app-icon-2.png' },
+  icons: { icon: '/circular-app-icon-1.png', apple: '/circular-app-icon-1.png' },
   openGraph: {
     title: 'DREXA AI — AI Automation & Software Development Studio',
     description: 'We build AI systems, automation, and digital products that help businesses work smarter and grow faster.',
@@ -30,5 +30,26 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { colorScheme: 'dark', themeColor: '#070908' }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" className="dark bg-background"><body className={`${geist.variable} ${geistMono.variable} antialiased`}>{children}</body></html>
+  return (
+    <html lang="en" className="dark bg-background">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Organization',
+              name: 'DREXA AI',
+              url: 'https://drexa.tech',
+              logo: 'https://drexa.tech/logo.png',
+              image: 'https://drexa.tech/logo.png',
+              description: 'We build AI systems, automation, and digital products that help businesses work smarter and grow faster.',
+              sameAs: [],
+            }),
+          }}
+        />
+      </head>
+      <body className={`${geist.variable} ${geistMono.variable} antialiased`}>{children}</body>
+    </html>
+  )
 }
