@@ -2,8 +2,8 @@ import Image from "next/image"
 import Link from "next/link"
 import {
   Bot,
+  Brain,
   CircuitBoard,
-  Cpu,
   Globe,
   Shield,
   Sparkles,
@@ -15,6 +15,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader"
 import { ButtonLink } from "@/components/ui/Button"
 import { ContactForm } from "@/components/ui/ContactForm"
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/motion/FadeUp"
+import { CursorGlow } from "@/components/motion/CursorGlow"
 
 const PRIMARY_CTA = { label: "Start a project", href: "/contact" }
 
@@ -35,7 +36,7 @@ const services = [
   },
   {
     number: "03",
-    icon: Cpu,
+    icon: Brain,
     title: "LLM integration",
     copy: "Put the right model in the right place with useful, secure interfaces — RAG pipelines, evaluation, and guardrails.",
     tags: ["RAG", "Evaluation", "Guardrails"],
@@ -172,6 +173,10 @@ const faqs = [
     q: "How does the consultation work?",
     a: "We'll discuss your goals, understand the problem, and identify potential solutions. There's no obligation to continue.",
   },
+  {
+    q: "Who owns the code and IP after the project?",
+    a: "You do. Everything we build — code, designs, documentation, and infrastructure — is transferred to you at launch.",
+  },
 ]
 
 export default function Page() {
@@ -179,6 +184,7 @@ export default function Page() {
     <main className="bg-bg-dark text-white">
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-border">
+        <CursorGlow className="-z-10" size={560} blur={110} color="rgba(25, 216, 210, 0.16)" />
         <div className="pointer-events-none absolute inset-0 opacity-[0.18] [background:radial-gradient(60%_50%_at_50%_30%,rgba(25,216,210,0.22),transparent_70%)]" />
         <Container className="relative pt-16 pb-24 md:pt-24 md:pb-32">
           <FadeUp>
@@ -205,17 +211,11 @@ export default function Page() {
               </ButtonLink>
               <Link
                 href="#capabilities"
-                className="group inline-flex items-center gap-2 border-b border-border pb-2 font-mono text-[11px] uppercase tracking-[0.12em] text-white transition-colors hover:border-accent hover:text-accent"
+                className="hero-scroll-cue group inline-flex items-center gap-2 border-b border-border pb-2 font-mono text-[11px] uppercase tracking-[0.12em] text-white transition-colors hover:border-accent hover:text-accent"
               >
                 Explore our services
                 <span className="text-accent transition-transform group-hover:translate-y-0.5">↓</span>
               </Link>
-            </div>
-          </FadeUp>
-          <FadeUp delay={0.2}>
-            <div className="mt-16 flex flex-col gap-4 border-t border-border pt-6 font-mono text-[10px] uppercase tracking-[0.14em] text-text-muted sm:flex-row sm:justify-between">
-              <span>AI systems / digital products / 2026</span>
-              <span className="hidden sm:inline">Scroll to explore ↓</span>
             </div>
           </FadeUp>
         </Container>
@@ -384,7 +384,7 @@ export default function Page() {
       <section className="border-b border-border py-24 md:py-32">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
-            <FadeUp>
+            <FadeUp animateOnMount>
               <span className="mb-5 inline-block font-mono text-[11px] uppercase tracking-[0.18em] text-accent">
                 Why Drexa
               </span>
@@ -397,7 +397,7 @@ export default function Page() {
                 engineering — so what we build actually works.
               </p>
             </FadeUp>
-            <StaggerContainer className="border-t border-border">
+            <StaggerContainer animateOnMount className="border-t border-border">
               {whyPillars.map((pillar) => (
                 <StaggerItem
                   key={pillar.number}

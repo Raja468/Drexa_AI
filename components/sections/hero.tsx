@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { EASE_OUT_EXPO } from "@/lib/motion";
 import { home } from "@/content/home";
 
 type ParticleNetworkProps = {
@@ -157,29 +158,80 @@ function FocalCore() {
   );
 }
 
+function buildHeadlineVariants(reduce: boolean | null) {
+  const duration = reduce ? 0.01 : 0.35;
+  const stagger = reduce ? 0 : 0.08;
+  const delayChildren = reduce ? 0 : 0.15;
+  return {
+    stagger: {
+      hidden: {},
+      show: {
+        transition: { staggerChildren: stagger, delayChildren },
+      },
+    },
+    child: {
+      hidden: { opacity: 0, y: "60%", filter: reduce ? "blur(0px)" : "blur(6px)" },
+      show: {
+        opacity: 1,
+        y: "0%",
+        filter: "blur(0px)",
+        transition: { duration, ease: EASE_OUT_EXPO },
+      },
+    },
+  };
+}
+
 export function Hero() {
   const reduce = useReducedMotion();
   const heroRef = useRef<HTMLElement>(null);
   const { eyebrow, subhead, cta, ctaSecondary } = home.hero;
+  const { stagger: headlineStagger, child: headlineChild } = buildHeadlineVariants(reduce);
 
   return (
     <section ref={heroRef} id="hero" className="relative min-h-[90svh] overflow-hidden border-b border-border pt-12 pb-12 md:pt-16 md:pb-16 lg:pt-20 lg:pb-20">
       <ParticleNetwork containerRef={heroRef} />
       <Container className="relative z-10 flex min-h-[calc(90svh-5rem)] items-center">
         <div className="grid w-full items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-8">
-          <div>
+          <div className="relative">
+            <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" aria-hidden="true">
+              <motion.div
+                className="absolute left-[-15%] top-[-10%] h-[55%] w-[70%] rounded-full bg-accent mix-blend-screen"
+                style={{ filter: "blur(110px)", opacity: 0.28 }}
+                animate={reduce ? undefined : { x: [0, 30, -10, 0], y: [0, -20, 15, 0] }}
+                transition={{ duration: 18, ease: "easeInOut", repeat: Infinity }}
+              />
+              <motion.div
+                className="absolute right-[-10%] top-[25%] h-[45%] w-[60%] rounded-full bg-mint mix-blend-screen"
+                style={{ filter: "blur(100px)", opacity: 0.22 }}
+                animate={reduce ? undefined : { x: [0, -25, 20, 0], y: [0, 18, -12, 0] }}
+                transition={{ duration: 22, ease: "easeInOut", repeat: Infinity }}
+              />
+              <motion.div
+                className="absolute bottom-[-15%] left-[20%] h-[35%] w-[55%] rounded-full bg-accent mix-blend-screen"
+                style={{ filter: "blur(90px)", opacity: 0.18 }}
+                animate={reduce ? undefined : { x: [0, 18, -22, 0], y: [0, -14, 10, 0] }}
+                transition={{ duration: 16, ease: "easeInOut", repeat: Infinity }}
+              />
+            </div>
             <motion.span initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-4 block font-mono text-[11px] uppercase tracking-[0.18em] text-accent">
               {eyebrow}
             </motion.span>
-            <motion.h1 initial={{ opacity: 0, y: reduce ? 0 : 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} className="max-w-[650px] font-display text-[clamp(2.2rem,4.5vw,4.5rem)] font-medium leading-[0.96] tracking-[-0.065em] text-white">
-              We build digital products<br />that move businesses<br /><span className="bg-gradient-to-r from-accent to-accent-green bg-clip-text text-transparent">forward.</span>
+            <motion.h1
+              initial="hidden"
+              animate="show"
+              variants={headlineStagger}
+              className="max-w-[650px] font-display text-[clamp(2.2rem,4.5vw,4.5rem)] font-medium leading-[0.96] tracking-[-0.065em] text-white"
+            >
+              <span className="block overflow-hidden pb-[0.08em]"><motion.span className="block" variants={headlineChild}>We build digital products</motion.span></span>
+              <span className="block overflow-hidden pb-[0.08em]"><motion.span className="block" variants={headlineChild}>that move businesses</motion.span></span>
+              <span className="block overflow-hidden pb-[0.08em]"><motion.span className="block bg-gradient-to-r from-accent to-mint bg-clip-text text-transparent" variants={headlineChild}>forward.</motion.span></span>
             </motion.h1>
             <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.25 }} className="mt-5 max-w-[500px] text-[16px] leading-[1.6] text-text-secondary">
               {subhead}
             </motion.p>
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.35 }} className="mt-6 flex flex-wrap items-center gap-6">
-              <Link href={cta.href} className="inline-flex h-12 items-center gap-2 rounded-[9px] bg-white px-6 text-[14px] font-semibold text-bg-dark transition-colors hover:bg-accent">
-                {cta.label}<ArrowUpRight className="h-4 w-4" />
+              <Link href={cta.href} className="hero-cta group inline-flex h-12 items-center gap-2 rounded-[9px] bg-white px-6 text-[14px] font-semibold text-bg-dark transition-colors hover:bg-accent">
+                {cta.label}<ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </Link>
               <Link href={ctaSecondary.href} className="inline-flex items-center gap-2 text-[14px] font-medium text-text-secondary transition-colors hover:text-white">
                 {ctaSecondary.label}<ArrowUpRight className="h-4 w-4" />

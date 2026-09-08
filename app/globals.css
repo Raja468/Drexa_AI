@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme {
+@theme inline {
   /* Backgrounds */
   --color-bg-dark: #070908;
   --color-bg-surface: #0d1210;
@@ -19,8 +19,8 @@
   --color-mint: #80ed65;          /* green */
 
   /* Fonts (defined in layout.tsx via next/font variables) */
-  --font-body: var(--font-body, "Geist", sans-serif);
-  --font-display: var(--font-display, "Geist Mono", monospace);
+  --font-display: var(--font-display, "Geist", sans-serif);
+  --font-mono: var(--font-mono, "Geist Mono", ui-monospace, monospace);
 }
 
 :root {
@@ -36,7 +36,7 @@ body {
   margin: 0;
   background: var(--color-bg-dark);
   color: var(--color-text-primary);
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -64,5 +64,58 @@ em {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hero CTA — soft glow + subtle hover pulse (scoped) */
+.hero-cta {
+  position: relative;
+  isolation: isolate;
+  box-shadow:
+    0 0 0 1px rgba(25, 216, 210, 0),
+    0 0 24px -6px rgba(25, 216, 210, 0.35),
+    0 0 48px -12px rgba(25, 216, 210, 0.25);
+  transition:
+    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 200ms ease;
+  will-change: transform, box-shadow;
+}
+.hero-cta:hover,
+.hero-cta:focus-visible {
+  transform: scale(1.03);
+  box-shadow:
+    0 0 0 1px rgba(25, 216, 210, 0.5),
+    0 0 32px -4px rgba(25, 216, 210, 0.55),
+    0 0 72px -10px rgba(25, 216, 210, 0.4);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta {
+    transition: box-shadow 200ms ease;
+  }
+  .hero-cta:hover,
+  .hero-cta:focus-visible {
+    transform: none;
+  }
+}
+
+/* Hero scroll cue — subtle continuous bounce + opacity pulse (scoped) */
+@keyframes hero-cue-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(3px); }
+}
+@keyframes hero-cue-pulse {
+  0%, 100% { opacity: 0.78; }
+  50%      { opacity: 1; }
+}
+.hero-scroll-cue {
+  animation:
+    hero-cue-pulse 2.4s ease-in-out infinite,
+    hero-cue-bounce 2.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-cue {
+    animation: none;
+    opacity: 1;
   }
 }

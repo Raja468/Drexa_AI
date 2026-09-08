@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-body', display: 'swap' })
-const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-display', display: 'swap' })
+const geist = Geist({ subsets: ['latin'], variable: '--font-display', display: 'swap' })
+const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' })
 
 export const metadata: Metadata = {
   title: 'DREXA AI — AI Automation & Software Development Studio',

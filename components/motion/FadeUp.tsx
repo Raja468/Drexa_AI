@@ -12,6 +12,7 @@ type FadeUpProps = {
   as?: "div" | "section" | "article" | "li" | "a" | "span";
   once?: boolean;
   y?: number;
+  animateOnMount?: boolean;
 };
 
 export function FadeUp({
@@ -22,16 +23,26 @@ export function FadeUp({
   as = "div",
   once = true,
   y = 24,
+  animateOnMount = false,
 }: FadeUpProps) {
   const reduce = useReducedMotion();
   const MotionTag = motion[as] as ComponentType<Record<string, unknown>>;
 
+  const motionProps = animateOnMount
+    ? {
+        initial: { opacity: 0, y: reduce ? 0 : y },
+        animate: { opacity: 1, y: 0 },
+      }
+    : {
+        initial: { opacity: 0, y: reduce ? 0 : y },
+        whileInView: { opacity: 1, y: 0 },
+        viewport: { once, margin: "-8% 0px" },
+      };
+
   return (
     <MotionTag
       className={className}
-      initial={{ opacity: 0, y: reduce ? 0 : y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once, margin: "-8% 0px" }}
+      {...motionProps}
       transition={{
         duration: reduce ? 0.01 : duration,
         delay: reduce ? 0 : delay,
@@ -48,6 +59,7 @@ type StaggerContainerProps = {
   className?: string;
   staggerDelay?: number;
   delayChildren?: number;
+  animateOnMount?: boolean;
 };
 
 export function StaggerContainer({
@@ -55,13 +67,20 @@ export function StaggerContainer({
   className,
   staggerDelay = 0.08,
   delayChildren = 0,
+  animateOnMount = false,
 }: StaggerContainerProps) {
+  const motionProps = animateOnMount
+    ? { initial: "hidden", animate: "show" }
+    : {
+        initial: "hidden",
+        whileInView: "show",
+        viewport: { once: true, margin: "-8% 0px" },
+      };
+
   return (
     <motion.div
       className={className}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-8% 0px" }}
+      {...motionProps}
       variants={{
         hidden: {},
         show: {
