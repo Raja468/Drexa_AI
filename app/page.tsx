@@ -15,7 +15,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader"
 import { ButtonLink } from "@/components/ui/Button"
 import { ContactForm } from "@/components/ui/ContactForm"
 import { FadeUp, StaggerContainer, StaggerItem } from "@/components/motion/FadeUp"
-import { CursorGlow } from "@/components/motion/CursorGlow"
+import { Hero } from "@/components/sections/hero"
 
 const PRIMARY_CTA = { label: "Start a project", href: "/contact" }
 
@@ -183,43 +183,7 @@ export default function Page() {
   return (
     <main className="bg-bg-dark text-white">
       {/* HERO */}
-      <section className="relative overflow-hidden border-b border-border">
-        <CursorGlow className="-z-10" size={560} blur={110} color="rgba(25, 216, 210, 0.16)" />
-        <div className="pointer-events-none absolute inset-0 opacity-[0.18] [background:radial-gradient(60%_50%_at_50%_30%,rgba(25,216,210,0.22),transparent_70%)]" />
-        <Container className="relative pt-16 pb-24 md:pt-24 md:pb-32">
-          <FadeUp>
-            <span className="mb-6 inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.18em] text-accent">
-              <span className="h-1.5 w-1.5 rounded-full bg-mint shadow-[0_0_10px_var(--mint)]" />
-              Independent AI technology studio
-            </span>
-          </FadeUp>
-          <FadeUp delay={0.05}>
-            <h1 className="max-w-[900px] font-display text-[clamp(2.75rem,7.5vw,6rem)] font-medium leading-[0.95] tracking-[-0.05em] text-white">
-              Build what <em className="text-accent not-italic">thinks forward.</em>
-            </h1>
-          </FadeUp>
-          <FadeUp delay={0.1}>
-            <p className="mt-8 max-w-[560px] text-[17px] leading-[1.6] text-text-secondary">
-              We build AI systems, automation, and digital products that help businesses
-              work smarter and grow faster.
-            </p>
-          </FadeUp>
-          <FadeUp delay={0.15}>
-            <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-              <ButtonLink href={PRIMARY_CTA.href} variant="primary" size="lg">
-                {PRIMARY_CTA.label}
-              </ButtonLink>
-              <Link
-                href="#capabilities"
-                className="hero-scroll-cue group inline-flex items-center gap-2 border-b border-border pb-2 font-mono text-[11px] uppercase tracking-[0.12em] text-white transition-colors hover:border-accent hover:text-accent"
-              >
-                Explore our services
-                <span className="text-accent transition-transform group-hover:translate-y-0.5">↓</span>
-              </Link>
-            </div>
-          </FadeUp>
-        </Container>
-      </section>
+      <Hero />
 
       {/* CAPABILITIES */}
       <section id="capabilities" className="border-b border-border py-24 md:py-32">
@@ -381,7 +345,7 @@ export default function Page() {
       </section>
 
       {/* WHY DREXA */}
-      <section className="border-b border-border py-24 md:py-32">
+      <section id="why-drexa" className="border-b border-border py-24 md:py-32">
         <Container>
           <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
             <FadeUp animateOnMount>

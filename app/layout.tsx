@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
+import { Navbar } from '@/components/layout/Navbar'
+import { Footer } from '@/components/layout/Footer'
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-display', display: 'swap' })
 const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' })
@@ -49,7 +51,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           }}
         />
       </head>
-      <body className={`${geist.variable} ${geistMono.variable} antialiased`}>{children}</body>
+      <body className={`${geist.variable} ${geistMono.variable} antialiased bg-bg-dark text-white flex min-h-screen flex-col`}>
+        <Navbar />
+        <div className="flex-1">{children}</div>
+        <Footer />
+      </body>
     </html>
   )
 }
+
