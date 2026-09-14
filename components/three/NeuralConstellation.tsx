@@ -68,9 +68,11 @@ export function NeuralConstellation({ className = "" }: NeuralConstellationProps
     const isTablet = window.innerWidth >= 768;
     const initialOffsetX = isDesktop ? 48 : isTablet ? 24 : 0;
     const initialOffsetY = 6;
-    const sphereRadius = isDesktop ? 96 : isTablet ? 80 : 64;
 
-    const nodeCount = isDesktop ? 150 : 100;
+    // Slightly reduced radius for refined aesthetic proportions
+    const sphereRadius = isDesktop ? 78 : isTablet ? 65 : 52;
+    const nodeCount = isDesktop ? 130 : 90;
+
     const nodes: {
       basePos: THREE.Vector3;
       currPos: THREE.Vector3;
@@ -95,7 +97,7 @@ export function NeuralConstellation({ className = "" }: NeuralConstellationProps
       const theta = Math.PI * (1 + Math.sqrt(5)) * (i + 0.5);
 
       // Varying radius for dimensional depth
-      const r = sphereRadius * (0.68 + Math.random() * 0.42);
+      const r = sphereRadius * (0.72 + Math.random() * 0.38);
       const x = r * Math.sin(phi) * Math.cos(theta);
       const y = r * Math.sin(phi) * Math.sin(theta);
       const z = r * Math.cos(phi) * 0.92;
@@ -105,7 +107,7 @@ export function NeuralConstellation({ className = "" }: NeuralConstellationProps
         basePos: pos.clone(),
         currPos: pos.clone(),
         phase: Math.random() * Math.PI * 2,
-        speed: 0.35 + Math.random() * 0.7,
+        speed: 0.25 + Math.random() * 0.5, // gentle undulating speed
       });
 
       positions[i * 3] = x;
@@ -127,7 +129,7 @@ export function NeuralConstellation({ className = "" }: NeuralConstellationProps
       colors[i * 3 + 1] = nodeColor.g;
       colors[i * 3 + 2] = nodeColor.b;
 
-      sizes[i] = 4 + Math.random() * 4;
+      sizes[i] = 3.5 + Math.random() * 3.5;
     }
 
     const pointsGeometry = new THREE.BufferGeometry();
@@ -137,8 +139,9 @@ export function NeuralConstellation({ className = "" }: NeuralConstellationProps
     );
     pointsGeometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
 
+    // Refined point size
     const pointsMaterial = new THREE.PointsMaterial({
-      size: isDesktop ? 7 : 5.5,
+      size: isDesktop ? 5.5 : 4.5,
       vertexColors: true,
       map: glowTexture || undefined,
       transparent: true,
@@ -167,21 +170,21 @@ export function NeuralConstellation({ className = "" }: NeuralConstellationProps
       transparent: true,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
-      opacity: 0.7,
+      opacity: 0.65,
     });
 
     const lineMesh = new THREE.LineSegments(lineGeometry, lineMaterial);
     constellationGroup.add(lineMesh);
 
     // Ambient floating star dust / cosmos particles around the sphere
-    const dustCount = isDesktop ? 260 : 160;
+    const dustCount = isDesktop ? 220 : 140;
     const dustPositions = new Float32Array(dustCount * 3);
     const dustColors = new Float32Array(dustCount * 3);
 
     for (let i = 0; i < dustCount; i++) {
-      dustPositions[i * 3] = (Math.random() - 0.5) * 440;
-      dustPositions[i * 3 + 1] = (Math.random() - 0.5) * 340;
-      dustPositions[i * 3 + 2] = (Math.random() - 0.5) * 280;
+      dustPositions[i * 3] = (Math.random() - 0.5) * 420;
+      dustPositions[i * 3 + 1] = (Math.random() - 0.5) * 320;
+      dustPositions[i * 3 + 2] = (Math.random() - 0.5) * 260;
 
       const c = Math.random() > 0.45 ? colorCyan : colorPurple;
       dustColors[i * 3] = c.r * 0.65;
@@ -197,12 +200,12 @@ export function NeuralConstellation({ className = "" }: NeuralConstellationProps
     dustGeometry.setAttribute("color", new THREE.BufferAttribute(dustColors, 3));
 
     const dustMaterial = new THREE.PointsMaterial({
-      size: 2.5,
+      size: 2.0,
       vertexColors: true,
       map: glowTexture || undefined,
       transparent: true,
       blending: THREE.AdditiveBlending,
-      opacity: 0.4,
+      opacity: 0.38,
       depthWrite: false,
     });
 
@@ -213,13 +216,13 @@ export function NeuralConstellation({ className = "" }: NeuralConstellationProps
     constellationGroup.position.set(initialOffsetX, initialOffsetY, 0);
     scene.add(constellationGroup);
 
-    // Mouse / Cursor Parallax Tracking
+    // Smooth, gentle mouse interpolation
     const mouse = {
       x: 0,
       y: 0,
       targetX: 0,
       targetY: 0,
-      speed: 0.05,
+      speed: 0.035, // reduced speed for calm, silky smooth feel
     };
 
     const handlePointerMove = (e: MouseEvent) => {
@@ -250,12 +253,12 @@ export function NeuralConstellation({ className = "" }: NeuralConstellationProps
       renderer.setSize(w, h);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
 
-      // Responsive positioning of constellation
+      // Responsive positioning of constellation with slightly reduced scale
       const isD = w >= 1024;
       const isT = w >= 768;
-      const ox = isD ? 52 : isT ? 28 : 0;
-      const oy = isD ? 8 : 0;
-      const scale = isD ? 1 : isT ? 0.85 : 0.65;
+      const ox = isD ? 48 : isT ? 24 : 0;
+      const oy = isD ? 6 : 0;
+      const scale = isD ? 0.86 : isT ? 0.74 : 0.6;
       constellationGroup.position.set(ox, oy, 0);
       constellationGroup.scale.set(scale, scale, scale);
     };
@@ -266,7 +269,8 @@ export function NeuralConstellation({ className = "" }: NeuralConstellationProps
     // Animation Loop
     let animationFrameId: number;
     const clock = new THREE.Clock();
-    const connectionDistance = isDesktop ? 48 : 40;
+    const connectionDistance = isDesktop ? 38 : 32;
+    let autoRotY = 0;
 
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
@@ -277,23 +281,25 @@ export function NeuralConstellation({ className = "" }: NeuralConstellationProps
       mouse.x += (mouse.targetX - mouse.x) * mouse.speed;
       mouse.y += (mouse.targetY - mouse.y) * mouse.speed;
 
-      // 1. Continuous Autonomous Rotation + organic sway ("keep moving always")
+      // 1. Gentle autonomous rotation ("keep moving always")
       if (!reduceMotion) {
-        constellationGroup.rotation.y += 0.0024;
-        constellationGroup.rotation.x = Math.sin(elapsedTime * 0.35) * 0.08;
-        constellationGroup.rotation.z = Math.cos(elapsedTime * 0.25) * 0.04;
-
-        dustMesh.rotation.y += 0.0008;
-        dustMesh.rotation.x = Math.sin(elapsedTime * 0.2) * 0.03;
+        autoRotY += 0.0012; // calm, elegant rotation speed
+        dustMesh.rotation.y += 0.0004;
+        dustMesh.rotation.x = Math.sin(elapsedTime * 0.15) * 0.02;
       }
 
-      // 2. Interactive Cursor Tilt Parallax ("when i move cursor on this design it moves")
-      constellationGroup.rotation.y += mouse.x * 0.42;
-      constellationGroup.rotation.x += -mouse.y * 0.32;
-      const baseOX = window.innerWidth >= 1024 ? 52 : window.innerWidth >= 768 ? 28 : 0;
-      const baseOY = window.innerWidth >= 1024 ? 8 : 0;
-      constellationGroup.position.x = baseOX + mouse.x * 20;
-      constellationGroup.position.y = baseOY + mouse.y * 16;
+      // 2. Smooth Cursor Parallax Tilt (calibrated so it doesn't spin uncontrollably)
+      constellationGroup.rotation.y = autoRotY + mouse.x * 0.22;
+      constellationGroup.rotation.x =
+        Math.sin(elapsedTime * 0.25) * 0.05 - mouse.y * 0.16;
+      constellationGroup.rotation.z = Math.cos(elapsedTime * 0.2) * 0.03;
+
+      // Soft subtle position shift with cursor
+      const baseOX =
+        window.innerWidth >= 1024 ? 48 : window.innerWidth >= 768 ? 24 : 0;
+      const baseOY = window.innerWidth >= 1024 ? 6 : 0;
+      constellationGroup.position.x = baseOX + mouse.x * 12;
+      constellationGroup.position.y = baseOY + mouse.y * 9;
 
       // 3. Update vertices with organic wave / breathing motion
       const currentPositions = pointsGeometry.attributes.position
@@ -303,7 +309,7 @@ export function NeuralConstellation({ className = "" }: NeuralConstellationProps
         const node = nodes[i];
         const wave = reduceMotion
           ? 0
-          : Math.sin(elapsedTime * node.speed + node.phase) * 2.6;
+          : Math.sin(elapsedTime * node.speed + node.phase) * 1.8;
 
         const dir = node.basePos.clone().normalize();
         node.currPos.copy(node.basePos).addScaledVector(dir, wave);
