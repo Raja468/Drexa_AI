@@ -29,7 +29,12 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6.5rem;
   background: var(--color-bg-dark);
+}
+
+section[id] {
+  scroll-margin-top: 6.5rem;
 }
 
 body {

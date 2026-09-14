@@ -66,7 +66,7 @@ export function NeuralConstellation({ className = "" }: NeuralConstellationProps
     const constellationGroup = new THREE.Group();
     const isDesktop = window.innerWidth >= 1024;
     const isTablet = window.innerWidth >= 768;
-    const initialOffsetX = isDesktop ? 68 : isTablet ? 38 : 10;
+    const initialOffsetX = isDesktop ? 82 : isTablet ? 46 : 14;
     const initialOffsetY = 6;
 
     // Slightly reduced radius for refined aesthetic proportions
@@ -256,7 +256,7 @@ export function NeuralConstellation({ className = "" }: NeuralConstellationProps
       // Responsive positioning of constellation with slightly reduced scale
       const isD = w >= 1024;
       const isT = w >= 768;
-      const ox = isD ? 68 : isT ? 38 : 10;
+      const ox = isD ? 82 : isT ? 46 : 14;
       const oy = isD ? 6 : 0;
       const scale = isD ? 0.86 : isT ? 0.74 : 0.6;
       constellationGroup.position.set(ox, oy, 0);
@@ -296,7 +296,7 @@ export function NeuralConstellation({ className = "" }: NeuralConstellationProps
 
       // Soft subtle position shift with cursor
       const baseOX =
-        window.innerWidth >= 1024 ? 68 : window.innerWidth >= 768 ? 38 : 10;
+        window.innerWidth >= 1024 ? 82 : window.innerWidth >= 768 ? 46 : 14;
       const baseOY = window.innerWidth >= 1024 ? 6 : 0;
       constellationGroup.position.x = baseOX + mouse.x * 12;
       constellationGroup.position.y = baseOY + mouse.y * 9;

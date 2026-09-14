@@ -1,8 +1,8 @@
 export const nav = {
   links: [
-    { label: "Services", href: "/#capabilities" },
-    { label: "Work", href: "/#projects" },
-    { label: "Approach", href: "/#approach" },
+    { label: "Work", href: "/work" },
+    { label: "Services", href: "/services" },
+    { label: "Our Team", href: "/team" },
     { label: "About", href: "/about" },
     { label: "Contact", href: "/contact" },
   ],
