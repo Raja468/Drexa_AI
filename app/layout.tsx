@@ -1,11 +1,28 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { NoiseTexture } from '@/components/ui/NoiseTexture'
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-display', display: 'swap' })
-const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' })
+/* Kinetic Typography display face. Self-hosted latin-subset variable files
+   (brief §2 rule 3: no Google Fonts — Google is unreachable in the owner's
+   region), so builds and rendering need no external font requests. */
+const spaceGrotesk = localFont({
+  src: './fonts/space-grotesk-latin-var.woff2',
+  weight: '300 700',
+  variable: '--font-display',
+  display: 'swap',
+})
+/* Mono is retained deliberately for micro-labels (uppercase, tracked-wide
+   eyebrows). It reads as technical/poster and is a deep pattern in this
+   codebase, so it stays even though the design system only names one face. */
+const geistMono = localFont({
+  src: './fonts/geist-mono-latin-var.woff2',
+  weight: '100 900',
+  variable: '--font-mono',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: 'DREXA AI — AI Automation & Software Development Studio',
@@ -29,7 +46,7 @@ export const metadata: Metadata = {
   },
 }
 
-export const viewport: Viewport = { colorScheme: 'dark', themeColor: '#070908' }
+export const viewport: Viewport = { colorScheme: 'dark', themeColor: '#09090B' }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
@@ -51,10 +68,17 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           }}
         />
       </head>
-      <body className={`${geist.variable} ${geistMono.variable} antialiased bg-bg-dark text-white flex min-h-screen flex-col`}>
+      {/* Browser extensions (e.g. chatgpt shortcut tools) inject attributes
+          like `cz-shortcut-listen` into <body> before React hydrates, which
+          throws a persistent dev-overlay hydration error. The markup itself
+          matches; only foreign attributes differ, so this is the sanctioned
+          React/Next treatment. */}
+      <body suppressHydrationWarning className={`${spaceGrotesk.variable} ${geistMono.variable} antialiased bg-background text-foreground flex min-h-screen flex-col`}>
         <Navbar />
         <div className="flex-1">{children}</div>
         <Footer />
+        {/* Fixed print-grain texture over the whole viewport. */}
+        <NoiseTexture />
       </body>
     </html>
   )

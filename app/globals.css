@@ -1,62 +1,151 @@
 @import "tailwindcss";
 
+/* ==========================================================================
+   KINETIC TYPOGRAPHY — DESIGN TOKENS
+   The single source of truth for the whole site.
+   `static` forces every token to be emitted on :root, so hand-written CSS and
+   Tailwind utilities always resolve to the exact same value.
+   ========================================================================== */
+@theme static {
+  /* --- Canonical palette -------------------------------------------------
+     Near-black / off-white extremes with a single acid-yellow accent.       */
+  --color-background: #09090b;          /* rich black — never #000 */
+  --color-foreground: #fafafa;          /* off-white — never #fff */
+  --color-muted: #27272a;               /* secondary surfaces */
+  --color-muted-foreground: #a1a1aa;    /* every secondary/body text tone */
+  --color-border: #3f3f46;              /* every structural line */
+  --color-accent: #dfe104;              /* acid yellow — the ONLY accent */
+  --color-accent-foreground: #000000;   /* text + icons sitting on accent */
+
+  /* --- Brief §4 tokens (Phase 0) ----------------------------------------
+     Extend, not replace: --text / --text-muted from the brief map onto the
+     existing foreground / muted-foreground above. Surfaces are defined as
+     background + white via color-mix so they always track the canvas.      */
+  --color-surface-1: color-mix(in srgb, var(--color-background) 96%, white); /* cards */
+  --color-surface-2: color-mix(in srgb, var(--color-background) 92%, white); /* raised / hover */
+  --color-line: rgba(255, 255, 255, 0.10); /* borders, dividers */
+  --color-danger: #f87171;  /* form error text — ≥ 4.5:1 on background */
+  --color-success: #4ade80; /* form success text — ≥ 4.5:1 on background */
+
+  /* --- Legacy aliases ----------------------------------------------------
+     The previous token names, re-pointed at the Kinetic palette. They stay
+     until the page-by-page migration so no existing utility class breaks.
+     · text-secondary and text-muted now resolve to the same tone — Kinetic
+       defines exactly two text weights (foreground / muted-foreground).
+     · mint is retired as a second accent colour; it aliases accent.          */
+  --color-bg-dark: #09090b;
+  --color-bg-surface: #27272a;
+  --color-bg-elevated: #18181b;
+  --color-text-primary: #fafafa;
+  --color-text-secondary: #a1a1aa;
+  --color-text-muted: #a1a1aa;
+  --color-mint: #dfe104;
+
+  /* --- Kinetic type scale (fluid, clamp-based, viewport-driven) ---------- */
+  --text-display: clamp(2.5rem, 8vw, 8.5rem);
+  --text-display--line-height: 0.8;
+  --text-display--letter-spacing: -0.04em;
+  --text-display--font-weight: 700;
+
+  --text-mega: clamp(2.5rem, 8vw, 6rem);
+  --text-mega--line-height: 0.85;
+  --text-mega--letter-spacing: -0.03em;
+  --text-mega--font-weight: 700;
+
+  /* Decorative numerals — 6rem to 12rem, used as graphic shapes. */
+  --text-numeral-sm: clamp(4rem, 10vw, 6rem);
+  --text-numeral-sm--line-height: 1;
+  --text-numeral-sm--letter-spacing: -0.04em;
+  --text-numeral-sm--font-weight: 700;
+
+  --text-numeral-md: clamp(6rem, 14vw, 8rem);
+  --text-numeral-md--line-height: 1;
+  --text-numeral-md--letter-spacing: -0.04em;
+  --text-numeral-md--font-weight: 700;
+
+  --text-numeral-lg: clamp(8rem, 20vw, 12rem);
+  --text-numeral-lg--line-height: 1;
+  --text-numeral-lg--letter-spacing: -0.04em;
+  --text-numeral-lg--font-weight: 700;
+
+  /* --- Motion ------------------------------------------------------------
+     Mirrors lib/motion.ts so CSS and JS animate on one shared curve.        */
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-io-quart: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* Fonts must stay `inline`: they reference the runtime CSS variables that
+   next/font installs on <html> from app/layout.tsx. */
 @theme inline {
-  /* Backgrounds */
-  --color-bg-dark: #070908;
-  --color-bg-surface: #0d1210;
-  --color-bg-elevated: #11181a;
-
-  /* Text */
-  --color-text-primary: #f0f4ef;
-  --color-text-secondary: #c2cbc5; /* ~9.2:1 on bg-dark */
-  --color-text-muted: #87908b;     /* ~4.6:1 on bg-dark — AA pass for small text */
-
-  /* Borders */
-  --color-border: #27302b;
-
-  /* Accents */
-  --color-accent: #19d8d2;        /* teal */
-  --color-mint: #80ed65;          /* green */
-
-  /* Fonts (defined in layout.tsx via next/font variables) */
-  --font-display: var(--font-display, "Geist", sans-serif);
+  --font-display: var(--font-display, "Space Grotesk", sans-serif);
   --font-mono: var(--font-mono, "Geist Mono", ui-monospace, monospace);
 }
 
-:root {
-  color-scheme: dark;
-}
+/* ==========================================================================
+   BASE
+   Everything here lives in Tailwind's `base` layer. That matters: previously
+   these rules were unlayered, and unlayered CSS outranks the `utilities`
+   layer regardless of specificity — so `a { color: inherit }` was silently
+   swallowing every `text-*` / `hover:text-*` utility on links.
+   ========================================================================== */
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 6.5rem;
-  background: var(--color-bg-dark);
-}
+  /* Tailwind v4 no longer applies a default border colour, so a bare `border`
+     utility would inherit the text colour. Kinetic structure is always
+     --color-border. Explicit `border-<colour>` utilities still win. */
+  *,
+  ::before,
+  ::after {
+    border-color: var(--color-border);
+  }
 
-section[id] {
-  scroll-margin-top: 6.5rem;
-}
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6.5rem;
+    background: var(--color-background);
+  }
 
-body {
-  margin: 0;
-  background: var(--color-bg-dark);
-  color: var(--color-text-primary);
-  font-family: var(--font-display);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  section[id] {
+    scroll-margin-top: 6.5rem;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-h1, h2, h3, h4, p {
-  margin: 0;
-}
+  /* Acid-yellow selection is part of the identity. */
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-accent-foreground);
+  }
 
-em {
-  font-style: normal;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  h1, h2, h3, h4, p {
+    margin: 0;
+  }
+
+  em {
+    font-style: normal;
+  }
+
+  /* Obvious, high-contrast keyboard focus everywhere. Components may opt out
+     with `focus:outline-none`, but must supply their own focus ring. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -72,79 +161,22 @@ em {
   }
 }
 
-/* Hero CTA — soft glow + subtle hover pulse (scoped) */
-.hero-cta {
-  position: relative;
-  isolation: isolate;
-  box-shadow:
-    0 0 0 1px rgba(25, 216, 210, 0),
-    0 0 24px -6px rgba(25, 216, 210, 0.35),
-    0 0 48px -12px rgba(25, 216, 210, 0.25);
-  transition:
-    transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 200ms ease;
-  will-change: transform, box-shadow;
-}
-.hero-cta:hover,
-.hero-cta:focus-visible {
-  transform: scale(1.03);
-  box-shadow:
-    0 0 0 1px rgba(25, 216, 210, 0.5),
-    0 0 32px -4px rgba(25, 216, 210, 0.55),
-    0 0 72px -10px rgba(25, 216, 210, 0.4);
-}
+/* ==========================================================================
+   SHARED EFFECTS
+   The legacy shims (.hero-neon-pill, .hero-glow-text) were removed in Phase 3
+   once every consumer was migrated to <Button> / <PageHero>. Only the beacon
+   dot remains, shared by the hero and PageHero eyebrows.
+   ========================================================================== */
 
-/* Neon Pill CTA Button matching the reference image */
-.hero-neon-pill {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9999px;
-  background: radial-gradient(120% 120% at 50% 20%, rgba(25, 216, 210, 0.18) 0%, rgba(7, 14, 18, 0.95) 70%);
-  border: 1.5px solid rgba(25, 216, 210, 0.65);
-  box-shadow:
-    0 0 16px -2px rgba(25, 216, 210, 0.55),
-    0 0 32px -6px rgba(25, 216, 210, 0.35),
-    inset 0 0 12px rgba(25, 216, 210, 0.2);
-  transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, box-shadow;
-}
-
-.hero-neon-pill:hover {
-  transform: scale(1.04);
-  border-color: rgba(25, 216, 210, 0.95);
-  box-shadow:
-    0 0 24px 2px rgba(25, 216, 210, 0.75),
-    0 0 48px -4px rgba(25, 216, 210, 0.5),
-    inset 0 0 16px rgba(25, 216, 210, 0.3);
-}
-
-.hero-neon-pill:active {
-  transform: scale(0.98);
-}
-
-/* Radiant glow effect for headline text */
-.hero-glow-text {
-  background: linear-gradient(135deg, #19d8d2 0%, #38ef7d 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 0 24px rgba(25, 216, 210, 0.65)) drop-shadow(0 0 45px rgba(25, 216, 210, 0.35));
-}
-
-/* Subtle pulsating beacon dot */
+/* Subtle pulsating beacon dot — flat: scale + opacity only, no glow. */
 @keyframes beacon-pulse {
   0%, 100% {
     transform: scale(1);
     opacity: 0.9;
-    box-shadow: 0 0 0 0 rgba(128, 237, 101, 0.6);
   }
   50% {
     transform: scale(1.15);
     opacity: 1;
-    box-shadow: 0 0 12px 4px rgba(128, 237, 101, 0.75);
   }
 }
 
@@ -153,37 +185,120 @@ em {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-cta,
-  .hero-neon-pill {
-    transition: box-shadow 200ms ease;
-  }
-  .hero-cta:hover,
-  .hero-cta:focus-visible,
-  .hero-neon-pill:hover {
-    transform: none;
-  }
   .beacon-pulse {
     animation: none;
   }
 }
 
-/* Hero scroll cue — subtle continuous bounce + opacity pulse (scoped) */
-@keyframes hero-cue-bounce {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(3px); }
+/* ==========================================================================
+   HERO — the only section with a photographic ground layer.
+   The video is fixed under everything; these two rules are what make type and
+   figure sit *in* the footage instead of on top of it.
+   ========================================================================== */
+
+/* Legibility scrim. Opaque at the left edge (where the type column lives) and
+   progressively transparent to the right, so the footage still reads on the
+   side that carries no copy. Built from the background token via color-mix so
+   it tracks the palette instead of hard-coding rgb(). */
+.hero-scrim {
+  background: linear-gradient(
+    to right,
+    var(--color-background) 0%,
+    color-mix(in srgb, var(--color-background) 90%, transparent) 42%,
+    color-mix(in srgb, var(--color-background) 26%, transparent) 100%
+  );
 }
-@keyframes hero-cue-pulse {
-  0%, 100% { opacity: 0.78; }
-  50%      { opacity: 1; }
+
+/* Bottom fade. Dissolves the hero into the marquee band below instead of
+   ending on a hard video edge — and hides the loop seam near the bottom. */
+.hero-scrim-bottom {
+  background: linear-gradient(to top, var(--color-background) 0%, transparent 100%);
 }
-.hero-scroll-cue {
-  animation:
-    hero-cue-pulse 2.4s ease-in-out infinite,
-    hero-cue-bounce 2.4s ease-in-out infinite;
+
+/* Acid-yellow gradient text: the accent phrase runs from pure acid yellow
+   into a warmer amber, clipped to the glyphs (`bg-clip-text` + transparent
+   fill). Keeps accent legible on dark while giving display type a lit,
+   poster-like falloff instead of one flat fill. */
+.text-gradient-accent {
+  background: linear-gradient(
+    100deg,
+    var(--color-accent) 0%,
+    #f5ee6a 45%,
+    #b8a90a 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
+
+/* ==========================================================================
+   TEXTURE
+   feTurbulence grain fixed over the viewport: 3% opacity, `overlay` blend, so
+   flat surfaces pick up a print/poster feel without touching readability.
+   Purely decorative — the element rendering it is aria-hidden and
+   pointer-events-none.
+   ========================================================================== */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0.03;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='kinetic-noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23kinetic-noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* ==========================================================================
+   MOTION — MARQUEE
+   One CSS animation drives every marquee on the site. The track holds N copies
+   of the content and translates by exactly one copy width, so the loop is
+   seamless at any viewport size and any content length. Translating on the
+   compositor keeps it at 60fps; `linear` keeps the rhythm constant.
+
+   `--marquee-shift` (one copy width) and `--marquee-duration` are measured in
+   JS; the fallbacks below assume two copies and keep it moving before that.
+
+   prefers-reduced-motion is the *pause mechanism*: the system forbids a
+   hover pause, so this media query — plus the scrollable row it enables — is
+   how a user stops the motion. It is pure CSS, so it works before hydration
+   and with JS disabled.
+   ========================================================================== */
+@keyframes marquee-track {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(calc(-1 * var(--marquee-shift, 50%)), 0, 0); }
+}
+
+.marquee-viewport {
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-track var(--marquee-duration, 20s) linear infinite;
+  animation-direction: var(--marquee-direction, normal);
+  will-change: transform;
+}
+
+.marquee-copy {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .hero-scroll-cue {
+  .marquee-track {
     animation: none;
-    opacity: 1;
+    width: 100%;
+  }
+  /* Keep exactly one readable copy and hand the user a scrollable row. */
+  .marquee-copy[data-marquee-duplicate] {
+    display: none;
+  }
+  .marquee-viewport {
+    overflow-x: auto;
   }
 }
