@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Magnetic } from "@/components/motion/Magnetic";
+import { waitPreloader } from "@/lib/preloader";
 import { nav } from "@/content/nav";
 import { cn } from "@/lib/utils";
 
@@ -25,7 +28,27 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [ready, setReady] = useState(false);
   const pathname = usePathname();
+  const reduce = useReducedMotion();
+
+  /* §7.2 beat 1 (t=0): the nav fades in as the preloader lifts. Reduced
+     motion and repeat visits resolve immediately → effectively instant. */
+  useEffect(() => {
+    let live = true;
+    void waitPreloader().then(() => {
+      if (live) setReady(true);
+    });
+    /* Independent failsafe (owner condition): the nav appears after 2s max
+       even if the preloader promise never resolves. */
+    const failsafe = window.setTimeout(() => {
+      if (live) setReady(true);
+    }, 2000);
+    return () => {
+      live = false;
+      window.clearTimeout(failsafe);
+    };
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -44,7 +67,12 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="pointer-events-none fixed inset-x-0 top-3 z-50 flex justify-center px-3 sm:top-4">
+    <motion.header
+      initial={{ opacity: 0 }}
+      animate={{ opacity: ready ? 1 : 0 }}
+      transition={{ duration: reduce ? 0.01 : 0.9, ease: "easeOut" }}
+      className="pointer-events-none fixed inset-x-0 top-3 z-50 flex justify-center px-3 sm:top-4"
+    >
       <nav
         aria-label="Main navigation"
         className={cn(
@@ -97,13 +125,16 @@ export function Navbar() {
           })}
         </ul>
 
-        <Link
-          href={nav.cta.href}
-          className="hidden h-11 shrink-0 items-center gap-2 rounded-full bg-accent px-5 font-display text-sm font-bold uppercase tracking-tighter text-accent-foreground transition-transform duration-200 hover:scale-105 active:scale-95 md:inline-flex"
-        >
-          {nav.cta.label}
-          <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
-        </Link>
+        {/* §5.6: the nav CTA is a magnetic button (fine pointers only). */}
+        <Magnetic>
+          <Link
+            href={nav.cta.href}
+            className="hidden h-11 shrink-0 items-center gap-2 rounded-full bg-accent px-5 font-display text-sm font-bold uppercase tracking-tighter text-accent-foreground transition-transform duration-200 hover:scale-105 active:scale-95 md:inline-flex"
+          >
+            {nav.cta.label}
+            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          </Link>
+        </Magnetic>
 
         <button
           type="button"
@@ -148,6 +179,6 @@ export function Navbar() {
           </div>
         </div>
       )}
-    </header>
+    </motion.header>
   );
 }

@@ -111,7 +111,7 @@ Use the values already in `tailwind.config` where they exist. Extend, do not rep
 2. **Section isolation:** every section gets its own stacking context (`position: relative; isolation: isolate; overflow: clip`). No scroll effect from one section may visually overlap the next one. Hero scroll effects must finish before the ticker begins.
 3. **Custom cursor (desktop with fine pointer only):** small dot plus a ring that lags slightly (lerp 0.15). Ring grows over links/buttons; shows the label "View" over work cards; hides over form inputs. Never on touch devices.
 4. **Grain overlay:** fixed, `pointer-events: none`, 3–4% opacity noise (inline SVG or tiny PNG). Adds depth to the flat black.
-5. **Preloader:** first visit only (store flag in `sessionStorage`), max 1.2s, logo mark draws in, then the hero load sequence starts. Skip entirely on reduced motion. Must not delay LCP more than that.
+5. **Preloader:** every full page load (owner amendment — D16; was "first visit only, store flag in `sessionStorage`"), max 1.2s, logo mark draws in, then the hero load sequence starts. Skip entirely on reduced motion. Must not delay LCP more than that.
 6. **Magnetic buttons:** primary CTA moves up to 8px toward the cursor on desktop. Return with spring.
 7. **Focus styles:** 2px yellow outline with 3px offset on every interactive element.
 8. **Scroll progress:** thin 2px yellow bar under the nav.

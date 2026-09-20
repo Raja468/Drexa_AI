@@ -27,13 +27,21 @@ export function Faq() {
   return (
     <Section id="faq" className="border-b-2 border-border py-16 md:py-32">
       <Container>
-        <SectionHeader
-          label={home.faq.label}
-          title={home.faq.title}
-          description={home.faq.description}
-        />
+        {/* §7.11 layout: heading sticky on the left, accordion on the right
+            (desktop). The accordion behavior itself is unchanged —
+            framer-motion owns it (D15) — and FAQPage JSON-LD is a Phase 4
+            deliverable (§12). */}
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.5fr)] lg:gap-16">
+          <div className="lg:sticky lg:top-32 lg:self-start">
+            <SectionHeader
+              label={home.faq.label}
+              title={home.faq.title}
+              description={home.faq.description}
+              className="mb-0"
+            />
+          </div>
 
-        <div className="border-t-2 border-border">
+          <div className="border-t-2 border-border">
           {home.faq.items.map((item, index) => {
             const isOpen = open === index;
             const triggerId = `faq-trigger-${index}`;
@@ -99,6 +107,7 @@ export function Faq() {
               </div>
             );
           })}
+          </div>
         </div>
       </Container>
     </Section>

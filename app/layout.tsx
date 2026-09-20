@@ -4,6 +4,10 @@ import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { NoiseTexture } from '@/components/ui/NoiseTexture'
+import { Preloader } from '@/components/motion/Preloader'
+import { ScrollProgress } from '@/components/motion/ScrollProgress'
+import { CustomCursor } from '@/components/motion/CustomCursor'
+import { SmoothScroll } from '@/components/motion/SmoothScroll'
 
 /* Kinetic Typography display face. Self-hosted latin-subset variable files
    (brief §2 rule 3: no Google Fonts — Google is unreachable in the owner's
@@ -73,12 +77,22 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           throws a persistent dev-overlay hydration error. The markup itself
           matches; only foreign attributes differ, so this is the sanctioned
           React/Next treatment. */}
-      <body suppressHydrationWarning className={`${spaceGrotesk.variable} ${geistMono.variable} antialiased bg-background text-foreground flex min-h-screen flex-col`}>
+      <body suppressHydrationWarning className={`${spaceGrotesk.variable} ${geistMono.variable} antialiased bg-background text-foreground flex min-h-screen flex-col preloader-lock`}>
+        {/* §5 global systems (Phase 2a). The preloader gates the §7.2 hero
+            load sequence via lib/preloader.ts. */}
+        <Preloader />
         <Navbar />
         <div className="flex-1">{children}</div>
         <Footer />
-        {/* Fixed print-grain texture over the whole viewport. */}
+        {/* Fixed print-grain texture over the whole viewport (§5.4). */}
         <NoiseTexture />
+        {/* Thin scroll progress bar along the top edge (§5.8). */}
+        <ScrollProgress />
+        {/* Custom cursor — fine pointers only (§5.3). */}
+        <CustomCursor />
+        {/* Lenis smooth scroll, driven by the GSAP ticker (§5.1). Last so its
+            sync exists for the ScrollTriggers mounted above it. */}
+        <SmoothScroll />
       </body>
     </html>
   )

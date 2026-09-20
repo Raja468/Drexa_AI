@@ -1,6 +1,7 @@
 import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Marquee } from "@/components/motion/Marquee";
+import { CountUp } from "@/components/motion/CountUp";
 import { proof } from "@/content/proof";
 import {
   siNextdotjs,
@@ -80,8 +81,9 @@ function TechItem({ slug }: { slug: string }) {
 /**
  * Proof strip (design brief §7.5) — product-based, honest proof only.
  *
- * Counters are static by design: the Phase 1 gate adds zero animation, so the
- * once-per-view count-up lands in Phase 2. The tech rows reuse the site's
+ * Counters animate once when ~40% visible (§7.5.1, Phase 2a): CountUp parses
+ * the numeric prefix and preserves the suffix ("30+", "100%", "24h"); reduced
+ * motion keeps them static. The tech rows reuse the site's
  * existing CSS marquee primitive (already reduced-motion aware) at reading
  * speed. Testimonial and client-logo slots render nothing while their data
  * arrays in content/proof.ts are empty — never placeholders (§2 rule 2).
@@ -97,12 +99,11 @@ export function ProofStrip() {
         <div className="grid grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-12">
           {proof.counters.map((counter) => (
             <div key={counter.label} className="border-t-2 border-border pt-6">
-              <span
-                className="block font-display font-bold tabular-nums leading-none tracking-tighter text-foreground text-[clamp(2.5rem,5vw,4.5rem)]"
+              <CountUp
+                value={counter.value}
                 title={`Source: ${counter.source}`}
-              >
-                {counter.value}
-              </span>
+                className="block font-display font-bold tabular-nums leading-none tracking-tighter text-foreground text-[clamp(2.5rem,5vw,4.5rem)]"
+              />
               <span className="mt-3 block font-mono text-xs uppercase tracking-widest text-muted-foreground md:text-sm">
                 {counter.label}
               </span>

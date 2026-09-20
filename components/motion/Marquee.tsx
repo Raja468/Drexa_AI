@@ -7,8 +7,15 @@ type Direction = "left" | "right";
 
 type MarqueeProps = {
   children: ReactNode;
-  /** Scroll speed in pixels per second: 60–100 for stats, 30–50 for reading. */
+  /** Scroll speed in pixels per second: 60–100 for stats, 30–50 for reading.
+      Ignored when `loopSeconds` is set. */
   speed?: number;
+  /** Exact loop duration override (§7.3: the ticker's ~40s loop) so the loop
+      time holds at any viewport width instead of depending on copy width. */
+  loopSeconds?: number;
+  /** §7.3: pause the animation while the pointer is over the band. Opt-in —
+      the generic marquee never pauses on hover. */
+  pauseOnHover?: boolean;
   direction?: Direction;
   className?: string;
   /** Applied to every item wrapper — put the gap between items here. */
@@ -20,7 +27,7 @@ type MarqueeProps = {
 const FALLBACK = { copies: 2, shift: "50%", duration: 20 };
 
 /**
- * Infinite, never-pausing marquee — built on one CSS keyframe animation rather
+ * Infinite marquee — built on one CSS keyframe animation rather
  * than `react-fast-marquee`.
  *
  * Why not the library: v1.6.5 publishes no stylesheet at all (its ESM entry
@@ -35,13 +42,25 @@ const FALLBACK = { copies: 2, shift: "50%", duration: 20 };
  *
  * Accessibility: duplicates are aria-hidden and the real content is read once.
  * `prefers-reduced-motion` stops the animation and reveals a scrollable row (in
- * CSS, so it works pre-hydration). Because of that, never place focusable
+ * CSS, so it works pre-hydration). Hover pause is opt-in via `pauseOnHover`
+ * (the §7.3 ticker band only) — the generic marquee never pauses. Because of
+ * that, never place focusable
  * content (links, buttons) inside a Marquee.
  */
-export function Marquee({ children, speed = 60, direction = "left", className, itemClassName }: MarqueeProps) {
+export function Marquee({
+  children,
+  speed = 60,
+  direction = "left",
+  className,
+  itemClassName,
+  loopSeconds,
+  pauseOnHover = false,
+}: MarqueeProps) {
   const copyRef = useRef<HTMLDivElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
-  const [metrics, setMetrics] = useState(FALLBACK);
+  const [metrics, setMetrics] = useState(() =>
+    loopSeconds ? { ...FALLBACK, duration: loopSeconds } : FALLBACK,
+  );
   const items = Children.toArray(children);
 
   useEffect(() => {
@@ -58,7 +77,8 @@ export function Marquee({ children, speed = 60, direction = "left", className, i
            gap opens up on every wrap with narrow content. */
         copies: Math.max(2, Math.ceil((viewportWidth + copyWidth) / copyWidth)),
         shift: `${copyWidth}px`,
-        duration: Math.max(6, copyWidth / speed),
+        /* An explicit loopSeconds (§7.3 ticker) wins over the px/s math. */
+        duration: loopSeconds ?? Math.max(6, copyWidth / speed),
       });
     };
 
@@ -67,7 +87,7 @@ export function Marquee({ children, speed = 60, direction = "left", className, i
     observer.observe(copy);
     observer.observe(viewport);
     return () => observer.disconnect();
-  }, [speed]);
+  }, [speed, loopSeconds]);
 
   const renderCopy = (index: number) => (
     <div
@@ -86,7 +106,11 @@ export function Marquee({ children, speed = 60, direction = "left", className, i
   );
 
   return (
-    <div ref={viewportRef} className={cn("marquee-viewport w-full", className)}>
+    <div
+      ref={viewportRef}
+      data-pause-on-hover={pauseOnHover || undefined}
+      className={cn("marquee-viewport w-full", className)}
+    >
       <div
         className="marquee-track"
         style={

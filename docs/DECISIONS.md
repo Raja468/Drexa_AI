@@ -166,3 +166,109 @@ work stack is restyled in Phase 2 (§7.6).
 placeholder copy that says the policy text is pending — not fake legal text.
 Owner must supply real policy content (TODO_OWNER). `/team` was also missing
 from the sitemap and has been added alongside the two stubs.
+
+## D15 — Phase 2a: one animation system per element (GSAP/Lenis ↔ framer-motion ↔ CSS)
+
+The brief allows GSAP *and* Framer Motion; running both over the same element
+is how sites get 60fps violations and double-driven transforms. Ownership was
+split explicitly:
+
+- **Lenis + GSAP own the scroll-level systems** (§5): SmoothScroll (lerp 0.1,
+  gsap.ticker-driven, ScrollTrigger-synced), the 2px progress bar, the custom
+  cursor, the magnetic CTA wrapper, the preloader lift, and the §7.5
+  count-up. All are fine-pointer / reduced-motion gated per §11.
+- **framer-motion keeps every per-element reveal it already had**: the site
+  wide FadeUp/Stagger primitives, the §7.11 FAQ accordion (already meets
+  every §7.11 behavior criterion — one-at-a-time, height spring, ARIA — so it
+  was reused untouched), and the §7.2 hero load sequence. The sequence was
+  rebuilt in place (mask line reveals per §7.2's timing table) rather than
+  ported to GSAP: it is an element entrance, framer already owned it, and the
+  two clocks are aligned by gating the whole column on `waitPreloader()`
+  (lib/preloader.ts), which resolves when the preloader starts lifting.
+- **The CSS marquee stays CSS.** §7.3 was satisfied by two opt-in props on the
+  existing primitive — `loopSeconds` (exact 40s loop, brief: "~40s per loop")
+  and `pauseOnHover` (CSS `animation-play-state`, scoped to the accent ticker
+  via `data-pause-on-hover`). The old Marquee rule "the system forbids a hover
+  pause" is superseded by this opt-in; all other marquees remain pause-free.
+- **§7.3's optional velocity skew is skipped**: it would put a second motion
+  system (Lenis velocity) on the same element the CSS marquee owns. Revisit on
+  owner request.
+- **Preloader mark is a placeholder**: §5.5 wants the *logo mark* to draw in,
+  but `/public/brand/mark.svg` is still an owner input (TODO_OWNER). A stroked
+  SVG "D" monogram + "DREXA." wordmark stands in; when mark.svg lands, only
+  the `<svg>` block in Preloader.tsx changes.
+- **Custom cursor**: the native cursor is hidden only while the custom cursor
+  is active (`html.has-custom-cursor`), and text-entry fields are exempted in
+  CSS so the caret/I-beam returns where §5.3 demands the custom cursor hide.
+- **Count-up**: `CountUp` parses numeric prefix/suffix out of the content
+  values ("3", "30+", "100%", "24h") so content/proof.ts stays the single
+  source of truth; unparseable values render static rather than faked.
+
+### D15 refinements — Batch A owner conditions
+
+- **One system per element, enforced structurally**: framer-motion animates
+  only *outer* elements (`motion.div` in the hero column, `motion.header` in
+  the nav); GSAP animates only *inner* ones (the `Magnetic` wrapper span,
+  `CountUp` textContent). No element is driven by both.
+- **Preloader failsafe**: three independent 2s wall-clock timers (Preloader
+  force-lifts; Hero and Navbar release their sequence) so the page can never
+  be stuck behind the overlay even if the promise/event is lost. First paint
+  is still covered by the SSR overlay (no flash, no shift — hero text is
+  hidden by opacity/transform only, layout is in place).
+- **Strict-mode safety**: every GSAP component fully tears down on unmount
+  (Lenis `.destroy()`, `gsap.ticker.remove`, tween/ScrollTrigger kills,
+  listener removal). The preloader session flag is written at *lift* time,
+  not at mount, so dev's double-invoked effects cannot pollute it and
+  silently skip the preloader.
+- **Cursor native visibility**: `cursor: none` is applied only while the
+  custom cursor is actually running (`html.has-custom-cursor`, added/removed
+  by its effect); text-entry fields are exempted so the native caret/I-beam
+  returns where the custom cursor hides itself; coarse pointers and reduced
+  motion never hide the native cursor at all.
+- **Lenis route hygiene**: on every route change Lenis is re-synced
+  (`scrollTo(0, immediate)`) so Next's scroll reset can't leave a stale
+  animated value, and `ScrollTrigger.refresh()` runs on route change,
+  `document.fonts.ready` and window `load` (late fonts/images change
+  geometry).
+- **Sticky Why Drexa was silently broken**: the sticky element was the grid
+  item itself with `lg:self-start` — zero travel, never pinned. Fixed by
+  stretching the grid item and making an inner wrapper sticky. Real travel
+  with the current copy is ~20px (content-limited, not a code limit).
+
+## D16 — Preloader shows on EVERY full page load (§5.5 amended by owner)
+
+The owner amended §5.5: the preloader now runs on every full page load, not
+only the first visit per session. The `sessionStorage` flag logic was removed
+entirely (read and write; `hasSeenPreloader`/`markPreloaderSeen` are gone
+from `lib/preloader.ts` and `Preloader.tsx`).
+
+Implementation:
+
+- The overlay is server-rendered (fixed, opaque, z-90 above the nav) so the
+  first paint is already covered — no hero flash, no layout shift.
+- **Class-based control hand-off**: SSR renders `preloader-failsafe`, a
+  pure-CSS animation that holds the overlay ~2.55s and fades it out
+  (fill: forwards) if JS never runs. The Preloader effect removes that
+  class on hydration and JS owns the rest — lift at 0.85s via a CSS
+  transition, independent 2s wall-clock failsafe, then the
+  `drexa:preloader-done` event. If JS arrives after the CSS fade already
+  ran (cold cache > ~2.5s), the preloader skips instead of popping the
+  overlay back.
+- **Body scroll lock**: a server-rendered `preloader-lock` class on `<body>`
+  (`overflow: hidden`) is removed at lift — the lock covers exactly the
+  overlay's lifetime. Lenis is only created when the lift fires
+  (`SmoothScroll` waits on the preloader event). No-JS caveat: the CSS fade
+  reveals the page but the lock has no JS to release it — accepted (the
+  site is JS-dependent anyway).
+- **Strict-mode safety by construction**: the preloader dropped
+  framer-motion — lift, mark draw-in and wordmark are CSS transition/
+  keyframes, so double-invoked effects can neither run the animation twice
+  nor restart it; the effect cleanup only clears timers.
+- Reduced-motion skip and the 2s failsafe retained. Hero/nav sequence still
+  waits for the lift via `waitPreloader()`.
+
+**One-line revert:** restore `hasSeenPreloader()`/`markPreloaderSeen()` in
+`lib/preloader.ts` and re-add the `hasSeenPreloader() ||` early-return in
+`components/motion/Preloader.tsx` (the flag read) + `markPreloaderSeen()`
+inside its `lift()` — i.e. tag-for-tag undo of the `// D16` changes in those
+two files.

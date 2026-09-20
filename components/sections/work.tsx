@@ -36,6 +36,9 @@ export function Work() {
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label={`View ${project.title} on GitHub`}
+                  /* §5.3: the custom cursor shows its "View" label over the
+                     panel (the work-stack restyle itself is Phase 2b). */
+                  data-cursor="view"
                   className="flex h-full flex-col"
                 >
                   <div className="relative aspect-[16/10] w-full overflow-hidden border-b-2 border-border bg-muted">

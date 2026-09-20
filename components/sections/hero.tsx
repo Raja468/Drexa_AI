@@ -1,24 +1,15 @@
 "use client";
 
-import { useEffect, useRef, type SyntheticEvent } from "react";
+import { useEffect, useRef, useState, type SyntheticEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { ButtonLink } from "@/components/ui/Button";
+import { Magnetic } from "@/components/motion/Magnetic";
 import { EASE_OUT_EXPO } from "@/lib/motion";
+import { waitPreloader } from "@/lib/preloader";
 import { home } from "@/content/home";
 import { cn } from "@/lib/utils";
-
-/**
- * Entrance animation shared by every block in the type column. A helper rather
- * than variants, so each block can take its own place in the stagger without a
- * parent `variants` contract to keep in sync.
- */
-const enter = (delay: number) => ({
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, delay, ease: EASE_OUT_EXPO },
-});
 
 /* Loop rig: the source clip ends on a frame that differs sharply from its
    first frame, so a single `loop` video jump-cuts every pass. Two stacked
@@ -53,6 +44,48 @@ export function Hero() {
   const videoARef = useRef<HTMLVideoElement>(null);
   const videoBRef = useRef<HTMLVideoElement>(null);
   const fading = useRef(false);
+
+  /* §7.2 load sequence — "the one orchestrated moment". The whole type column
+     is gated on the preloader lift (`waitPreloader` resolves immediately on
+     repeat visits and under reduced motion). Timings per the brief: t=0 the
+     nav fades in (Navbar), t=0.1s the headline lines reveal one by one
+     through an overflow-hidden line box (80ms stagger, 900ms each), t=0.5s
+     subhead + CTAs fade in, t=0.6s the proof line. The brief's t=0.6s canvas
+     beat belongs to the Phase 3 3D scene and is intentionally absent here. */
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    let live = true;
+    void waitPreloader().then(() => {
+      if (live) setReady(true);
+    });
+    /* Independent failsafe (owner condition): the sequence runs after 2s max
+       even if the preloader promise never resolves — it does not depend on
+       the promise, only on the wall clock. */
+    const failsafe = window.setTimeout(() => {
+      if (live) setReady(true);
+    }, 2000);
+    return () => {
+      live = false;
+      window.clearTimeout(failsafe);
+    };
+  }, []);
+
+  /* Mask reveal for one headline line: translateY 110% → 0 inside an
+     overflow-hidden line box. Reduced motion: no travel, instant. */
+  const mask = (delay: number) => ({
+    initial: { y: reduce ? "0%" : "110%" },
+    animate: { y: ready || reduce ? "0%" : "110%" },
+    transition: { duration: reduce ? 0.01 : 0.9, delay: reduce ? 0 : delay, ease: EASE_OUT_EXPO },
+  });
+
+  /* Simple fade for the supporting blocks (§7.2 beats 1 / 3 / 5). A helper
+     rather than variants, so each block can take its own place in the
+     sequence without a parent `variants` contract to keep in sync. */
+  const fade = (delay: number) => ({
+    initial: { opacity: 0 },
+    animate: { opacity: ready ? 1 : 0 },
+    transition: { duration: reduce ? 0.01 : 0.7, delay: reduce ? 0 : delay, ease: EASE_OUT_EXPO },
+  });
 
   /* Browsers only autoplay muted video, so `muted` is unconditional.
      Reduced-motion users get the poster frame: both players pause on mount
@@ -162,9 +195,9 @@ export function Hero() {
       {/* Type column — the poster. */}
       <Container className="relative z-10">
         <div className="max-w-[720px]">
-          {/* Eyebrow */}
+          {/* Eyebrow (§7.2 beat 1, alongside the nav fade). */}
           <motion.div
-            {...enter(0)}
+            {...fade(0)}
             className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-accent/20 bg-accent/[0.05] px-3.5 py-1.5 backdrop-blur-sm"
           >
             <span className="beacon-pulse h-2 w-2 shrink-0 rounded-full bg-accent" />
@@ -173,32 +206,45 @@ export function Hero() {
             </span>
           </motion.div>
 
-          {/* Headline. Uppercase and oversized by definition; the accent phrase
-              takes the gradient fill so the acid yellow reads as light. */}
-          <motion.h1
-            {...enter(0.08)}
-            className="font-display text-[clamp(2.5rem,6vw,5rem)] font-bold uppercase leading-[0.95] tracking-[-0.02em] text-foreground"
-          >
-            <span className="block">BUILD WHAT</span>
-            <span className="text-gradient-accent block">THINKS FORWARD.</span>
-          </motion.h1>
+          {/* Headline — §7.2: lines reveal one by one through an
+              overflow-hidden line box, 80ms stagger, 900ms each. Uppercase
+              and oversized by definition; the accent phrase takes the
+              gradient fill so the acid yellow reads as light. */}
+          <h1 className="font-display text-[clamp(2.5rem,6vw,5rem)] font-bold uppercase leading-[0.95] tracking-[-0.02em] text-foreground">
+            {/* The padding/-margin pair widens the clip box for the glyphs
+                without moving the layout — oversized display type sits close
+                to its line box at leading 0.95. */}
+            <span className="-mb-[0.08em] block overflow-hidden pb-[0.08em]">
+              <motion.span {...mask(0.1)} className="block">
+                BUILD WHAT
+              </motion.span>
+            </span>
+            <span className="-mb-[0.08em] block overflow-hidden pb-[0.08em]">
+              <motion.span {...mask(0.18)} className="text-gradient-accent block">
+                THINKS FORWARD.
+              </motion.span>
+            </span>
+          </h1>
 
-          {/* Subhead */}
+          {/* Subhead (§7.2 beat 3, t=0.5s). */}
           <motion.p
-            {...enter(0.16)}
+            {...fade(0.5)}
             className="mt-6 max-w-[50ch] text-[clamp(1.05rem,1.3vw,1.25rem)] leading-[1.6] text-foreground/75"
           >
             {home.hero.subhead}
           </motion.p>
 
-          {/* Actions */}
+          {/* Actions (§7.2 beat 3, t=0.5s). */}
           <motion.div
-            {...enter(0.24)}
+            {...fade(0.5)}
             className="mt-8 flex flex-wrap items-center gap-6 sm:gap-8"
           >
-            <ButtonLink href={home.hero.cta.href} size="lg">
-              {home.hero.cta.label}
-            </ButtonLink>
+            {/* §5.6: the primary CTA is magnetic (fine pointers only). */}
+            <Magnetic>
+              <ButtonLink href={home.hero.cta.href} size="lg">
+                {home.hero.cta.label}
+              </ButtonLink>
+            </Magnetic>
 
             <a
               href={home.hero.secondary.href}
@@ -212,10 +258,11 @@ export function Hero() {
             </a>
           </motion.div>
 
-          {/* Proof strip. Hairline-topped, monospace, deliberately quiet —
-              it corroborates the claim without competing with the CTA. */}
+          {/* Proof strip (§7.2 beat 5, t=0.6s). Hairline-topped, monospace,
+              deliberately quiet — it corroborates the claim without competing
+              with the CTA. */}
           <motion.div
-            {...enter(0.32)}
+            {...fade(0.6)}
             className="mt-12 border-t border-border/60 pt-5"
           >
             <p className="font-mono text-[11px] font-medium uppercase tracking-[0.22em] text-foreground/80">

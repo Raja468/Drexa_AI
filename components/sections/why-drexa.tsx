@@ -22,16 +22,24 @@ export function WhyDrexa() {
     >
       <Container>
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
-          <div className="lg:sticky lg:top-32 lg:self-start">
-            <span className="mb-5 block font-mono text-xs uppercase tracking-widest md:text-sm">
-              {home.why.label}
-            </span>
-            <h2 className="font-display uppercase text-mega">
-              {home.why.title}
-            </h2>
-            <p className="mt-6 max-w-[60ch] text-lg leading-tight text-accent-foreground/80 md:text-xl">
-              {home.why.description}
-            </p>
+          {/* Sticky needs travel: the grid ITEM must stretch to the full row
+              height (default align) while an INNER wrapper is the sticky
+              element. Previously the sticky element was the item itself with
+              `lg:self-start` — its box equalled its content, so it had zero
+              travel and never actually pinned (exposed by the Phase 2a Lenis
+              check, condition 5). */}
+          <div>
+            <div className="lg:sticky lg:top-32">
+              <span className="mb-5 block font-mono text-xs uppercase tracking-widest md:text-sm">
+                {home.why.label}
+              </span>
+              <h2 className="font-display uppercase text-mega">
+                {home.why.title}
+              </h2>
+              <p className="mt-6 max-w-[60ch] text-lg leading-tight text-accent-foreground/80 md:text-xl">
+                {home.why.description}
+              </p>
+            </div>
           </div>
 
           <div>

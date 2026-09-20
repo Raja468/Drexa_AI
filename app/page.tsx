@@ -30,7 +30,9 @@ export default function Page() {
     <main className="bg-background">
       <Hero />
 
-      <MarqueeBand items={home.ticker} speed={80} />
+      {/* §7.3: the accent ticker runs one ~40s linear loop and pauses on
+          hover (opt-in on Marquee); reduced motion renders it static. */}
+      <MarqueeBand items={home.ticker} loopSeconds={40} pauseOnHover />
 
       <Capabilities />
       <ProofStrip />

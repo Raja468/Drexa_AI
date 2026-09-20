@@ -36,10 +36,15 @@ const FIELD =
   "min-h-24 w-full border-b-2 border-border bg-transparent px-0 py-4 font-display text-2xl font-bold tracking-tighter text-foreground transition-colors duration-200 placeholder:font-bold placeholder:uppercase placeholder:text-muted-foreground/80 focus:border-accent md:text-3xl"
 
 /* Email field exception (design brief §2 rule 8): the placeholder renders in
-   normal case and semibold. Uppercase + bold at 24-30px made
-   "YOU@COMPANY.COM" clip to "YOU@COMPANY.C" in the half-width column. Typed
-   values are unaffected — `placeholder:*` styles the hint only. */
-const FIELD_EMAIL = FIELD.replace("placeholder:font-bold placeholder:uppercase", "placeholder:font-semibold")
+   normal case and semibold (D7) — uppercase + bold at 24–30px clipped
+   "YOU@COMPANY.COM" to "YOU@COMPANY.C" — and one step *smaller* than the
+   field type: in the half-width grid column the hint still clipped at
+   desktop sizes, so it now runs 20/24px instead of 24/30px. Typed values are
+   unaffected — `placeholder:*` styles the hint only. */
+const FIELD_EMAIL = FIELD.replace(
+  "placeholder:font-bold placeholder:uppercase",
+  "placeholder:font-semibold placeholder:text-xl md:placeholder:text-2xl",
+)
 
 const LABEL = "mb-2 block font-mono text-xs uppercase tracking-widest text-muted-foreground"
 

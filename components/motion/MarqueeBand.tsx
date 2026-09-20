@@ -14,6 +14,10 @@ type MarqueeBandProps = {
   items: readonly ReactNode[];
   /** px/second. 60–100 for high energy, 30–50 for readable content. */
   speed?: number;
+  /** §7.3 ticker: exact loop time in seconds (e.g. 40). Forwarded to Marquee. */
+  loopSeconds?: number;
+  /** §7.3 ticker: pause the loop while hovered. Forwarded to Marquee. */
+  pauseOnHover?: boolean;
   direction?: "left" | "right";
   /** `accent` = the acid-yellow band, `muted` = a secondary surface band. */
   tone?: Tone;
@@ -59,13 +63,21 @@ export function MarqueeBand({
   separator = "◆",
   className,
   itemClassName,
+  loopSeconds,
+  pauseOnHover = false,
 }: MarqueeBandProps) {
   return (
     /* `relative z-20` + the fully opaque tone background: even if a scroll
        animation on an adjacent section mistimes its fade, the band always
        paints solid on top of it — no ghosting through the ticker. */
     <section className={cn("relative z-20 w-full border-y-2", TONES[tone], className)}>
-      <Marquee speed={speed} direction={direction} itemClassName="py-4 md:py-6">
+      <Marquee
+        speed={speed}
+        loopSeconds={loopSeconds}
+        pauseOnHover={pauseOnHover}
+        direction={direction}
+        itemClassName="py-4 md:py-6"
+      >
         {sequenceOf(items, separator, itemClassName)}
       </Marquee>
     </section>
