@@ -18,7 +18,7 @@ export function WhyDrexa() {
     <Section
       id="why-drexa"
       ariaLabel="Why Drexa"
-      className="border-b-2 border-border bg-accent py-16 text-accent-foreground md:py-32"
+      className="border-b-2 border-border bg-accent py-16 text-accent-foreground md:py-28"
     >
       <Container>
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
@@ -36,7 +36,7 @@ export function WhyDrexa() {
               <h2 className="font-display uppercase text-mega">
                 {home.why.title}
               </h2>
-              <p className="mt-6 max-w-[60ch] text-lg leading-tight text-accent-foreground/80 md:text-xl">
+              <p className="mt-6 max-w-[60ch] text-lg leading-[1.55] text-accent-foreground/90 md:text-xl">
                 {home.why.description}
               </p>
             </div>
@@ -51,7 +51,7 @@ export function WhyDrexa() {
                 <h3 className="font-display text-3xl font-bold uppercase tracking-tighter md:text-5xl">
                   {pillar.title}
                 </h3>
-                <p className="mt-4 max-w-[60ch] text-lg leading-tight text-accent-foreground/80 md:text-xl">
+                <p className="mt-4 max-w-[60ch] text-lg leading-[1.55] text-accent-foreground/90 md:text-xl">
                   {pillar.copy}
                 </p>
               </div>

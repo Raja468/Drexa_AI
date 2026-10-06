@@ -52,3 +52,13 @@ missing, ordered by what blocks work next. Phase 0 additions first.
       "Architecture concept", links to the GitHub profile root, uses
       `/hero.png` as its image — confirm it stays listed (and with real media)
       or is dropped.
+- [ ] **Project outcome lines (`components/sections/work-stack.tsx`):** the three
+      projects ship with measured-sounding results ("Automates 80%+ of support
+      conversations; reduces first-response time to <30s", "Manages 500+
+      students across 3 campuses; 99.9% uptime since launch", "Executes 15+
+      OS-level actions via voice; <200ms intent parsing latency"). They predate
+      the D17 design pass and were left untouched there. Confirm each figure is
+      real and defensible — or replace it — and consider moving them into
+      `content/work.ts` so project copy has one home, as the rest of the site
+      does.
+

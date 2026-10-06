@@ -18,12 +18,12 @@ export function TeamSection() {
   const { founder } = teamPage;
 
   return (
-    <Section id="team" ariaLabel="Our team" className="border-b-2 border-border py-16 md:py-32">
+    <Section id="team" ariaLabel="Our team" className="border-b border-line py-20 md:py-32">
       <Container>
         <div className="grid gap-12 lg:grid-cols-[minmax(280px,380px)_1fr] lg:gap-20">
           {/* Portrait slot. Monogram placeholder until the owner supplies a
               real photo — the brief forbids stock imagery here. */}
-          <div className="relative mx-auto aspect-square w-full max-w-[420px] overflow-hidden border-2 border-border bg-muted lg:max-w-none">
+          <div className="relative mx-auto aspect-square w-full max-w-[420px] overflow-hidden border border-line bg-surface-1 lg:max-w-none">
             {founder.portrait ? (
               <Image
                 src={founder.portrait}
@@ -35,7 +35,7 @@ export function TeamSection() {
             ) : (
               <span
                 aria-hidden="true"
-                className="absolute inset-0 flex items-center justify-center font-display font-bold leading-none tracking-tighter text-foreground/15 text-numeral-lg"
+                className="absolute inset-0 flex items-center justify-center font-display font-bold leading-none tracking-tighter text-muted-foreground/20 text-numeral-lg"
               >
                 {founder.monogram}
               </span>
@@ -43,18 +43,25 @@ export function TeamSection() {
           </div>
 
           <div>
-            <span className="mb-5 block font-mono text-xs uppercase tracking-widest text-accent md:text-sm">
+            {/* The same rule-and-label lockup the section headings use. The
+                accent opened every section before this pass, which is what made
+                it read as decoration instead of emphasis. */}
+            <span className="mb-5 flex items-center gap-4 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              <span aria-hidden="true" className="text-dim">
+                {"//"}
+              </span>
               Our team
+              <span aria-hidden="true" className="hidden h-px flex-1 bg-line sm:block" />
             </span>
             <h2 className="font-display text-4xl font-bold uppercase tracking-tighter text-foreground md:text-5xl lg:text-6xl">
               {founder.name}
             </h2>
-            <p className="mt-2 font-mono text-xs uppercase tracking-[0.14em] text-accent md:text-sm">
+            <p className="mt-3 font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground md:text-sm">
               {founder.role}
             </p>
 
             {/* DRAFT COPY — see content/team.ts for the owner-approval flag. */}
-            <div className="mt-8 max-w-[60ch] space-y-5 text-lg leading-relaxed text-muted-foreground">
+            <div className="mt-8 max-w-[60ch] space-y-5 text-lg leading-[1.6] text-body">
               {founder.story.map((paragraph) => (
                 <p key={paragraph.slice(0, 32)}>{paragraph}</p>
               ))}
@@ -65,7 +72,7 @@ export function TeamSection() {
                 href={founder.links.github}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="group inline-flex items-center gap-2 border-b-2 border-border pb-2 font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground transition-colors duration-200 hover:border-accent hover:text-accent"
+                className="group inline-flex items-center gap-2 border-b border-line pb-2 font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground transition-colors duration-200 hover:border-foreground hover:text-foreground"
               >
                 GitHub
                 <ArrowUpRight
@@ -75,7 +82,7 @@ export function TeamSection() {
               </a>
               <a
                 href={`mailto:${founder.links.email}`}
-                className="group inline-flex items-center gap-2 border-b-2 border-border pb-2 font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground transition-colors duration-200 hover:border-accent hover:text-accent"
+                className="group inline-flex items-center gap-2 border-b border-line pb-2 font-mono text-xs font-bold uppercase tracking-widest text-muted-foreground transition-colors duration-200 hover:border-foreground hover:text-foreground"
               >
                 {founder.links.email}
                 <ArrowUpRight
@@ -88,17 +95,18 @@ export function TeamSection() {
         </div>
 
         {/* How we work — three short factual statements (DRAFT COPY). */}
-        <div className="mt-16 border-t-2 border-border pt-10 md:mt-20">
-          <span className="font-mono text-xs uppercase tracking-widest text-muted-foreground md:text-sm">
+        {/* How we work. Three claims, each on its own hairline, rather than
+            three bullets: the block now reads as a stated basis instead of
+            loose notes. The accent marker is gone - this list is a statement,
+            not a pointer. */}
+        <div className="mt-16 border-t border-line pt-10 md:mt-20">
+          <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
             How we work
           </span>
-          <ul className="mt-6 grid gap-6 md:grid-cols-3 md:gap-10">
+          <ul className="mt-6 grid gap-8 md:grid-cols-3 md:gap-10">
             {founder.howWeWork.map((fact) => (
-              <li key={fact} className="flex items-start gap-3 text-base leading-relaxed text-muted-foreground">
-                <span aria-hidden="true" className="mt-0.5 font-mono text-accent">
-                  ▸
-                </span>
-                <span>{fact}</span>
+              <li key={fact} className="border-t border-line pt-5 text-base leading-[1.6] text-body">
+                {fact}
               </li>
             ))}
           </ul>

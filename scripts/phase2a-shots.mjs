@@ -36,16 +36,11 @@ const OVERLAY_PROBE =
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 const results = [];
-let shots = 0;
 const T0 = Date.now();
 const stamp = () => `[${String(((Date.now() - T0) / 1000).toFixed(1)).padStart(6)}s]`;
 function check(name, ok, detail = "") {
   results.push({ name, ok: !!ok, detail });
   console.log(`${stamp()} ${ok ? "PASS" : "FAIL"}  ${name}${detail ? `  — ${detail}` : ""}`);
-}
-function note(text) {
-  results.push({ name: text, ok: true, note: true });
-  console.log(`${stamp()} NOTE  ${text}`);
 }
 function stage(text) {
   console.log(`${stamp()} ---- ${text}`);
@@ -205,10 +200,6 @@ async function waitForReady(cdp, timeoutMs = 15000) {
   }
   return false;
 }
-
-/* The modal state of the preloader scenario. Captured by reference into the
-   scenario function and filled in there. */
-const pre = {};
 
 const profile = mkdtempSync(path.join(tmpdir(), "drexa-edge-"));
 const edge = spawn(

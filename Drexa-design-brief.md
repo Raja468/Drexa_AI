@@ -491,3 +491,27 @@ Work **one phase per session**. After each phase: build + lint + typecheck pass,
 - run more than one WebGL canvas at once
 - ship anything that only looks right at 1440px
 - add libraries outside the allowed list without asking
+
+## 14. Standing rules (every phase)
+- At the start of every task read this brief, docs/DECISIONS.md and
+  docs/TODO_OWNER.md.
+- Stack per Section 2. Ask before adding any other dependency.
+- Windows machine. PowerShell-compatible commands only. No bash-only
+  syntax.
+- npm is globally set to omit=dev. After ANY npm install run
+  `npm install --include=dev`. Never edit .npmrc.
+- No Google Fonts or third-party CDNs. Self-host assets.
+- Never invent proof (numbers, logos, testimonials, team members).
+- One phase per task. Do only what the prompt asks, then stop.
+- Log every judgement call in docs/DECISIONS.md as the next D-number,
+  with reasoning and a one-line revert. Keep docs/TODO_OWNER.md current.
+- Keep a docs/<PHASE>_PROGRESS.md checklist and tick items as you go.
+- Never two animation systems on one element. Respect
+  prefers-reduced-motion. Clean up all effects on unmount (React strict
+  mode).
+- Finish with: npx tsc --noEmit, npm run lint, npm run build,
+  .\verify.ps1. Screenshots on a production build at 390/768/1440, only
+  for changed sections.
+- Stop every dev or start server you launched before finishing. A
+  leftover `next start` locked .next once.
+- Save tokens: do not re-read files you already read.

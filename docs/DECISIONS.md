@@ -272,3 +272,85 @@ Implementation:
 `components/motion/Preloader.tsx` (the flag read) + `markPreloaderSeen()`
 inside its `lift()` — i.e. tag-for-tag undo of the `// D16` changes in those
 two files.
+
+## D17 — Design audit pass: nine problems, one pass
+
+An outside audit of the built home page raised nine problems (3 high / 4 medium
+/ 2 low). This pass fixes all nine, and every fix stays inside the site's own
+architecture: copy lives in the content files, presentation lives in the
+component that renders it.
+
+**Tokens first — they were the root cause of four of the nine.** `globals.css`
+carried one grey (`--color-muted-foreground: #a1a1aa`) doing three jobs at once,
+and body copy was painted with it at 60–75% opacity. It is now a three-tone
+ramp, each tone with exactly one job:
+
+| Token | Value | Job | Contrast on `#09090b` |
+|---|---|---|---|
+| `--color-muted-foreground` | `#b4b4bd` | micro-labels, tags, eyebrows | 9.5:1 |
+| `--color-body` | `#dcdce2` | every paragraph of real copy | 14:1 |
+| `--color-dim` | `#8f8f99` | decorative numerals only | 6.1:1 |
+
+`--color-text-secondary` / `--color-text-muted` re-point at the muted tone, so
+no legacy utility class broke.
+
+1. **Hero dead space (high).** The type column stopped at 720px on a 1360px
+   canvas, so the right third of the most valuable screen on the site carried
+   nothing. The hero is now two columns on one baseline (`lg:items-end`): the
+   poster left, and a "Shipped index" rail right, sourced from
+   `home.work.items` line by line — claim on the left, evidence on the right.
+   `.hero-scrim` became a five-stop, three-zone gradient (opaque left, clear
+   window through the middle, solid right) so the rail sits on a readable
+   surface while the footage still reads. The three off-palette colour blooms
+   were replaced by a single accent-tinted bloom.
+2. **Service-card monotony (high).** Eight identical full-width slabs. Spans now
+   run `3 / 2+1 / 1+2 / 1+1+1`, padding and heading scale vary by span, the wide
+   card is composed copy-left / figure-right, and the grid dropped `gap-6` for
+   one shared hairline (`border-l/t` on the grid, `border-r/b` per cell) — the
+   divider signature instead of a box drawn twice with a gap between.
+3. **Uniform section rhythm (high).** Every section was
+   `border-b-2 border-border py-16 md:py-32`. Padding now tracks section weight
+   (proof `py-14 md:py-20` → work `py-20 md:py-36`), 2px section borders became
+   hairlines (`border-b border-line`), and only the acid-yellow Why Drexa band
+   keeps a 2px frame so the rhythm break is deliberate.
+4. **Grey body copy (medium).** Every paragraph moved to `text-body`;
+   `leading-tight` on running copy became `leading-[1.55]`–`leading-[1.6]`.
+5. **Overused accent (medium).** Accent is now spent on actionable things: the
+   primary CTA, the hero headline's accent phrase, the Why Drexa band, and one
+   accent glyph per interactive group. It was removed from every section eyebrow
+   (now the rule-and-label lockup `// LABEL ————`), the FAQ ordinal and question
+   text, the process numerals and "you get" chips, the team role and marker
+   glyph, the project label chip and the outcome box, and service tag hover.
+6. **Stacked effects (medium).** Service cards dropped the pointer-tracked
+   accent spotlight, the accent border swap and the icon scale-plus-rotate on
+   hover (hover is one surface lift). Project cards went from
+   box-inside-box-inside-box to one hairline frame with the outcome on a left
+   accent rule, and process steps no longer stack `opacity-40` on an already
+   grey tone — the token ramp carries the de-emphasis instead.
+7. **Weak stats + founder block (medium).** The proof strip carries its own
+   lockup now (`proof.label` / `proof.note` in `content/proof.ts`), a step
+   larger numerals and one hairline grid; the founder block took the same
+   lockup, a hairline per claim in "How we work", and body-tone copy.
+8. **Nested project boxes (low).** Covered by 6 — one frame per project card.
+9. **Low-contrast micro-type (low).** `text-muted-foreground/40 | /50 | /60`,
+   `text-foreground/15 | /40` and `StatNumber`'s `text-muted` base
+   (`#27272a` — a *surface* value applied to text) are gone; `StatNumber`
+   defaults to `--color-dim`.
+
+**Files:** `app/globals.css`, `components/ui/SectionHeader.tsx`,
+`components/ui/StatNumber.tsx`, `components/sections/hero.tsx`,
+`services-bento.tsx`, `proof-strip.tsx`, `work-stack.tsx`,
+`process-timeline.tsx`, `faq.tsx`, `contact.tsx`, `team.tsx`, `why-drexa.tsx`,
+`content/proof.ts`.
+
+**One-line revert:** every fix is confined to the component that renders it — the
+only structural addition is the hero rail (delete the `<motion.aside>` block in
+`components/sections/hero.tsx`). The token ramp is the one change that reaches
+every page: reverting means collapsing `--color-body` / `--color-dim` back into
+`--color-muted-foreground` and re-pointing the two legacy aliases.
+
+**Left alone on purpose:** the dead pre-redesign sections (`approach.tsx`,
+`capabilities.tsx`, `work.tsx`) are not imported by any page; the project
+"outcome" strings in `work-stack.tsx` are pre-existing owner-supplied copy and
+were not reworded (flagged in `docs/TODO_OWNER.md` for confirmation).
+

@@ -14,7 +14,7 @@ import { home } from "@/content/home";
  * Questions stay in sentence case at a large size rather than uppercase: a
  * full question shouted in caps is hostile to read, and the system's own rule
  * keeps content (as opposed to display type) in normal case. The poster feel
- * comes from the ordinals, the 2px rules and the size instead.
+ * comes from the ordinals, the hairline rules and the size instead.
  *
  * Accessibility: real buttons, so Enter/Space work for free; `aria-expanded`
  * announces state; the panel is a labelled region and is unmounted when
@@ -25,7 +25,7 @@ export function Faq() {
   const reduce = useReducedMotion();
 
   return (
-    <Section id="faq" className="border-b-2 border-border py-16 md:py-32">
+    <Section id="faq" className="border-b border-line py-16 md:py-24">
       <Container>
         {/* §7.11 layout: heading sticky on the left, accordion on the right
             (desktop). The accordion behavior itself is unchanged —
@@ -41,14 +41,14 @@ export function Faq() {
             />
           </div>
 
-          <div className="border-t-2 border-border">
+          <div className="border-t border-line">
           {home.faq.items.map((item, index) => {
             const isOpen = open === index;
             const triggerId = `faq-trigger-${index}`;
             const panelId = `faq-panel-${index}`;
 
             return (
-              <div key={item.q} className="border-b-2 border-border">
+              <div key={item.q} className="border-b border-line">
                 <h3>
                   <button
                     type="button"
@@ -59,14 +59,14 @@ export function Faq() {
                     className="group flex min-h-[88px] w-full items-center justify-between gap-6 py-6 text-left"
                   >
                     <span className="flex items-baseline gap-5">
-                      <span className="font-mono text-xs text-accent md:text-sm">
+                      <span className="font-mono text-xs tabular-nums text-dim md:text-sm">
                         {String(index + 1).padStart(2, "0")}
                       </span>
-                      <span
-                        className={`font-display text-xl tracking-tighter transition-colors duration-200 md:text-3xl ${
-                          isOpen ? "text-accent" : "text-foreground group-hover:text-accent"
-                        }`}
-                      >
+                      {/* The question no longer turns yellow on open or on
+                          hover. Open state is carried by the accent glyph on
+                          the right and by the panel appearing; the accent is
+                          spent on things that are actionable, not on text. */}
+                      <span className="font-display text-xl tracking-tighter text-foreground md:text-3xl">
                         {item.q}
                       </span>
                     </span>
@@ -74,7 +74,7 @@ export function Faq() {
                       <Minus className="h-5 w-5 shrink-0 text-accent md:h-6 md:w-6" aria-hidden="true" />
                     ) : (
                       <Plus
-                        className="h-5 w-5 shrink-0 text-muted-foreground transition-colors duration-200 group-hover:text-accent md:h-6 md:w-6"
+                        className="h-5 w-5 shrink-0 text-dim transition-colors duration-200 group-hover:text-foreground md:h-6 md:w-6"
                         aria-hidden="true"
                       />
                     )}
@@ -98,7 +98,7 @@ export function Faq() {
                       }
                       className="overflow-hidden"
                     >
-                      <p className="max-w-[760px] pb-8 text-lg leading-tight text-muted-foreground md:pl-[3.25rem] md:text-xl">
+                      <p className="max-w-[760px] pb-8 text-lg leading-[1.55] text-body md:pl-[3.25rem] md:text-xl">
                         {item.a}
                       </p>
                     </motion.div>

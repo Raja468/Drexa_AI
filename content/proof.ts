@@ -9,6 +9,16 @@
 
 export const proof = {
   /**
+   * Strip lockup. The counters used to land between two sections with no
+   * framing at all, which read as filler. They now carry a label and an honest
+   * one-line note: every figure traces to a real project or to a policy stated
+   * in writing (each counter keeps its `source`), and this site invents no
+   * metrics, so the note says exactly that and nothing more.
+   */
+  label: "Proof",
+  note: "Four figures, each one traceable: a real project in this portfolio or a policy we state in writing. Nothing estimated, nothing rounded up.",
+
+  /**
    * Counters — each value needs a traceable source (the `source` field).
    * Rendered as static numbers; the once-per-view count-up is a Phase 2
    * motion item, so nothing animates yet.

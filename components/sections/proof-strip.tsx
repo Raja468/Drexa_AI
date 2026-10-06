@@ -94,24 +94,43 @@ export function ProofStrip() {
   const rowB = proof.techSlugs.slice(half);
 
   return (
-    <Section ariaLabel="Proof" className="border-b-2 border-border py-16 md:py-32">
+    <Section ariaLabel="Proof" className="border-b border-line py-14 md:py-20">
       <Container>
-        <div className="grid grid-cols-2 gap-8 lg:grid-cols-4 lg:gap-12">
-          {proof.counters.map((counter) => (
-            <div key={counter.label} className="border-t-2 border-border pt-6">
-              <CountUp
-                value={counter.value}
-                title={`Source: ${counter.source}`}
-                className="block font-display font-bold tabular-nums leading-none tracking-tighter text-foreground text-[clamp(2.5rem,5vw,4.5rem)]"
-              />
-              <span className="mt-3 block font-mono text-xs uppercase tracking-widest text-muted-foreground md:text-sm">
-                {counter.label}
+        {/* Proof block. Four large numbers under 2px rules and a small label
+            used to occupy a whole section: a throwaway strip between two real
+            sections. It now carries its own lockup (label plus the honest
+            sourcing note), the numerals are a step larger, and the four sit on
+            one hairline grid. Each number keeps its source in `title`. */}
+        <div className="grid gap-x-8 gap-y-10 border-t border-line pt-8 md:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] md:gap-x-16 md:pt-10">
+          <div>
+            <span className="mb-5 flex items-center gap-4 font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+              <span aria-hidden="true" className="text-dim">
+                {"//"}
               </span>
-            </div>
-          ))}
+              {proof.label}
+            </span>
+            <p className="max-w-[40ch] text-base leading-[1.55] text-body">
+              {proof.note}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4 lg:gap-x-10">
+            {proof.counters.map((counter) => (
+              <div key={counter.label}>
+                <CountUp
+                  value={counter.value}
+                  title={`Source: ${counter.source}`}
+                  className="block font-display font-bold tabular-nums leading-none tracking-tighter text-foreground text-[clamp(2.75rem,5.5vw,4.75rem)]"
+                />
+                <span className="mt-4 block border-t border-line pt-3 font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                  {counter.label}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-16 border-t-2 border-border pt-10 md:mt-20">
+        <div className="mt-14 border-t border-line pt-8 md:mt-16">
           <Marquee speed={30} direction="left" itemClassName="py-3">
             {rowA.map((slug) => (
               <TechItem key={slug} slug={slug} />
