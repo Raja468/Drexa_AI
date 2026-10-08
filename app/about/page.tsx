@@ -39,8 +39,8 @@ export default function AboutPage() {
       </Section>
 
       <Section number="02" title="Founder">
-        <div className="flex flex-col p-8 py-16 md:p-14 lg:flex-row lg:items-center lg:gap-16 lg:p-24">
-          <div className="mb-10 lg:mb-0 lg:w-[400px] shrink-0">
+        <div className="flex flex-col p-8 py-16 md:p-14 xl:flex-row xl:items-center xl:gap-16 lg:p-12">
+          <div className="mb-10 xl:mb-0 xl:w-[320px] shrink-0">
              <div className="relative aspect-square w-full max-w-[400px] overflow-hidden rounded-[12px] bg-[#E4E4DF]">
                {/* Placeholder for founder photo */}
                <div className="absolute inset-0 flex items-center justify-center p-6 text-center text-sm font-mono text-[#54585F] uppercase tracking-wider">
@@ -48,7 +48,7 @@ export default function AboutPage() {
                </div>
              </div>
           </div>
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">Raja, founder.</h2>
             <p className="mt-6 max-w-[50ch] text-[18px] leading-[1.6] text-[#54585F]">
               I am a software developer and BS Computer Science student at Virtual University of Pakistan. I work across web development, AI automation, and cybersecurity, and I hold certifications from Cisco, EC-Council, IBM, and Google.

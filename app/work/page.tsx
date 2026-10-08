@@ -39,8 +39,8 @@ export default function WorkListPage() {
       <div className="flex flex-col">
         {projects.map((project, i) => (
           <Section key={project.href} number={`0${i + 1}`} title={project.title} noBorderTop={i === 0}>
-             <div className={`flex flex-col gap-10 p-8 py-20 md:p-14 lg:p-24 lg:flex-row lg:items-center ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
-               <div className="flex-1">
+             <div className={`flex flex-col gap-10 p-8 py-20 md:p-14 lg:p-16 lg:flex-row lg:items-center ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
+               <div className="flex-1 min-w-0">
                  <div className="browser-frame w-full shadow-[0_1px_2px_rgba(22,24,29,0.06)]">
                    <div className="browser-bar">
                      <span /><span /><span />
@@ -50,7 +50,7 @@ export default function WorkListPage() {
                    </div>
                  </div>
                </div>
-               <div className="lg:w-[400px] shrink-0">
+               <div className="lg:w-[360px] shrink-0">
                  <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-accent">Internal build</p>
                  <h2 className="mt-4 font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">{project.title}</h2>
                  <p className="mt-4 text-[18px] leading-[1.6] text-[#54585F]">{project.copy}</p>
