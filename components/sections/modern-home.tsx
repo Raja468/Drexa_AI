@@ -92,19 +92,22 @@ export function ModernHome() {
               </div>
             </div>
 
-            <div className="absolute -bottom-8 -left-8 z-20 w-[260px] overflow-hidden rounded-[16px] border border-border bg-white shadow-[0_1px_2px_rgba(22,24,29,0.06)] animate-in fade-in slide-in-from-bottom-4 duration-1000 fill-mode-both delay-300">
+            <div className="absolute -bottom-8 -left-8 z-20 w-[260px] overflow-hidden rounded-[16px] border border-border bg-white shadow-[0_1px_2px_rgba(22,24,29,0.06)]">
                <div className="bg-[#0B6B57] px-4 py-3 text-white">
                  <p className="text-[13px] font-semibold">Support Team</p>
                  <p className="text-[11px] opacity-80">Typically replies instantly</p>
                </div>
                <div className="flex flex-col gap-3 bg-[#EAE6DF] p-4 text-[13px]">
-                  <div className="self-end rounded-lg rounded-tr-none bg-[#D9FDD3] p-2 px-3 shadow-sm animate-in zoom-in-95 duration-300 fill-mode-both delay-700">
+                  <div className="msg self-end rounded-lg rounded-tr-none bg-[#D9FDD3] p-2 px-3 shadow-[0_1px_2px_rgba(22,24,29,0.06)]" style={{ '--i': 0 } as React.CSSProperties}>
                     What is the price and timing?
                   </div>
-                  <div className="self-start rounded-lg rounded-tl-none bg-white p-2 px-3 shadow-sm animate-in zoom-in-95 duration-300 fill-mode-both delay-[1300ms]">
+                  <div className="typing self-start" style={{ '--i': 1 } as React.CSSProperties} aria-hidden="true">
+                    <i /><i /><i />
+                  </div>
+                  <div className="msg self-start rounded-lg rounded-tl-none bg-white p-2 px-3 shadow-[0_1px_2px_rgba(22,24,29,0.06)]" style={{ '--i': 1 } as React.CSSProperties}>
                     Pricing starts at $500, takes 2 weeks.
                   </div>
-                  <div className="mt-2 text-center text-[10px] uppercase text-[#54585F] animate-in fade-in duration-300 fill-mode-both delay-[1800ms]">
+                  <div className="msg mt-2 text-center text-[10px] uppercase text-[#54585F]" style={{ '--i': 1.5 } as React.CSSProperties}>
                     Handed to a human agent
                   </div>
                </div>
