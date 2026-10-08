@@ -143,6 +143,11 @@ export function ModernHome() {
       {/* 01 SERVICES */}
       <Section number="01" title="Services">
          <div className="flex flex-col">
+           <div className="border-b border-border px-8 pt-12 md:px-12 md:pt-16 lg:px-16 lg:pt-20">
+             <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">
+               Four services. <em className="font-serif font-normal italic text-accent">One team.</em>
+             </h2>
+           </div>
            {services.map((s, i) => (
              <Link href={s.href} key={s.title} className={`group flex flex-col gap-6 p-8 transition-colors duration-150 hover:bg-[#F6F6F3] md:p-12 lg:flex-row lg:items-center ${i > 0 ? 'border-t border-border' : ''}`}>
                <div className="font-mono text-3xl font-light text-muted-foreground lg:w-24">
@@ -195,6 +200,11 @@ export function ModernHome() {
       {/* 03 WORK SECTION */}
       <Section number="03" title="Work">
          <div className="flex flex-col">
+           <div className="border-b border-border px-8 pt-12 md:px-12 md:pt-16 lg:px-16 lg:pt-20">
+             <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">
+               What we have <em className="font-serif font-normal italic text-accent">built.</em>
+             </h2>
+           </div>
            {projects.map((project, i) => (
              <div key={project.href} className={`flex flex-col gap-10 p-8 py-20 md:p-14 lg:p-24 lg:flex-row lg:items-center ${i > 0 ? 'border-t border-border' : ''} ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
                <div className="flex-1">
@@ -257,7 +267,7 @@ export function ModernHome() {
       <Section number="05" title="Founder">
          <div className="p-8 py-20 md:p-14 lg:p-24 flex flex-col justify-center max-w-[800px]">
            <h2 className="font-display text-[32px] md:text-[44px] font-bold tracking-[-0.02em]">
-             Hi, I&apos;m Raja.
+             Hi, I&apos;m <em className="font-serif font-normal italic text-accent">Raja.</em>
            </h2>
            <p className="mt-6 text-[20px] leading-[1.6] text-[#54585F]">
              I am the founder of Drexa AI. I am a software developer and Computer Science student with hands-on experience in web development, AI automation, and cybersecurity. I started Drexa to help businesses use technology in practical ways, without confusing jargon or inflated promises.
