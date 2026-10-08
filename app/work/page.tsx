@@ -52,7 +52,7 @@ export default function WorkListPage() {
                </div>
                <div className="lg:w-[400px] shrink-0">
                  <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-accent">Internal build</p>
-                 <h2 className="mt-4 font-display text-[32px] font-bold tracking-tight">{project.title}</h2>
+                 <h2 className="mt-4 font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">{project.title}</h2>
                  <p className="mt-4 text-[18px] leading-[1.6] text-[#54585F]">{project.copy}</p>
                  <div className="mt-6 flex flex-wrap gap-2">
                    {project.tags.map(tag => (
@@ -76,7 +76,7 @@ export default function WorkListPage() {
       <section className="bg-[#16181D] text-[#F2F2EE] border-t border-[#2A2D33]">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-8 border-x border-[#2A2D33] p-8 py-20 md:p-14 lg:flex-row lg:items-center lg:justify-between lg:p-20">
           <div>
-            <h2 className="font-display text-[32px] md:text-[40px] font-bold tracking-[-0.02em]">Have a project in mind?</h2>
+            <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">Have a project in mind?</h2>
             <p className="mt-4 max-w-2xl text-[18px] leading-[1.6] text-[#A9ACB2]">
               Book a free 30-minute consultation. We will listen, ask questions, and tell you honestly what we would build and what it would cost.
             </p>

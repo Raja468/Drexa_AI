@@ -56,7 +56,7 @@ export default function ServicesOverviewPage() {
         {servicesList.map((service, i) => (
           <Section key={service.href} number={`0${i + 1}`} title={service.title} noBorderTop={i === 0}>
             <div className="flex flex-col p-8 py-16 md:p-14 lg:p-24 gap-8">
-              <h2 className="font-display text-[32px] md:text-[44px] font-bold tracking-tight">
+              <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">
                 {service.title}
               </h2>
               <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#54585F]">
@@ -97,7 +97,7 @@ export default function ServicesOverviewPage() {
       <section className="bg-[#16181D] text-[#F2F2EE] border-t border-[#2A2D33]">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-8 border-x border-[#2A2D33] p-8 py-20 md:p-14 lg:flex-row lg:items-center lg:justify-between lg:p-20">
           <div>
-            <h2 className="font-display text-[32px] md:text-[40px] font-bold tracking-[-0.02em]">Not sure what you need?</h2>
+            <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">Not sure what you need?</h2>
             <p className="mt-4 max-w-2xl text-[18px] leading-[1.6] text-[#A9ACB2]">
               Tell us the problem, not the solution. We will recommend the simplest approach that works.
             </p>

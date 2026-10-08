@@ -49,7 +49,7 @@ export default function AboutPage() {
              </div>
           </div>
           <div className="flex-1">
-            <h2 className="font-display text-[32px] md:text-[44px] font-bold tracking-tight">Raja, founder.</h2>
+            <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">Raja, founder.</h2>
             <p className="mt-6 max-w-[50ch] text-[18px] leading-[1.6] text-[#54585F]">
               I am a software developer and BS Computer Science student at Virtual University of Pakistan. I work across web development, AI automation, and cybersecurity, and I hold certifications from Cisco, EC-Council, IBM, and Google.
             </p>
@@ -89,7 +89,7 @@ export default function AboutPage() {
       <section className="bg-[#16181D] text-[#F2F2EE] border-t border-[#2A2D33]">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-8 border-x border-[#2A2D33] p-8 py-20 md:p-14 lg:flex-row lg:items-center lg:justify-between lg:p-20">
           <div>
-            <h2 className="font-display text-[32px] md:text-[40px] font-bold tracking-[-0.02em]">Have a project in mind?</h2>
+            <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">Have a project in mind?</h2>
             <p className="mt-4 max-w-2xl text-[18px] leading-[1.6] text-[#A9ACB2]">
               Book a free 30-minute consultation. We will listen, ask questions, and tell you honestly what we would build and what it would cost.
             </p>

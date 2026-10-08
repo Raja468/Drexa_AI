@@ -29,7 +29,7 @@ export function CtaBanner({ eyebrow, title, description, cta }: Props) {
             {eyebrow}
           </span>
 
-          <h2 className="mt-6 max-w-[900px] font-display uppercase text-mega">{title}</h2>
+          <h2 className="mt-6 max-w-[900px] font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">{title}</h2>
 
           <p className="mt-6 max-w-[640px] text-lg leading-tight text-accent-foreground/80 md:text-xl">
             {description}

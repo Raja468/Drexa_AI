@@ -104,7 +104,7 @@ export default function ChatConnectAIPage() {
       <section className="bg-[#16181D] text-[#F2F2EE] border-t border-[#2A2D33]">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-8 border-x border-[#2A2D33] p-8 py-20 md:p-14 lg:flex-row lg:items-center lg:justify-between lg:p-20">
           <div>
-            <h2 className="font-display text-[32px] md:text-[40px] font-bold tracking-[-0.02em]">Want something like this for your business?</h2>
+            <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">Want something like this for your business?</h2>
             <p className="mt-4 max-w-2xl text-[18px] leading-[1.6] text-[#A9ACB2]">
               Book a free 30-minute consultation. We will listen, ask questions, and tell you honestly what we would build and what it would cost.
             </p>

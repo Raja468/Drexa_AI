@@ -39,7 +39,7 @@ export default function TeamPage() {
                 <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">
                   {teamPage.members.label}
                 </span>
-                <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold uppercase tracking-tighter text-foreground">
+                <h2 className="mt-2 font-display text-[28px] md:text-[44px] font-bold uppercase tracking-tighter text-foreground">
                   {teamPage.members.title}
                 </h2>
               </div>
@@ -138,7 +138,7 @@ export default function TeamPage() {
             <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">
               {teamPage.principles.label}
             </span>
-            <h2 className="mt-2 max-w-[600px] font-display text-[clamp(2rem,4vw,3rem)] font-bold uppercase tracking-tighter text-foreground">
+            <h2 className="mt-2 max-w-[600px] font-display text-[28px] md:text-[44px] font-bold uppercase tracking-tighter text-foreground">
               {teamPage.principles.title}
             </h2>
           </FadeUp>
