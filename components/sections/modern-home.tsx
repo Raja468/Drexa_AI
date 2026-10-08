@@ -63,7 +63,7 @@ export function ModernHome() {
     <main className="bg-white">
       {/* HERO */}
       <Section noBorderTop>
-        <div className="grid gap-12 px-6 py-14 md:px-10 lg:grid-cols-[1fr_1.1fr] lg:px-16 lg:py-28">
+        <div className="grid gap-12 overflow-x-clip px-6 py-14 md:px-10 lg:grid-cols-[1fr_1.1fr] lg:px-16 lg:py-28">
           <div className="flex flex-col justify-center pt-8">
             <h1 className="font-display text-[40px] font-[800] leading-[1.02] tracking-[-0.03em] md:text-[72px]">
               Technology that helps your business <em className="font-serif text-accent italic font-normal">run better.</em>
