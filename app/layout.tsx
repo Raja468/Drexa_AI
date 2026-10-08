@@ -4,8 +4,10 @@ import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 
-const displayFont = localFont({ src: './fonts/space-grotesk-latin-var.woff2', weight: '300 700', variable: '--font-display', display: 'swap' })
-const bodyFont = localFont({ src: './fonts/space-grotesk-latin-var.woff2', weight: '300 700', variable: '--font-body', display: 'swap' })
+const manrope = localFont({ src: './fonts/manrope-var.woff2', variable: '--font-manrope', display: 'swap', preload: true })
+const inter = localFont({ src: './fonts/inter-var.woff2', variable: '--font-inter', display: 'swap', preload: true })
+const instrumentSerif = localFont({ src: './fonts/instrument-serif-italic.woff2', variable: '--font-instrument', display: 'swap', preload: false })
+const jetbrainsMono = localFont({ src: './fonts/jetbrains-mono-var.woff2', variable: '--font-jetbrains', display: 'swap', preload: false })
 
 export const metadata: Metadata = {
   title: 'Drexa AI | AI Automation, Web & Software Development',
@@ -21,12 +23,34 @@ export const viewport: Viewport = { colorScheme: 'light', themeColor: '#ffffff' 
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${displayFont.variable} ${bodyFont.variable}`}>
+    <html lang="en" className={`${manrope.variable} ${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}>
       <body>
         <Navbar />
         <div>{children}</div>
         <Footer />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': ['Organization', 'ProfessionalService'], name: 'Drexa AI', url: 'https://drexa.tech', logo: 'https://drexa.tech/logo.png', description: 'Independent technology studio based in Pakistan.' }) }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              name: "Drexa AI",
+              url: "https://drexa.tech",
+              logo: "https://drexa.tech/logo.png",
+              description:
+                "Independent technology studio building AI automation, web and software development, and cybersecurity services.",
+              email: "hello@drexa.tech",
+              telephone: "+923715082737",
+              areaServed: ["Pakistan", "Worldwide"],
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Islamabad",
+                addressCountry: "PK",
+              },
+              sameAs: ["https://github.com/Raja468"],
+            }),
+          }}
+        />
       </body>
     </html>
   )

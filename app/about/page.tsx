@@ -1,143 +1,106 @@
-"use client";
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import Image from 'next/image'
+import { ArrowRight } from 'lucide-react'
+import { Section } from '@/components/layout/Section'
 
-import { Container } from "@/components/ui/Container";
-import { FadeUp } from "@/components/motion/FadeUp";
-import { PageHero } from "@/components/layout/PageHero";
-import { CtaBanner } from "@/components/sections/CtaBanner";
-import { aboutPage } from "@/content/about";
-
-const studioConvictions = aboutPage.convictions.items;
-
-const techStackGroups = aboutPage.stack.groups;
-
-const studioStats = aboutPage.stats;
+export const metadata: Metadata = {
+  title: 'About Drexa AI | Independent Technology Studio',
+  description: 'Drexa AI is an independent studio in Pakistan building AI automation, web and software development, and security services. Meet the founder.',
+}
 
 export default function AboutPage() {
   return (
-    <main className="bg-background text-foreground pt-24 pb-28">
-      {/* Header — copy lives in content/about.ts */}
-      <PageHero
-        eyebrow={aboutPage.hero.eyebrow}
-        title={aboutPage.hero.title}
-        accent={aboutPage.hero.accent}
-        description={aboutPage.hero.description}
-      />
-
-      <section className="py-14 md:py-20">
-        <Container>
-          {/* Stats bar */}
-          <FadeUp delay={0.1}>
-            <div className="grid grid-cols-2 gap-6 border-t-2 border-border pt-8 md:grid-cols-3">
-              {studioStats.map((stat) => (
-                <div key={stat.label}>
-                  <div className="font-display text-[clamp(2rem,4vw,2.75rem)] font-bold text-foreground tracking-tight">
-                    {stat.value}
-                  </div>
-                  <div className="mt-1 font-mono text-[11px] uppercase tracking-[0.1em] text-accent">
-                    {stat.label}
-                  </div>
-                </div>
-              ))}
+    <main className="bg-white pt-[88px]">
+      <section className="relative border-b border-border bg-[#F6F6F3]">
+        <div className="mx-auto flex max-w-[1440px] flex-col lg:flex-row border-x border-border">
+          <div className="lg:w-80 shrink-0 border-b lg:border-b-0 lg:border-r border-border p-6 md:p-8 lg:p-10">
+            <div className="sticky top-28 font-mono text-[13px] uppercase tracking-[0.06em] text-[#54585F]">
+              About
             </div>
-          </FadeUp>
-        </Container>
-      </section>
-
-      {/* Origin & Narrative Section */}
-      <section className="py-20 md:py-28 border-b border-border bg-muted/30">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-20 items-start">
-            <FadeUp>
-              <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">
-                {aboutPage.narrative.label}
-              </span>
-              <h2 className="mt-3 font-display text-[clamp(2rem,4vw,3.2rem)] font-bold uppercase tracking-tighter text-foreground leading-[1.1]">
-                {aboutPage.narrative.title}
-              </h2>
-            </FadeUp>
-
-            <FadeUp delay={0.1} className="space-y-6 text-[16px] leading-[1.75] text-muted-foreground">
-              {aboutPage.narrative.paragraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 32)}>{paragraph}</p>
-              ))}
-            </FadeUp>
           </div>
-        </Container>
+          <div className="flex flex-col justify-center p-8 py-20 md:p-14 lg:p-24">
+            <h1 className="font-display text-[40px] md:text-[56px] font-[800] leading-[1.02] tracking-[-0.03em] text-foreground">
+              An independent studio that keeps things practical
+            </h1>
+          </div>
+        </div>
       </section>
 
-      {/* 4 Core Convictions */}
-      <section className="py-20 md:py-28 border-b border-border">
-        <Container>
-          <FadeUp>
-            <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">
-              {aboutPage.convictions.label}
-            </span>
-            <h2 className="mt-2 font-display text-[clamp(1.75rem,3.5vw,2.5rem)] font-bold uppercase tracking-tighter text-foreground">
-              {aboutPage.convictions.title}
-            </h2>
-          </FadeUp>
+      <Section number="01" title="Story">
+        <div className="p-8 py-16 md:p-14 lg:p-24">
+          <p className="max-w-[60ch] text-[20px] leading-[1.6] text-[#16181D]">
+            Drexa AI started with a simple idea: many businesses want to use AI, better websites, and better software, but get lost in jargon and inflated promises.
+          </p>
+          <p className="mt-6 max-w-[60ch] text-[18px] leading-[1.6] text-[#54585F]">
+            We build practical systems, explain them clearly, and tell you honestly what will and will not work.
+          </p>
+        </div>
+      </Section>
 
-          <div className="mt-14 grid gap-8 md:grid-cols-2">
-            {studioConvictions.map((c) => (
-              <FadeUp key={c.number}>
-                <div className="flex h-full flex-col justify-between border-2 border-border bg-background p-8 transition-colors duration-300 hover:border-accent">
-                  <div>
-                    <span className="font-mono text-[12px] font-semibold text-accent">
-                      {c.number}
-                    </span>
-                    <h3 className="mt-4 font-display text-[21px] font-bold uppercase tracking-tight text-foreground">
-                      {c.title}
-                    </h3>
-                    <p className="mt-3 text-[14.5px] leading-[1.65] text-muted-foreground">
-                      {c.description}
-                    </p>
-                  </div>
-                </div>
-              </FadeUp>
+      <Section number="02" title="Founder">
+        <div className="flex flex-col p-8 py-16 md:p-14 lg:flex-row lg:items-center lg:gap-16 lg:p-24">
+          <div className="mb-10 lg:mb-0 lg:w-[400px] shrink-0">
+             <div className="relative aspect-square w-full max-w-[400px] overflow-hidden rounded-[12px] bg-[#E4E4DF]">
+               {/* Placeholder for founder photo */}
+               <div className="absolute inset-0 flex items-center justify-center p-6 text-center text-sm font-mono text-[#54585F] uppercase tracking-wider">
+                 [Founder Photo Placeholder]
+               </div>
+             </div>
+          </div>
+          <div className="flex-1">
+            <h2 className="font-display text-[32px] md:text-[44px] font-bold tracking-tight">Raja, founder.</h2>
+            <p className="mt-6 max-w-[50ch] text-[18px] leading-[1.6] text-[#54585F]">
+              I am a software developer and BS Computer Science student at Virtual University of Pakistan. I work across web development, AI automation, and cybersecurity, and I hold certifications from Cisco, EC-Council, IBM, and Google.
+            </p>
+            <p className="mt-4 max-w-[50ch] text-[18px] leading-[1.6] text-[#54585F]">
+              I build Drexa AI because I enjoy turning real problems into working systems.
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      <Section number="03" title="How we work">
+        <div className="p-8 py-16 md:p-14 lg:p-24">
+          <div className="grid gap-12 md:grid-cols-2">
+            {[
+              ['Honest first', 'We tell you what we can and cannot do.'],
+              ['Clear communication', 'Plain language, regular updates.'],
+              ['You own it', 'Code and designs are yours.'],
+              ['Secure by default', 'Security is part of the build.']
+            ].map(([title, desc]) => (
+              <div key={title}>
+                <h3 className="font-display text-[24px] font-bold">{title}</h3>
+                <p className="mt-3 text-[18px] leading-[1.6] text-[#54585F]">{desc}</p>
+              </div>
             ))}
           </div>
-        </Container>
-      </section>
+        </div>
+      </Section>
 
-      {/* Tech Stack Matrix */}
-      <section className="py-20 md:py-28 border-b border-border bg-muted/30">
-        <Container>
-          <FadeUp>
-            <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">
-              {aboutPage.stack.label}
-            </span>
-            <h2 className="mt-2 max-w-[600px] font-display text-[clamp(2rem,4vw,3rem)] font-bold uppercase tracking-tighter text-foreground">
-              {aboutPage.stack.title}
-            </h2>
-          </FadeUp>
+      <Section number="04" title="Where we work">
+        <div className="p-8 py-16 md:p-14 lg:p-24 border-b border-border">
+          <p className="max-w-[60ch] text-[20px] leading-[1.6] text-[#16181D]">
+            Based near Islamabad, Pakistan. We work remotely with clients worldwide.
+          </p>
+        </div>
+      </Section>
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {techStackGroups.map((group) => (
-              <FadeUp key={group.category} className="border-2 border-border bg-background p-6">
-                <h3 className="font-mono text-[12px] uppercase tracking-[0.12em] text-accent font-semibold">
-                  {group.category}
-                </h3>
-                <ul className="mt-5 space-y-3">
-                  {group.items.map((item) => (
-                    <li key={item} className="flex items-center gap-2 text-[14px] text-muted-foreground">
-                      <div className="h-1.5 w-1.5 rounded-full bg-accent/60" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </FadeUp>
-            ))}
+      <section className="bg-[#16181D] text-[#F2F2EE] border-t border-[#2A2D33]">
+        <div className="mx-auto flex max-w-[1440px] flex-col gap-8 border-x border-[#2A2D33] p-8 py-20 md:p-14 lg:flex-row lg:items-center lg:justify-between lg:p-20">
+          <div>
+            <h2 className="font-display text-[32px] md:text-[40px] font-bold tracking-[-0.02em]">Have a project in mind?</h2>
+            <p className="mt-4 max-w-2xl text-[18px] leading-[1.6] text-[#A9ACB2]">
+              Book a free 30-minute consultation. We will listen, ask questions, and tell you honestly what we would build and what it would cost.
+            </p>
           </div>
-        </Container>
+          <div className="flex shrink-0">
+            <Link href="/contact" className="group inline-flex min-h-12 items-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-white transition hover:bg-accent-hover">
+              Book a free consultation <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-[3px]" />
+            </Link>
+          </div>
+        </div>
       </section>
-
-      {/* CTA — copy lives in content/about.ts */}
-      <CtaBanner
-        eyebrow={aboutPage.cta.eyebrow}
-        title={aboutPage.cta.title}
-        description={aboutPage.cta.description}
-        cta={{ label: aboutPage.cta.label, href: aboutPage.cta.href }}
-      />
     </main>
-  );
+  )
 }

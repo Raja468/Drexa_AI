@@ -1,155 +1,93 @@
-"use client";
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import Image from 'next/image'
+import { ArrowRight } from 'lucide-react'
+import { Section } from '@/components/layout/Section'
 
-import { useState } from "react";
-import Image from "next/image";
-import { Filter } from "lucide-react";
-import { Container } from "@/components/ui/Container";
-import { FadeUp } from "@/components/motion/FadeUp";
-import { ButtonLink } from "@/components/ui/Button";
-import { PageHero } from "@/components/layout/PageHero";
-import { CtaBanner } from "@/components/sections/CtaBanner";
-import { workPage } from "@/content/work";
+export const metadata: Metadata = {
+  title: 'Our Work: AI, Software and Automation Projects | Drexa AI',
+  description: 'Explore ChatConnect AI, Drex AI Assistant, and the Iqra School Management System. Real systems built by Drexa AI.',
+}
 
-type ProjectCategory = "all" | "ai" | "software" | "rnd";
+const projects = [
+  { title: 'ChatConnect AI', copy: 'WhatsApp support automation with knowledge-base answers, lead capture, and human handoff.', tags: ['React', 'Express', 'PostgreSQL'], image: '/chatconnectai.png', href: '/work/chatconnect-ai', code: 'https://github.com/Raja468/chatconnect' },
+  { title: 'Drex AI Assistant', copy: 'Windows desktop AI assistant with voice input and output, app control, and web search.', tags: ['Python', 'Voice AI'], image: '/drex.png', href: '/work/drex-ai-assistant', code: 'https://github.com/Raja468/drex-ai' },
+  { title: 'Iqra School Management System', copy: 'School management app with admin, teacher, and student roles, attendance, fees, and notices.', tags: ['Flask', 'SQLite'], image: '/lms.png', href: '/work/iqra-school-management', code: 'https://github.com/Raja468/school-management' },
+]
 
-/* Project data lives in content/work.ts — the local copy carried invented
-   metrics ("98% automation rate", "1,200+ daily users", …) that nothing in
-   this repository can verify, so it was removed in favour of the cleaned
-   module. */
-const workProjects = workPage.items;
-
-export default function WorkPage() {
-  const [filter, setFilter] = useState<ProjectCategory>("all");
-
-  const filteredProjects =
-    filter === "all"
-      ? workProjects
-      : workProjects.filter((p) => p.category === filter);
-
+export default function WorkListPage() {
   return (
-    <main className="bg-background text-foreground pt-24 pb-28">
-      {/* Header — copy lives in content/work.ts (invented metrics removed) */}
-      <PageHero
-        eyebrow={workPage.hero.eyebrow}
-        title={workPage.hero.title}
-        accent={workPage.hero.accent}
-        description={workPage.hero.description}
-      />
-
-      {/* Filter Tabs */}
-      <section className="border-b-2 border-border py-10">
-        <Container>
-          <FadeUp>
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="mr-3 flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-                <Filter className="h-3.5 w-3.5 text-accent" /> Filter by:
-              </span>
-              {[
-                { id: "all", label: "All Projects" },
-                { id: "ai", label: "AI & Automation" },
-                { id: "software", label: "Software Systems" },
-                { id: "rnd", label: "R&D Builds" },
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  type="button"
-                  onClick={() => setFilter(tab.id as ProjectCategory)}
-                  aria-pressed={filter === tab.id}
-                  className={`border-2 px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors duration-200 ${
-                    filter === tab.id
-                      ? "border-accent bg-accent text-accent-foreground font-bold"
-                      : "border-border bg-transparent text-muted-foreground hover:border-foreground hover:text-foreground"
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
+    <main className="bg-white pt-[88px]">
+      <section className="relative border-b border-border bg-[#F6F6F3]">
+        <div className="mx-auto flex max-w-[1440px] flex-col lg:flex-row border-x border-border">
+          <div className="lg:w-80 shrink-0 border-b lg:border-b-0 lg:border-r border-border p-6 md:p-8 lg:p-10">
+            <div className="sticky top-28 font-mono text-[13px] uppercase tracking-[0.06em] text-[#54585F]">
+              Work
             </div>
-          </FadeUp>
-        </Container>
-      </section>
-
-      {/* Projects Grid */}
-      <section className="py-20 md:py-28">
-        <Container>
-          <div className="space-y-16">
-            {filteredProjects.map((project, idx) => (
-              <FadeUp key={project.slug} delay={idx * 0.08}>
-                <article className="group relative overflow-hidden border-2 border-border bg-background transition-colors duration-300 hover:border-accent">
-                  <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr] lg:gap-12">
-                    {/* Visual Media */}
-                    <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border bg-muted lg:border-b-0 lg:border-r">
-                      <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover opacity-90 transition-transform duration-500 group-hover:scale-105 group-hover:opacity-100"
-                        sizes="(min-width: 1024px) 50vw, 100vw"
-                      />
-                      <div className="absolute top-4 left-4 flex gap-2">
-                        <span className="border border-border bg-background/90 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.14em] text-foreground">
-                          {project.badge}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Content & Details */}
-                    <div className="flex flex-col justify-between p-6 sm:p-8 lg:p-10">
-                      <div>
-                        <div className="flex items-center justify-between">
-                          <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-                            {project.type}
-                          </span>
-                          <span className="font-mono text-[12px] font-bold text-accent">
-                            {project.number}
-                          </span>
-                        </div>
-
-                        <h2 className="mt-4 font-display text-[clamp(1.75rem,3.2vw,2.5rem)] font-bold uppercase tracking-tighter text-foreground">
-                          {project.title}
-                        </h2>
-                        <p className="mt-2 text-sm font-bold uppercase tracking-wide text-accent">
-                          {project.tagline}
-                        </p>
-                        <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground">
-                          {project.description}
-                        </p>
-
-                        {/* Tech Stack Tags */}
-                        <div className="mt-5 flex flex-wrap gap-2">
-                          {project.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="border border-border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.08em] text-muted-foreground"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Action Links */}
-                      <div className="mt-8 flex items-center gap-4">
-                        <ButtonLink href={project.github} size="sm">
-                          Explore Repository
-                        </ButtonLink>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              </FadeUp>
-            ))}
           </div>
-        </Container>
+          <div className="flex flex-col justify-center p-8 py-20 md:p-14 lg:p-24">
+            <h1 className="font-display text-[40px] md:text-[56px] font-[800] leading-[1.02] tracking-[-0.03em] text-foreground">
+              Our work
+            </h1>
+            <p className="mt-6 max-w-[60ch] text-[20px] md:text-[24px] font-semibold leading-[1.4] text-[#16181D]">
+              These are our own products and R&D projects. We build real working systems and publish the code where we can. Client projects will be added as they are completed with permission.
+            </p>
+          </div>
+        </div>
       </section>
 
-      {/* Bottom CTA — copy lives in content/work.ts */}
-      <CtaBanner
-        eyebrow={workPage.cta.eyebrow}
-        title={workPage.cta.title}
-        description={workPage.cta.description}
-        cta={{ label: workPage.cta.label, href: workPage.cta.href }}
-      />
+      <div className="flex flex-col">
+        {projects.map((project, i) => (
+          <Section key={project.href} number={`0${i + 1}`} title={project.title} noBorderTop={i === 0}>
+             <div className={`flex flex-col gap-10 p-8 py-20 md:p-14 lg:p-24 lg:flex-row lg:items-center ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
+               <div className="flex-1">
+                 <div className="browser-frame w-full shadow-[0_1px_2px_rgba(22,24,29,0.06)]">
+                   <div className="browser-bar">
+                     <span /><span /><span />
+                   </div>
+                   <div className="relative aspect-[16/10] bg-muted w-full overflow-hidden">
+                     <Image src={project.image} alt={project.title} fill className="object-cover object-top" sizes="(max-width: 1024px) 100vw, 50vw" />
+                   </div>
+                 </div>
+               </div>
+               <div className="lg:w-[400px] shrink-0">
+                 <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-accent">Internal build</p>
+                 <h2 className="mt-4 font-display text-[32px] font-bold tracking-tight">{project.title}</h2>
+                 <p className="mt-4 text-[18px] leading-[1.6] text-[#54585F]">{project.copy}</p>
+                 <div className="mt-6 flex flex-wrap gap-2">
+                   {project.tags.map(tag => (
+                     <span key={tag} className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#54585F]">[{tag}]</span>
+                   ))}
+                 </div>
+                 <div className="mt-8 flex items-center gap-6">
+                   <Link href={project.href} className="group inline-flex items-center gap-2 font-semibold text-accent hover:text-accent-hover decoration-2 underline-offset-4 hover:underline">
+                     Read case study <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-1" />
+                   </Link>
+                   <a href={project.code} target="_blank" rel="noreferrer" className="font-semibold text-foreground underline decoration-border decoration-2 underline-offset-4 hover:decoration-foreground transition-colors">
+                     GitHub
+                   </a>
+                 </div>
+               </div>
+             </div>
+          </Section>
+        ))}
+      </div>
+      
+      <section className="bg-[#16181D] text-[#F2F2EE] border-t border-[#2A2D33]">
+        <div className="mx-auto flex max-w-[1440px] flex-col gap-8 border-x border-[#2A2D33] p-8 py-20 md:p-14 lg:flex-row lg:items-center lg:justify-between lg:p-20">
+          <div>
+            <h2 className="font-display text-[32px] md:text-[40px] font-bold tracking-[-0.02em]">Have a project in mind?</h2>
+            <p className="mt-4 max-w-2xl text-[18px] leading-[1.6] text-[#A9ACB2]">
+              Book a free 30-minute consultation. We will listen, ask questions, and tell you honestly what we would build and what it would cost.
+            </p>
+          </div>
+          <div className="flex shrink-0">
+            <Link href="/contact" className="group inline-flex min-h-12 items-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-white transition hover:bg-accent-hover">
+              Book a free consultation <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-[3px]" />
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
-  );
+  )
 }

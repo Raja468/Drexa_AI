@@ -207,78 +207,37 @@ export function ContactForm({
         )}
       </div>
 
-      {services && services.length > 0 && (
-        <fieldset>
-          <legend className={LABEL}>What do you need?</legend>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {services.map((service) => {
-              const active = selected.includes(service)
-              return (
-                <button
-                  key={service}
-                  type="button"
-                  onClick={() => toggle(service)}
-                  aria-pressed={active}
-                  className={`border-2 px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors duration-200 ${
-                    active
-                      ? "border-accent bg-accent text-accent-foreground"
-                      : "border-border bg-transparent text-muted-foreground hover:border-foreground hover:text-foreground"
-                  }`}
-                >
-                  {service}
-                </button>
-              )
-            })}
-          </div>
-        </fieldset>
-      )}
-
-      {budgets && budgets.length > 0 ? (
-        <fieldset>
-          <legend className={LABEL}>Target budget range</legend>
-          <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-4">
-            {budgets.map((range) => {
-              const active = budget === range
-              return (
-                <button
-                  key={range}
-                  type="button"
-                  onClick={() => setBudget(active ? null : range)}
-                  aria-pressed={active}
-                  className={`border-2 px-3 py-2 text-center font-mono text-xs uppercase tracking-wider transition-colors duration-200 ${
-                    active
-                      ? "border-accent bg-accent text-accent-foreground font-bold"
-                      : "border-border bg-transparent text-muted-foreground hover:border-foreground hover:text-foreground"
-                  }`}
-                >
-                  {range}
-                </button>
-              )
-            })}
-          </div>
-        </fieldset>
-      ) : (
-        <label className="block">
-          <span className={LABEL}>Budget range (optional)</span>
-          <select {...register("budget")} className={FIELD}>
-            <option value="">Not sure yet</option>
-            <option>Under $5k</option>
-            <option>$5k – $15k</option>
-            <option>$15k – $50k</option>
-            <option>$50k+</option>
-          </select>
-        </label>
-      )}
+      <label className="block">
+        <span className={LABEL}>Service</span>
+        <select {...register("company")} className={FIELD}>
+          <option value="Not sure">Not sure</option>
+          <option value="AI Development & Automation">AI Development & Automation</option>
+          <option value="Web Development">Web Development</option>
+          <option value="Custom Software">Custom Software</option>
+          <option value="Cybersecurity">Cybersecurity</option>
+        </select>
+      </label>
 
       <label className="block">
-        <span className={LABEL}>Project</span>
+        <span className={LABEL}>Budget</span>
+        <select {...register("budget")} className={FIELD}>
+          <option value="Not sure yet">Not sure yet</option>
+          <option value="Under $500">Under $500</option>
+          <option value="$500 - $2,000">$500 - $2,000</option>
+          <option value="$2,000 - $5,000">$2,000 - $5,000</option>
+          <option value="$5,000+">$5,000+</option>
+        </select>
+      </label>
+
+      <label className="block">
+        <span className={LABEL}>Project details</span>
         <textarea
           {...register("message")}
           aria-invalid={errors.message ? true : undefined}
           aria-describedby={errors.message ? "message-error" : undefined}
           required
           rows={3}
-          placeholder="What are you trying to build or solve?"
+          placeholder="What problem are you trying to solve?"
           className={`${FIELD} min-h-[11rem] resize-y`}
         />
         {errors.message && (
