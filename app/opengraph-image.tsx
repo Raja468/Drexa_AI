@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og'
-
-export const runtime = 'edge'
+import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
 
 export const alt = 'Drexa AI | Build smarter. Run safer.'
 export const size = {
@@ -10,6 +10,9 @@ export const size = {
 export const contentType = 'image/png'
 
 export default async function Image() {
+  const logoData = await readFile(join(process.cwd(), 'public/logo.png'))
+  const logoSrc = `data:image/png;base64,${logoData.toString('base64')}`
+
   return new ImageResponse(
     (
       <div
@@ -33,18 +36,8 @@ export default async function Image() {
             gap: '24px',
           }}
         >
-          {/* Logo representation */}
-          <div
-            style={{
-              fontSize: '80px',
-              fontWeight: 800,
-              color: '#16181D',
-              letterSpacing: '-0.04em',
-            }}
-          >
-            Drexa AI
-          </div>
-          
+          <img src={logoSrc} style={{ width: 568, height: 320 }} alt="" />
+
           {/* Tagline */}
           <div
             style={{

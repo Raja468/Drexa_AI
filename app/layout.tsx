@@ -14,7 +14,6 @@ export const metadata: Metadata = {
   description: 'Independent studio in Pakistan building AI automation, websites, custom software and cybersecurity services for growing businesses. Free consultation.',
   metadataBase: new URL('https://drexa.tech'),
   alternates: { canonical: 'https://drexa.tech' },
-  icons: { icon: '/circular-app-icon-1.png', apple: '/circular-app-icon-1.png' },
   openGraph: { title: 'Drexa AI | Build smarter. Run safer.', description: 'AI automation, web and software development, and cybersecurity for growing businesses.', url: 'https://drexa.tech', siteName: 'Drexa AI', type: 'website', images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }] },
   twitter: { card: 'summary_large_image', title: 'Drexa AI | Build smarter. Run safer.', description: 'AI automation, web and software development, and cybersecurity for growing businesses.', images: ['/logo.png'] },
 }

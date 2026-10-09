@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { ChevronDown, Menu, X, ArrowRight } from 'lucide-react'
 
@@ -37,9 +38,8 @@ export function Navbar() {
   return (
     <header className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white border-b border-border shadow-sm' : 'bg-transparent'}`}>
       <div className={`mx-auto flex h-[88px] max-w-[1440px] items-center justify-between px-6 lg:px-10 border-x ${scrolled ? 'border-border' : 'border-transparent transition-colors duration-300'}`}>
-        <Link href="/" className="flex items-center gap-3 font-display text-[20px] font-bold tracking-tight" aria-label="Drexa AI home">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-[15px] font-bold text-white">D</span>
-          <span>Drexa AI</span>
+        <Link href="/" className="flex items-center" aria-label="Drexa AI home">
+          <Image src="/logo.png" alt="Drexa AI" width={1672} height={941} priority className="h-8 w-auto" />
         </Link>
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Main navigation">
           <div className="group relative">

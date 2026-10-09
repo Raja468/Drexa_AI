@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const services = [['AI Development & Automation', '/services/ai-automation'], ['Web Development', '/services/web-development'], ['Software Development', '/services/software-development'], ['Cybersecurity', '/services/cybersecurity']]
 const company = [['Work', '/work'], ['About', '/about'], ['Blog', '/blog'], ['Contact', '/contact']]
@@ -9,7 +10,9 @@ export function Footer() {
       <div className="mx-auto flex max-w-[1440px] flex-col border-x border-[#2A2D33]">
         <div className="grid gap-12 p-8 py-16 md:grid-cols-2 md:p-14 lg:grid-cols-[1.5fr_1fr_1fr_1fr] lg:p-20">
           <div>
-            <Link href="/" className="font-display text-[24px] font-bold">Drexa AI</Link>
+            <Link href="/" className="inline-flex items-center" aria-label="Drexa AI home">
+              <Image src="/logo.png" alt="Drexa AI" width={1672} height={941} className="h-8 w-auto" />
+            </Link>
             <p className="mt-5 text-[18px] font-bold">Build smarter. Run safer.</p>
             <p className="mt-4 max-w-[30ch] text-[16px] leading-[1.6] text-[#A9ACB2]">
               Drexa AI is an independent technology studio based in Pakistan, working with clients worldwide.
