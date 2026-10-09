@@ -1,18 +1,29 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { Section } from '@/components/layout/Section'
+import { ProjectFrame, type MockName } from '@/components/mockups/MockFrame'
 
 export const metadata: Metadata = {
   title: 'Our Work: AI, Software and Automation Projects | Drexa AI',
   description: 'Explore ChatConnect AI, Drex AI Assistant, and the Iqra School Management System. Real systems built by Drexa AI.',
 }
 
-const projects = [
-  { title: 'ChatConnect AI', copy: 'WhatsApp support automation with knowledge-base answers, lead capture, and human handoff.', tags: ['React', 'Express', 'PostgreSQL'], image: '/chatconnectai.png', href: '/work/chatconnect-ai', code: 'https://github.com/Raja468/chatconnect' },
-  { title: 'Drex AI Assistant', copy: 'Windows desktop AI assistant with voice input and output, app control, and web search.', tags: ['Python', 'Voice AI'], image: '/drex.png', href: '/work/drex-ai-assistant', code: 'https://github.com/Raja468/drex-ai' },
-  { title: 'Iqra School Management System', copy: 'School management app with admin, teacher, and student roles, attendance, fees, and notices.', tags: ['Flask', 'SQLite'], image: '/lms.png', href: '/work/iqra-school-management', code: 'https://github.com/Raja468/school-management' },
+type Project = {
+  title: string
+  copy: string
+  tags: string[]
+  href: string
+  code: string
+  alt: string
+  mock?: MockName
+  image?: string
+}
+
+const projects: Project[] = [
+  { title: 'ChatConnect AI', copy: 'WhatsApp support automation with knowledge-base answers, lead capture, and human handoff.', tags: ['React', 'Express', 'PostgreSQL', 'Anthropic'], mock: 'chatconnect', alt: 'ChatConnect AI dashboard with demo data: conversations today, leads captured, and recent conversations', href: '/work/chatconnect-ai', code: 'https://github.com/Raja468/chatconnect' },
+  { title: 'Drex AI Assistant', copy: 'Windows desktop AI assistant with voice input and output, app control, and web search.', tags: ['Python', 'Voice AI'], image: '/drex.png', alt: 'Drex AI Assistant interface', href: '/work/drex-ai-assistant', code: 'https://github.com/Raja468/drex-ai' },
+  { title: 'Iqra School Management System', copy: 'School management app with admin, teacher, and student roles, attendance, fees, and notices.', tags: ['Flask', 'SQLite'], mock: 'iqra', alt: 'Iqra school dashboard with demo data: enrolment stats, student register, and notices', href: '/work/iqra-school-management', code: 'https://github.com/Raja468/school-management' },
 ]
 
 export default function WorkListPage() {
@@ -41,13 +52,8 @@ export default function WorkListPage() {
           <Section key={project.href} number={`0${i + 1}`} title={project.title} noBorderTop={i === 0}>
              <div className={`flex flex-col gap-10 p-8 py-20 md:p-14 lg:p-16 lg:flex-row lg:items-center ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
                <div className="flex-1 min-w-0">
-                 <div className="browser-frame w-full shadow-[0_1px_2px_rgba(22,24,29,0.06)]">
-                   <div className="browser-bar">
-                     <span /><span /><span />
-                   </div>
-                   <div className="relative aspect-[16/10] bg-muted w-full overflow-hidden">
-                     <Image src={project.image} alt={project.title} fill className="object-cover object-top" sizes="(max-width: 1024px) 100vw, 50vw" />
-                   </div>
+                 <div className="w-full">
+                   <ProjectFrame mock={project.mock} image={project.image} alt={project.alt} />
                  </div>
                </div>
                <div className="lg:w-[360px] shrink-0">

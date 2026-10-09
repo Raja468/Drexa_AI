@@ -1,18 +1,28 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Plus } from 'lucide-react'
+import { ProjectFrame, type MockName } from '@/components/mockups/MockFrame'
 
 const services = [
-  { num: '01', title: 'AI Development & Automation', href: '/services/ai-automation', copy: 'Automate repetitive work with AI agents, chatbots, and workflow automation.\nWhatsApp support bots, lead capture, document processing, and internal tools.', tags: ['Python', 'OpenAI', 'LangChain'] },
+  { num: '01', title: 'AI Development & Automation', href: '/services/ai-automation', copy: 'Automate repetitive work with AI agents, chatbots, and workflow automation.\nWhatsApp support bots, lead capture, document processing, and internal tools.', tags: ['Python', 'Anthropic', 'Node.js'] },
   { num: '02', title: 'Web Development', href: '/services/web-development', copy: 'Fast, clear, search-friendly websites and web apps.\nBusiness sites, landing pages, WordPress, and custom Next.js builds.', tags: ['Next.js', 'React', 'Tailwind'] },
   { num: '03', title: 'Custom Software', href: '/services/software-development', copy: 'Dashboards, management systems, SaaS products, and internal tools\nbuilt around how your business actually works.', tags: ['Node.js', 'PostgreSQL', 'Express'] },
   { num: '04', title: 'Cybersecurity', href: '/services/cybersecurity', copy: 'Web application security checks, security monitoring support, and staff awareness training.\nFind weak points before attackers do.', tags: ['Pentesting', 'Audit', 'Monitoring'] },
 ]
 
-const projects = [
-  { title: 'ChatConnect AI', copy: 'WhatsApp support automation with knowledge-base answers, lead capture, and human handoff. Built to integrate directly with existing CRM platforms.', tags: ['React', 'Express', 'PostgreSQL'], image: '/chatconnectai.png', href: '/work/chatconnect-ai' },
-  { title: 'Drex AI Assistant', copy: 'Windows desktop AI assistant with voice input and output, app control, and web search. Replaces standard OS search with intelligent workflows.', tags: ['Python', 'Voice AI'], image: '/drex.png', href: '/work/drex-ai-assistant' },
-  { title: 'Iqra School Management System', copy: 'School management app with admin, teacher, and student roles, attendance, fees, and notices. Built to handle low-bandwidth environments.', tags: ['Flask', 'SQLite'], image: '/lms.png', href: '/work/iqra-school-management' },
+type Project = {
+  title: string
+  copy: string
+  tags: string[]
+  href: string
+  alt: string
+  mock?: MockName
+  image?: string
+}
+
+const projects: Project[] = [
+  { title: 'ChatConnect AI', copy: 'WhatsApp support automation with knowledge-base answers, lead capture, and human handoff. Built to integrate directly with existing CRM platforms.', tags: ['React', 'Express', 'PostgreSQL', 'Anthropic'], mock: 'chatconnect', alt: 'ChatConnect AI dashboard with demo data: conversations today, leads captured, and recent conversations', href: '/work/chatconnect-ai' },
+  { title: 'Drex AI Assistant', copy: 'Windows desktop AI assistant with voice input and output, app control, and web search. Replaces standard OS search with intelligent workflows.', tags: ['Python', 'Voice AI'], image: '/drex.png', alt: 'Drex AI Assistant interface', href: '/work/drex-ai-assistant' },
+  { title: 'Iqra School Management System', copy: 'School management app with admin, teacher, and student roles, attendance, fees, and notices. Built to handle low-bandwidth environments.', tags: ['Flask', 'SQLite'], mock: 'iqra', alt: 'Iqra school dashboard with demo data: enrolment stats, student register, and notices', href: '/work/iqra-school-management' },
 ]
 
 const process = [
@@ -81,15 +91,8 @@ export function ModernHome() {
           </div>
 
           <div className="relative">
-            <div className="relative z-10 overflow-hidden rounded-[12px] border border-border bg-white shadow-[0_1px_2px_rgba(22,24,29,0.06)]">
-              <div className="flex h-[34px] items-center gap-[5px] border-b border-border bg-[#F6F6F3] px-3">
-                <span className="h-[7px] w-[7px] rounded-full bg-[#C5C7C4]" />
-                <span className="h-[7px] w-[7px] rounded-full bg-[#C5C7C4]" />
-                <span className="h-[7px] w-[7px] rounded-full bg-[#C5C7C4]" />
-              </div>
-              <div className="relative aspect-[16/10] bg-muted">
-                <Image src="/chatconnectai.png" alt="ChatConnect AI dashboard" fill className="object-cover object-top" priority sizes="(max-width: 1024px) 100vw, 50vw" />
-              </div>
+            <div className="relative z-10">
+              <ProjectFrame mock="chatconnect" alt="ChatConnect AI dashboard showing today's conversations, captured leads, and the recent conversation list" />
             </div>
 
             <div className="absolute -bottom-8 -left-8 z-20 w-[260px] overflow-hidden rounded-[16px] border border-border bg-white shadow-[0_1px_2px_rgba(22,24,29,0.06)]">
@@ -211,13 +214,8 @@ export function ModernHome() {
            {projects.map((project, i) => (
              <div key={project.href} className={`flex flex-col gap-10 p-8 py-20 md:p-14 lg:p-16 lg:flex-row lg:items-center ${i > 0 ? 'border-t border-border' : ''} ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
                <div className="flex-1 min-w-0">
-                 <div className="browser-frame w-full max-w-[800px] shadow-[0_1px_2px_rgba(22,24,29,0.06)]">
-                   <div className="browser-bar">
-                     <span /><span /><span />
-                   </div>
-                   <div className="relative aspect-[16/10] bg-muted w-full overflow-hidden">
-                     <Image src={project.image} alt={project.title} fill className="object-cover object-top" sizes="(max-width: 1024px) 100vw, 50vw" />
-                   </div>
+                 <div className="w-full max-w-[800px]">
+                   <ProjectFrame mock={project.mock} image={project.image} alt={project.alt} />
                  </div>
                </div>
                <div className="lg:w-[360px] shrink-0">

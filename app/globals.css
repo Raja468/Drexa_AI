@@ -38,6 +38,16 @@
 .browser-bar { display: flex; gap: 5px; align-items: center; height: 34px; padding: 0 12px; border-bottom: 1px solid #e4e4df; background: #f6f6f3; }
 .browser-bar span { width: 7px; height: 7px; border-radius: 50%; background: #c5c7c4; }
 
+/* Mock dashboards (components/mockups). The viewport is a 16:10 container and
+   `--u` is one pixel of the 840x525 design canvas, so every size inside tracks
+   the frame width: the panel fills the window edge to edge at any size, with
+   nothing scrolled away or cropped. The `--u: 1px` line is the pre-container
+   fallback — it renders the canvas at design size rather than leaving the
+   property unresolved. */
+.mock-viewport { position: relative; aspect-ratio: 16 / 10; overflow: hidden; container-type: inline-size; background: #fff; }
+.mock-viewport > .mock-canvas { position: absolute; inset: 0; --u: 1px; --u: calc(100cqw / 840); }
+.mock-canvas svg { stroke-width: calc(var(--u) * 1.7); }
+
 /* Hero demo conversation: plays once, 600ms cadence, typing dots before each bot reply.
    `--i` is the message index; 1200ms = 600ms gap + 600ms of typing. */
 @keyframes msg-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }

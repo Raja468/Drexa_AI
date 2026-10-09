@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
 import { Section } from '@/components/layout/Section'
+import { ProjectFrame } from '@/components/mockups/MockFrame'
 
 export const metadata: Metadata = {
   title: 'School Management System in Flask | Drexa AI',
@@ -70,12 +70,11 @@ export default function IqraSchoolManagementPage() {
 
       <Section title="Gallery" noBorderTop>
         <div className="flex flex-col gap-12 p-8 py-16 md:p-14 lg:p-24 bg-[#F6F6F3]">
-           <div className="browser-frame w-full shadow-[0_1px_2px_rgba(22,24,29,0.06)]">
-             <div className="browser-bar"><span /><span /><span /></div>
-             <div className="relative aspect-[16/10] bg-muted w-full overflow-hidden">
-               <Image src="/lms.png" alt="Iqra School Management System screenshot" fill className="object-cover object-top" sizes="(max-width: 1440px) 100vw, 1440px" />
-             </div>
-           </div>
+           <ProjectFrame
+             mock="iqra"
+            alt="Iqra school dashboard with demo data: enrolment stats, student register, and notices"
+            sizes="(max-width: 1440px) 100vw, 1440px"
+           />
         </div>
       </Section>
 
