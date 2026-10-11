@@ -78,7 +78,15 @@ export function SmoothScroll() {
       };
     };
 
-    void waitPreloader().then(() => {
+    /* D16 assumed a preloader on every page, but the current layout mounts
+       none — waiting for its event would stall Lenis for the full 2.5s
+       failsafe. Gate on the overlay actually being in the document: sites
+       that ship one still start after its lift, sites that don't start
+       immediately after hydration. */
+    const gate = document.querySelector(".preloader-overlay")
+      ? waitPreloader()
+      : Promise.resolve();
+    void gate.then(() => {
       if (!alive) return;
       teardown = startLenis();
     });
