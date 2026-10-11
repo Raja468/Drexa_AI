@@ -1,164 +1,96 @@
-"use client";
+'use client'
 
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Menu, X } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { nav } from "@/content/nav";
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { usePathname } from 'next/navigation'
+import { ChevronDown, Menu, X, ArrowRight } from 'lucide-react'
+
+const links = [['Work', '/work'], ['About', '/about'], ['Blog', '/blog'], ['Contact', '/contact']] as const
+const services = [['AI Development & Automation', '/services/ai-automation'], ['Web Development', '/services/web-development'], ['Software Development', '/services/software-development'], ['Cybersecurity', '/services/cybersecurity']] as const
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
-  const pathname = usePathname();
+  const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10)
+    }
+    window.addEventListener('scroll', handleScroll)
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
+  const NavLink = ({ href, children }: { href: string, children: React.ReactNode }) => {
+    const isActive = pathname === href || (href !== '/' && pathname?.startsWith(href))
+    return (
+      <Link href={href} className={`relative flex min-h-11 items-center text-[15px] font-semibold transition-colors hover:text-accent ${isActive ? 'text-accent' : 'text-foreground'}`}>
+        {children}
+        {isActive && (
+          <span className="absolute -bottom-[2px] left-0 right-0 h-[2px] bg-accent rounded-t-sm" />
+        )}
+      </Link>
+    )
+  }
 
   return (
-    <header className="fixed top-4 sm:top-6 inset-x-0 z-50 flex justify-center px-3 sm:px-6 pointer-events-none">
-      {/* Floating Pill Navbar matching reference design */}
-      <motion.nav
-        initial={{ y: -24, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className={`pointer-events-auto relative flex items-center justify-between gap-2 sm:gap-4 rounded-full p-1.5 pl-2 pr-2 sm:p-2 sm:pl-2.5 sm:pr-2.5 transition-all duration-300 ${
-          scrolled
-            ? "border border-accent/30 bg-[#070b09]/90 shadow-[0_12px_36px_-6px_rgba(0,0,0,0.8),0_0_24px_-4px_rgba(25,216,210,0.25)] backdrop-blur-2xl"
-            : "border border-accent/20 bg-[#090f0c]/80 shadow-[0_8px_30px_-6px_rgba(0,0,0,0.6),0_0_18px_-4px_rgba(25,216,210,0.18)] backdrop-blur-xl"
-        } hover:border-accent/40`}
-        aria-label="Main Navigation"
-      >
-        {/* Left Circular Logo Badge */}
-        <Link
-          href="/"
-          className="group relative flex h-10 w-10 sm:h-11 sm:w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border border-accent/40 bg-bg-surface p-1 shadow-[0_0_14px_-2px_rgba(25,216,210,0.4)] transition-all duration-300 hover:scale-105 hover:border-accent hover:shadow-[0_0_22px_rgba(25,216,210,0.7)]"
-          aria-label="DREXA AI home"
-        >
-          <div className="relative h-full w-full rounded-full overflow-hidden">
-            <Image
-              src="/circular-app-icon-1.png"
-              alt="DREXA AI"
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-110"
-              priority
-            />
-          </div>
-          {/* Subtle neon ring highlight */}
-          <span className="pointer-events-none absolute inset-0 rounded-full ring-1 ring-inset ring-accent/30 group-hover:ring-accent/70 transition-all duration-300" />
+    <header className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white border-b border-border shadow-sm' : 'bg-transparent'}`}>
+      <div className={`mx-auto flex h-[88px] max-w-[1440px] items-center justify-between px-6 lg:px-10 border-x ${scrolled ? 'border-border' : 'border-transparent transition-colors duration-300'}`}>
+        <Link href="/" className="flex items-center" aria-label="Drexa AI home">
+          <Image src="/logo.png" alt="Drexa AI" width={1672} height={941} priority className="h-8 w-auto" />
         </Link>
-
-        {/* Center Navigation Links (Desktop) with Sliding Pill Hover Effect */}
-        <div
-          className="hidden items-center gap-1 md:flex px-2"
-          onMouseLeave={() => setHoveredLink(null)}
-        >
-          {nav.links.map((link) => {
-            const isHovered = hoveredLink === link.label;
-            return (
-              <Link
-                key={link.label}
-                href={link.href}
-                onMouseEnter={() => setHoveredLink(link.label)}
-                className="relative rounded-full px-4 py-2 text-[13.5px] font-medium tracking-tight text-text-secondary transition-colors duration-200 hover:text-white"
-              >
-                {/* Sliding highlight indicator on hover */}
-                {isHovered && (
-                  <motion.span
-                    layoutId="nav-pill-hover"
-                    className="absolute inset-0 rounded-full border border-accent/25 bg-accent/[0.1] shadow-[0_0_12px_rgba(25,216,210,0.2)] backdrop-blur-sm"
-                    transition={{
-                      type: "spring",
-                      stiffness: 400,
-                      damping: 30,
-                    }}
-                  />
-                )}
-                <span className="relative z-10">{link.label}</span>
-              </Link>
-            );
-          })}
-        </div>
-
-        {/* Right CTA Pill Button matching theme */}
-        <div className="flex items-center gap-2">
-          <Link
-            href={nav.cta.href}
-            className="group relative inline-flex h-10 sm:h-11 items-center justify-center gap-2 rounded-full border border-accent/60 bg-gradient-to-r from-accent/90 via-accent to-mint px-5 sm:px-6 text-[13px] sm:text-[14px] font-semibold text-[#070b09] shadow-[0_0_18px_rgba(25,216,210,0.45)] transition-all duration-300 hover:scale-[1.03] hover:border-accent hover:from-mint hover:to-accent hover:shadow-[0_0_28px_rgba(25,216,210,0.75)] active:scale-[0.98]"
-          >
-            <span>{nav.cta.label}</span>
-            <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Main navigation">
+          <div className="group relative">
+            <button className={`flex min-h-11 items-center gap-1 text-[15px] font-semibold transition-colors hover:text-accent ${pathname?.startsWith('/services') ? 'text-accent' : 'text-foreground'}`}>
+              Services <ChevronDown size={15} />
+              {pathname?.startsWith('/services') && <span className="absolute -bottom-[2px] left-0 right-0 h-[2px] bg-accent rounded-t-sm" />}
+            </button>
+            <div className="invisible absolute left-1/2 top-full w-64 -translate-x-1/2 pt-4 opacity-0 transition group-hover:visible group-hover:opacity-100">
+              <div className="rounded-[12px] border border-border bg-white p-2 shadow-lg">
+                {services.map(([label, href]) => (
+                  <Link key={href} href={href} className="block rounded-lg px-4 py-3 text-[14px] font-semibold text-[#54585F] transition-colors hover:bg-[#F6F6F3] hover:text-accent">{label}</Link>
+                ))}
+              </div>
+            </div>
+          </div>
+          {links.map(([label, href]) => (
+            <NavLink key={href} href={href}>{label}</NavLink>
+          ))}
+        </nav>
+        <div className="hidden lg:block">
+          <Link href="/contact" className="group inline-flex min-h-11 items-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-white transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B6B57] hover:bg-accent-hover">
+            Book a free consultation <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-[3px]" />
           </Link>
-
-          {/* Mobile Menu Button */}
-          <button
-            type="button"
-            onClick={() => setOpen(!open)}
-            aria-expanded={open}
-            aria-label={open ? "Close menu" : "Open menu"}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-accent/30 bg-bg-surface/80 text-white transition-all hover:border-accent hover:bg-accent/10 md:hidden"
-          >
-            {open ? <X className="h-4 w-4 text-accent" /> : <Menu className="h-4 w-4" />}
-          </button>
         </div>
-      </motion.nav>
+        <button type="button" onClick={() => setOpen(!open)} aria-expanded={open} aria-label={open ? 'Close menu' : 'Open menu'} className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-white lg:hidden">
+          {open ? <X size={22} /> : <Menu size={22} />}
+        </button>
+      </div>
 
-      {/* Mobile Menu Dropdown Card */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -12, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -12, scale: 0.96 }}
-            transition={{ duration: 0.2, ease: "easeOut" }}
-            className="pointer-events-auto fixed inset-x-4 top-20 z-40 mx-auto max-w-sm overflow-hidden rounded-3xl border border-accent/30 bg-[#090f0c]/95 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.9),0_0_30px_rgba(25,216,210,0.2)] backdrop-blur-2xl md:hidden"
-          >
-            <nav className="flex flex-col space-y-3">
-              {nav.links.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="flex items-center justify-between rounded-xl px-4 py-3 text-[16px] font-medium text-text-secondary transition-colors hover:bg-accent/10 hover:text-accent"
-                >
-                  <span>{link.label}</span>
-                  <span className="text-accent/60">→</span>
+      {open && (
+        <div className="border-t border-border bg-white px-6 py-6 lg:hidden shadow-lg h-screen overflow-y-auto pb-32">
+          <nav className="mx-auto flex max-w-[1440px] flex-col" aria-label="Mobile navigation">
+            <p className="mb-4 font-mono text-[13px] uppercase tracking-[0.06em] text-accent">Services</p>
+            {services.map(([label, href]) => (
+              <Link key={href} href={href} onClick={() => setOpen(false)} className={`border-b border-border py-4 text-[18px] font-semibold ${pathname === href ? 'text-accent' : 'text-foreground'}`}>
+                {label}
+              </Link>
+            ))}
+            <div className="mt-8">
+              {links.map(([label, href]) => (
+                <Link key={href} href={href} onClick={() => setOpen(false)} className={`block border-b border-border py-4 text-[18px] font-semibold ${pathname === href ? 'text-accent' : 'text-foreground'}`}>
+                  {label}
                 </Link>
               ))}
-            </nav>
-
-            <div className="mt-6 border-t border-border pt-5">
-              <Link
-                href={nav.cta.href}
-                onClick={() => setOpen(false)}
-                className="flex h-12 w-full items-center justify-center gap-2 rounded-full border border-accent/60 bg-gradient-to-r from-accent to-mint text-[15px] font-semibold text-[#070b09] shadow-[0_0_20px_rgba(25,216,210,0.4)]"
-              >
-                <span>{nav.cta.label}</span>
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <Link href="/contact" onClick={() => setOpen(false)} className="group mt-8 inline-flex min-h-14 items-center justify-center gap-2 rounded-lg bg-accent px-6 font-semibold text-white">
+              Book a free consultation <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-[3px]" />
+            </Link>
+          </nav>
+        </div>
+      )}
     </header>
-  );
+  )
 }

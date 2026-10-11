@@ -1,62 +1,56 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-display', display: 'swap' })
-const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' })
+const manrope = localFont({ src: './fonts/manrope-var.woff2', variable: '--font-manrope', display: 'swap', preload: true })
+const inter = localFont({ src: './fonts/inter-var.woff2', variable: '--font-inter', display: 'swap', preload: true })
+const instrumentSerif = localFont({ src: './fonts/instrument-serif-italic.woff2', variable: '--font-instrument', display: 'swap', preload: false })
+const jetbrainsMono = localFont({ src: './fonts/jetbrains-mono-var.woff2', variable: '--font-jetbrains', display: 'swap', preload: false })
 
 export const metadata: Metadata = {
-  title: 'DREXA AI — AI Automation & Software Development Studio',
-  description: 'We build AI systems, automation, and digital products that help businesses work smarter and grow faster. Free consultation available.',
-  generator: 'Drexa AI',
+  title: 'Drexa AI | AI Automation, Web & Software Development',
+  description: 'Independent studio in Pakistan building AI automation, websites, custom software and cybersecurity services for growing businesses. Free consultation.',
   metadataBase: new URL('https://drexa.tech'),
-  icons: { icon: '/circular-app-icon-1.png', apple: '/circular-app-icon-1.png' },
-  openGraph: {
-    title: 'DREXA AI — AI Automation & Software Development Studio',
-    description: 'We build AI systems, automation, and digital products that help businesses work smarter and grow faster.',
-    url: 'https://drexa.tech',
-    siteName: 'DREXA AI',
-    type: 'website',
-    images: [{ url: '/logo.png', width: 512, height: 512, alt: 'DREXA AI' }],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'DREXA AI — AI Automation & Software Development Studio',
-    description: 'We build AI systems, automation, and digital products that help businesses work smarter and grow faster.',
-    images: ['/logo.png'],
-  },
+  alternates: { canonical: 'https://drexa.tech' },
+  openGraph: { title: 'Drexa AI | Build smarter. Run safer.', description: 'AI automation, web and software development, and cybersecurity for growing businesses.', url: 'https://drexa.tech', siteName: 'Drexa AI', type: 'website', images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }] },
+  twitter: { card: 'summary_large_image', title: 'Drexa AI | Build smarter. Run safer.', description: 'AI automation, web and software development, and cybersecurity for growing businesses.', images: ['/logo.png'] },
 }
 
-export const viewport: Viewport = { colorScheme: 'dark', themeColor: '#070908' }
+export const viewport: Viewport = { colorScheme: 'light', themeColor: '#ffffff' }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="dark bg-background">
-      <head>
+    <html lang="en" className={`${manrope.variable} ${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}>
+      <body>
+        <Navbar />
+        <div>{children}</div>
+        <Footer />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'Organization',
-              name: 'DREXA AI',
-              url: 'https://drexa.tech',
-              logo: 'https://drexa.tech/logo.png',
-              image: 'https://drexa.tech/logo.png',
-              description: 'We build AI systems, automation, and digital products that help businesses work smarter and grow faster.',
-              sameAs: [],
+              "@context": "https://schema.org",
+              "@type": "ProfessionalService",
+              name: "Drexa AI",
+              url: "https://drexa.tech",
+              logo: "https://drexa.tech/logo.png",
+              description:
+                "Independent technology studio building AI automation, web and software development, and cybersecurity services.",
+              email: "hello@drexa.tech",
+              telephone: "+923715082737",
+              areaServed: ["Pakistan", "Worldwide"],
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Islamabad",
+                addressCountry: "PK",
+              },
+              sameAs: ["https://github.com/Raja468"],
             }),
           }}
         />
-      </head>
-      <body className={`${geist.variable} ${geistMono.variable} antialiased bg-bg-dark text-white flex min-h-screen flex-col`}>
-        <Navbar />
-        <div className="flex-1">{children}</div>
-        <Footer />
       </body>
     </html>
   )
 }
-
