@@ -334,7 +334,7 @@ export function ModernHome() {
          <div className="p-8 py-20 md:p-14 lg:p-24 flex flex-col justify-center max-w-[800px]">
            <FadeUp>
            <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">
-             Hi, I&apos;m <em className="font-serif font-normal italic text-accent">Raja.</em>
+             Hi, I&apos;m <em className="font-serif font-normal italic text-accent">Ahmed Bilal.</em>
            </h2>
            </FadeUp>
            <FadeUp delay={0.12}>
