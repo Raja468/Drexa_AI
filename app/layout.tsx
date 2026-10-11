@@ -3,6 +3,8 @@ import localFont from 'next/font/local'
 import './globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
+import { SmoothScroll } from '@/components/motion/SmoothScroll'
+import { ScrollProgress } from '@/components/motion/ScrollProgress'
 
 const manrope = localFont({ src: './fonts/manrope-var.woff2', variable: '--font-manrope', display: 'swap', preload: true })
 const inter = localFont({ src: './fonts/inter-var.woff2', variable: '--font-inter', display: 'swap', preload: true })
@@ -24,6 +26,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" className={`${manrope.variable} ${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}>
       <body>
+        <ScrollProgress />
+        <SmoothScroll />
         <Navbar />
         <div>{children}</div>
         <Footer />

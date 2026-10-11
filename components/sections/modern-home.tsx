@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import { ArrowRight, Plus } from 'lucide-react'
 import { ProjectFrame, type MockName } from '@/components/mockups/MockFrame'
+import { FadeUp, StaggerContainer, StaggerItem } from '@/components/motion/FadeUp'
+import { Magnetic } from '@/components/motion/Magnetic'
+import { Parallax } from '@/components/motion/Parallax'
 
 const services = [
   { num: '01', title: 'AI Development & Automation', href: '/services/ai-automation', copy: 'Automate repetitive work with AI agents, chatbots, and workflow automation.\nWhatsApp support bots, lead capture, document processing, and internal tools.', tags: ['Python', 'Anthropic', 'Node.js'] },
@@ -42,7 +45,7 @@ const faqs = [
 ]
 
 const Button = ({ href, children, secondary = false }: { href: string; children: React.ReactNode; secondary?: boolean }) => (
-  <Link href={href} className={`group inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-6 text-sm font-semibold transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B6B57] ${secondary ? 'border border-foreground text-foreground hover:bg-muted' : 'bg-accent text-white hover:bg-accent-hover'}`}>
+  <Link href={href} className={`group inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-6 text-sm font-semibold transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B6B57] ${secondary ? 'border border-foreground text-foreground hover:-translate-y-0.5 hover:bg-muted' : 'bg-accent text-white hover:-translate-y-0.5 hover:bg-accent-hover active:translate-y-0'}`}>
     {children}
     <ArrowRight size={16} className="transition group-hover:translate-x-[3px]" />
   </Link>
@@ -75,27 +78,35 @@ export function ModernHome() {
       <Section noBorderTop>
         <div className="grid gap-12 overflow-x-clip px-6 py-14 md:px-10 lg:grid-cols-[1fr_1.1fr] lg:px-16 lg:py-28">
           <div className="flex flex-col justify-center pt-8">
-            <h1 className="font-display text-[40px] font-[800] leading-[1.02] tracking-[-0.03em] md:text-[72px]">
-              Technology that helps your business <em className="font-serif text-accent italic font-normal">run better.</em>
-            </h1>
-            <p className="mt-8 max-w-[60ch] text-[18px] leading-[1.6] text-[#54585F]">
-              Drexa AI builds AI automation, websites, custom software, and security services for small and growing businesses. You work directly with the people building it.
-            </p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Button href="/contact">Book a free consultation</Button>
-              <Button href="/work" secondary>See our work</Button>
-            </div>
-            <p className="mt-6 font-mono text-[13px] uppercase tracking-[0.06em] text-[#54585F]">
-              Free 30-minute call. No obligation.
-            </p>
+            <FadeUp animateOnMount y={32} duration={0.8}>
+              <h1 className="font-display text-[40px] font-[800] leading-[1.02] tracking-[-0.03em] md:text-[72px]">
+                Technology that helps your business <em className="font-serif text-accent italic font-normal">run better.</em>
+              </h1>
+            </FadeUp>
+            <FadeUp animateOnMount delay={0.15}>
+              <p className="mt-8 max-w-[60ch] text-[18px] leading-[1.6] text-[#54585F]">
+                Drexa AI builds AI automation, websites, custom software, and security services for small and growing businesses. You work directly with the people building it.
+              </p>
+            </FadeUp>
+            <FadeUp animateOnMount delay={0.3}>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <Magnetic strength={8}><Button href="/contact">Book a free consultation</Button></Magnetic>
+                <Button href="/work" secondary>See our work</Button>
+              </div>
+            </FadeUp>
+            <FadeUp animateOnMount delay={0.45}>
+              <p className="mt-6 font-mono text-[13px] uppercase tracking-[0.06em] text-[#54585F]">
+                Free 30-minute call. No obligation.
+              </p>
+            </FadeUp>
           </div>
 
-          <div className="relative">
+          <Parallax className="relative" distance={40}>
             <div className="relative z-10">
               <ProjectFrame mock="chatconnect" alt="ChatConnect AI dashboard showing today's conversations, captured leads, and the recent conversation list" />
             </div>
 
-            <div className="absolute -bottom-8 -left-8 z-20 w-[260px] overflow-hidden rounded-[16px] border border-border bg-white shadow-[0_1px_2px_rgba(22,24,29,0.06)]">
+            <div className="absolute -bottom-8 -left-8 z-20 w-[260px] animate-float overflow-hidden rounded-[16px] border border-border bg-white shadow-[0_1px_2px_rgba(22,24,29,0.06)]">
                <div className="bg-[#0B6B57] px-4 py-3 text-white">
                  <p className="text-[13px] font-semibold">Support Team</p>
                  <p className="text-[11px] opacity-80">Typically replies instantly</p>
@@ -119,7 +130,7 @@ export function ModernHome() {
             <p className="mt-12 text-right font-mono text-[13px] uppercase tracking-[0.06em] text-[#54585F]">
               Demo conversation. ChatConnect AI.
             </p>
-          </div>
+          </Parallax>
         </div>
       </Section>
 
@@ -131,38 +142,41 @@ export function ModernHome() {
 
       {/* TRUST STRIP */}
       <section className="border-t border-border bg-[#F6F6F3]">
-        <div className="mx-auto grid max-w-[1440px] border-x border-border md:grid-cols-4 md:divide-x md:divide-border">
+        <StaggerContainer className="mx-auto grid max-w-[1440px] border-x border-border md:grid-cols-4 md:divide-x md:divide-border">
           {[
             ['DIRECT COMMUNICATION', 'No account managers'],
             ['YOU OWN EVERYTHING', 'Code, designs, documentation'],
             ['FIXED SCOPE', 'Agreed before work starts'],
             ['SECURITY BUILT IN', 'Not added at the end']
           ].map(([label, text]) => (
-            <div key={label} className="p-6 md:p-8">
-              <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-foreground">{label}</p>
+            <StaggerItem key={label} className="group p-6 md:p-8 transition-colors duration-300 hover:bg-white">
+              <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-foreground transition-colors duration-300 group-hover:text-accent">{label}</p>
               <p className="mt-2 text-[15px] text-[#54585F]">{text}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </section>
 
       {/* 01 SERVICES */}
       <Section number="01" title="Services">
          <div className="flex flex-col">
            <div className="border-b border-border px-8 pt-12 md:px-12 md:pt-16 lg:px-16 lg:pt-20">
-             <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">
-               Four services. <em className="font-serif font-normal italic text-accent">One team.</em>
-             </h2>
+             <FadeUp>
+               <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">
+                 Four services. <em className="font-serif font-normal italic text-accent">One team.</em>
+               </h2>
+             </FadeUp>
            </div>
            {services.map((s, i) => (
-             <Link href={s.href} key={s.title} className={`group flex flex-col gap-6 p-8 transition-colors duration-150 hover:bg-[#F6F6F3] md:p-12 lg:flex-row lg:items-center ${i > 0 ? 'border-t border-border' : ''}`}>
-               <div className="font-mono text-3xl font-light text-muted-foreground lg:w-24">
-                 {s.num}
-               </div>
-               <div className="flex-1 transition-transform duration-150 group-hover:translate-x-2">
-                 <h3 className="font-display text-[32px] font-bold tracking-tight">
-                   {s.title}
-                 </h3>
+             <FadeUp key={s.title} delay={i * 0.07}>
+               <Link href={s.href} className={`group flex flex-col gap-6 p-8 transition-colors duration-150 hover:bg-[#F6F6F3] md:p-12 lg:flex-row lg:items-center ${i > 0 ? 'border-t border-border' : ''}`}>
+                 <div className="font-mono text-3xl font-light text-muted-foreground transition-colors duration-200 group-hover:text-accent lg:w-24">
+                   {s.num}
+                 </div>
+                 <div className="flex-1 transition-transform duration-150 group-hover:translate-x-2">
+                   <h3 className="font-display text-[32px] font-bold tracking-tight transition-colors duration-200 group-hover:text-accent">
+                     {s.title}
+                   </h3>
                  <p className="mt-2 whitespace-pre-line text-[18px] leading-[1.6] text-[#54585F]">{s.copy}</p>
                  <div className="mt-5 flex flex-wrap gap-3">
                    {s.tags.map(t => (
@@ -171,10 +185,11 @@ export function ModernHome() {
                  </div>
                </div>
                <div className="mt-4 flex items-center lg:mt-0 lg:w-16 lg:justify-end text-accent">
-                 <ArrowRight size={24} className="transition-transform duration-150 group-hover:translate-x-1" />
+                 <ArrowRight size={24} className="transition-transform duration-200 group-hover:translate-x-2" />
                </div>
                {/* Accent underline on hover for the name is somewhat complex natively without extra dom, relying on the translate effect for now as it's cleaner */}
              </Link>
+             </FadeUp>
            ))}
          </div>
       </Section>
@@ -182,7 +197,7 @@ export function ModernHome() {
       {/* 02 PROCESS */}
       <Section number="02" title="Process">
          <div className="p-8 py-20 md:p-14 lg:p-20">
-           <div className="grid md:grid-cols-4 md:divide-x md:divide-border relative">
+           <StaggerContainer className="grid md:grid-cols-4 md:divide-x md:divide-border relative">
              {/* Thin line with dots */}
              <div className="absolute top-0 left-0 right-0 h-[1px] bg-border hidden md:block">
                <div className="absolute -top-1 left-0 h-2 w-2 rounded-full bg-border" />
@@ -193,13 +208,13 @@ export function ModernHome() {
              </div>
              
              {process.map(([num, title, copy]) => (
-               <div key={num} className="pt-8 pb-8 md:px-8 md:pt-12 md:pb-0 first:md:pl-0 last:md:pr-0">
-                 <p className="font-display text-[64px] font-[800] leading-none text-[#E4E4DF]">{num}</p>
-                 <h3 className="mt-6 text-[24px] font-bold tracking-tight text-foreground">{title}</h3>
+               <StaggerItem key={num} className="group pt-8 pb-8 md:px-8 md:pt-12 md:pb-0 first:md:pl-0 last:md:pr-0">
+                 <p className="font-display text-[64px] font-[800] leading-none text-[#E4E4DF] transition-colors duration-300 group-hover:text-accent">{num}</p>
+                 <h3 className="mt-6 text-[24px] font-bold tracking-tight text-foreground transition-colors duration-300 group-hover:text-accent">{title}</h3>
                  <p className="mt-4 text-[16px] leading-[1.6] text-[#54585F]">{copy}</p>
-               </div>
+               </StaggerItem>
              ))}
-           </div>
+           </StaggerContainer>
          </div>
       </Section>
 
@@ -207,20 +222,25 @@ export function ModernHome() {
       <Section number="03" title="Work">
          <div className="flex flex-col">
            <div className="border-b border-border px-8 pt-12 md:px-12 md:pt-16 lg:px-16 lg:pt-20">
-             <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">
-               What we have <em className="font-serif font-normal italic text-accent">built.</em>
-             </h2>
+             <FadeUp>
+               <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">
+                 What we have <em className="font-serif font-normal italic text-accent">built.</em>
+               </h2>
+             </FadeUp>
            </div>
            {projects.map((project, i) => (
-             <div key={project.href} className={`flex flex-col gap-10 p-8 py-20 md:p-14 lg:p-16 lg:flex-row lg:items-center ${i > 0 ? 'border-t border-border' : ''} ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
+             <FadeUp key={project.href} delay={i * 0.08}>
+             <div className={`group flex flex-col gap-10 p-8 py-20 md:p-14 lg:p-16 lg:flex-row lg:items-center ${i > 0 ? 'border-t border-border' : ''} ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}>
                <div className="flex-1 min-w-0">
-                 <div className="w-full max-w-[800px]">
-                   <ProjectFrame mock={project.mock} image={project.image} alt={project.alt} />
+                 <div className="w-full max-w-[800px] overflow-hidden rounded-[12px]">
+                   <div className="transition-transform duration-500 ease-out group-hover:scale-[1.03]">
+                     <ProjectFrame mock={project.mock} image={project.image} alt={project.alt} />
+                   </div>
                  </div>
                </div>
                <div className="lg:w-[360px] shrink-0">
                  <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-accent">Internal build</p>
-                 <h3 className="mt-4 font-display text-[32px] font-bold tracking-tight">{project.title}</h3>
+                 <h3 className="mt-4 font-display text-[32px] font-bold tracking-tight transition-colors duration-300 group-hover:text-accent">{project.title}</h3>
                  <p className="mt-4 text-[18px] leading-[1.6] text-[#54585F]">{project.copy}</p>
                  <div className="mt-6 flex flex-wrap gap-2">
                    {project.tags.map(tag => (
@@ -237,6 +257,7 @@ export function ModernHome() {
                  </div>
                </div>
              </div>
+             </FadeUp>
            ))}
          </div>
       </Section>
@@ -245,20 +266,22 @@ export function ModernHome() {
       <Section number="04" title="Approach" dark>
          <div className="flex flex-col lg:flex-row">
            <div className="p-8 py-20 md:p-14 lg:p-24 lg:w-[50%] border-b lg:border-b-0 lg:border-r border-[#2A2D33] flex items-center">
+             <FadeUp>
              <p className="font-display text-[28px] md:text-[44px] font-bold leading-[1.1] tracking-[-0.02em] text-[#F2F2EE]">
                We build the system, then we stay to make sure it works.
              </p>
+             </FadeUp>
            </div>
            <div className="flex flex-col lg:w-[50%] divide-y divide-[#2A2D33]">
              {[
                ['Practical AI', 'We build automation and agents that do real jobs. If AI is not the right answer for your problem, we will say so.'],
                ['Small team, direct access', 'You talk to the person doing the work. Questions get answered fast.'],
                ['Built to last', 'Clean code, secure setup, and documentation, so you are never locked in.']
-             ].map(([title, copy]) => (
-               <div key={title} className="p-8 md:p-14 lg:p-16">
+             ].map(([title, copy], idx) => (
+               <FadeUp key={title} delay={idx * 0.08} className="group p-8 md:p-14 lg:p-16 transition-colors duration-300 hover:bg-[#1B1E22]">
                  <h3 className="text-[20px] font-bold text-[#F2F2EE]">{title}</h3>
                  <p className="mt-3 text-[18px] leading-[1.6] text-[#A9ACB2]">{copy}</p>
-               </div>
+               </FadeUp>
              ))}
            </div>
          </div>
@@ -267,15 +290,21 @@ export function ModernHome() {
       {/* 05 FOUNDER */}
       <Section number="05" title="Founder">
          <div className="p-8 py-20 md:p-14 lg:p-24 flex flex-col justify-center max-w-[800px]">
+           <FadeUp>
            <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">
              Hi, I&apos;m <em className="font-serif font-normal italic text-accent">Raja.</em>
            </h2>
+           </FadeUp>
+           <FadeUp delay={0.12}>
            <p className="mt-6 text-[20px] leading-[1.6] text-[#54585F]">
              I am the founder of Drexa AI. I am a software developer and Computer Science student with hands-on experience in web development, AI automation, and cybersecurity. I started Drexa to help businesses use technology in practical ways, without confusing jargon or inflated promises.
            </p>
+           </FadeUp>
+           <FadeUp delay={0.24}>
            <p className="mt-8 font-mono text-[13px] uppercase tracking-[0.06em] text-accent">
              Founder, Drexa AI
            </p>
+           </FadeUp>
          </div>
       </Section>
 
@@ -299,35 +328,41 @@ export function ModernHome() {
       <Section number="06" title="FAQ">
          <div className="flex flex-col">
            {faqs.map(([q, a], i) => (
+             <FadeUp key={q} delay={i * 0.04}>
              <details key={q} className={`group ${i > 0 ? 'border-t border-border' : ''}`}>
                <summary className="flex cursor-pointer list-none items-center justify-between gap-5 p-8 md:px-14 lg:px-20 text-[20px] font-semibold transition-colors hover:bg-[#F6F6F3] [&::-webkit-details-marker]:hidden">
                  {q}
-                 <Plus size={24} className="shrink-0 text-accent transition-transform duration-150 group-open:rotate-90" />
+                 <Plus size={24} className="shrink-0 text-accent transition-transform duration-300 group-open:rotate-45" />
                </summary>
                <div className="px-8 pb-10 md:px-14 lg:px-20 pt-2">
                  <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#54585F]">{a}</p>
                </div>
              </details>
+             </FadeUp>
            ))}
          </div>
       </Section>
       {/* CTA */}
       <section className="bg-[#16181D] text-[#F2F2EE] border-t border-[#2A2D33]">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-8 border-x border-[#2A2D33] p-8 py-20 md:p-14 lg:flex-row lg:items-center lg:justify-between lg:p-20">
+          <FadeUp>
           <div>
             <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">Have a project in mind?</h2>
             <p className="mt-4 max-w-2xl text-[18px] leading-[1.6] text-[#A9ACB2]">
               Book a free 30-minute consultation. We will listen, ask questions, and tell you honestly what we would build and what it would cost. No obligation.
             </p>
           </div>
+          </FadeUp>
+          <FadeUp delay={0.15} className="shrink-0">
           <div className="flex shrink-0 flex-wrap gap-4">
-            <Link href="/contact" className="group inline-flex min-h-12 items-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-white transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B6B57] hover:bg-accent-hover">
+            <Link href="/contact" className="group inline-flex min-h-12 items-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-white transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B6B57] hover:-translate-y-0.5 hover:bg-accent-hover active:translate-y-0">
               Book a free consultation <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-[3px]" />
             </Link>
-            <a href="https://wa.me/923715082737" className="group inline-flex min-h-12 items-center gap-2 rounded-lg border border-white/20 px-6 text-sm font-semibold text-white transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B6B57] hover:border-white hover:bg-white/5">
+            <a href="https://wa.me/923715082737" className="group inline-flex min-h-12 items-center gap-2 rounded-lg border border-white/20 px-6 text-sm font-semibold text-white transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B6B57] hover:-translate-y-0.5 hover:border-white hover:bg-white/5 active:translate-y-0">
               Message on WhatsApp <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-[3px]" />
             </a>
           </div>
+          </FadeUp>
         </div>
       </section>
     </main>
