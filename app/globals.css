@@ -10,6 +10,11 @@
   --color-accent: #0b6b57;
   --color-accent-foreground: #ffffff;
   --color-accent-hover: #08574a;
+  /* Accent tuned for DARK surfaces. The base #0B6B57 is only 2.75:1 on the
+     dark #16181D ground, so as TEXT it fails WCAG AA. #3EA88A is the same
+     brand-green family, subdued, and clears AA on dark (6.07:1) and on the
+     dark row-hover #1B1E22 (5.71:1). Verified in scripts/contrast-audit.mjs. */
+  --color-accent-dark: #3ea88a;
   --color-accent-tint: #e7f2ee;
   --color-dark: #16181d;
   --color-on-dark: #f2f2ee;

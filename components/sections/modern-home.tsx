@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, Plus } from 'lucide-react'
+import { ArrowRight, Plus, UserPlus } from 'lucide-react'
 import { ProjectFrame, type MockName } from '@/components/mockups/MockFrame'
 import { FadeUp, StaggerContainer, StaggerItem } from '@/components/motion/FadeUp'
 import { Magnetic } from '@/components/motion/Magnetic'
@@ -77,33 +77,75 @@ export function ModernHome() {
       {/* HERO */}
       <Section noBorderTop>
         <div className="grid gap-12 overflow-x-clip px-6 py-14 md:px-10 lg:grid-cols-[1fr_1.1fr] lg:px-16 lg:py-28">
-          <div className="flex flex-col justify-center pt-8">
-            <FadeUp animateOnMount y={32} duration={0.8}>
-              <h1 className="font-display text-[40px] font-[800] leading-[1.02] tracking-[-0.03em] md:text-[72px]">
+          <div className="relative isolate flex flex-col justify-center pt-8">
+            {/* Decorative ghost wordmark — adds depth only, sits behind the copy.
+                Purely visual (aria-hidden); no gradient/glow, just a muted tone. */}
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -top-4 left-0 -z-10 select-none font-display text-[104px] font-[800] leading-none tracking-[-0.04em] text-[#F1F1EB] md:text-[190px]"
+            >
+              Drexa
+            </span>
+
+            <FadeUp animateOnMount y={24} duration={0.6}>
+              <div className="flex items-center gap-3">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+                <span className="font-mono text-[12px] uppercase tracking-[0.06em] text-foreground">
+                  Independent AI technology studio
+                </span>
+              </div>
+            </FadeUp>
+
+            <FadeUp animateOnMount delay={0.1} y={32} duration={0.8}>
+              <h1 className="mt-6 font-display text-[40px] font-[800] leading-[1.02] tracking-[-0.03em] md:text-[72px]">
                 Technology that helps your business <em className="font-serif text-accent italic font-normal">run better.</em>
               </h1>
             </FadeUp>
-            <FadeUp animateOnMount delay={0.15}>
+            <FadeUp animateOnMount delay={0.2}>
               <p className="mt-8 max-w-[60ch] text-[18px] leading-[1.6] text-[#54585F]">
                 Drexa AI builds AI automation, websites, custom software, and security services for small and growing businesses. You work directly with the people building it.
               </p>
             </FadeUp>
-            <FadeUp animateOnMount delay={0.3}>
+            <FadeUp animateOnMount delay={0.32}>
               <div className="mt-10 flex flex-wrap gap-4">
                 <Magnetic strength={8}><Button href="/contact">Book a free consultation</Button></Magnetic>
-                <Button href="/work" secondary>See our work</Button>
+                <Magnetic strength={8}><Button href="/work" secondary>See our work</Button></Magnetic>
               </div>
             </FadeUp>
-            <FadeUp animateOnMount delay={0.45}>
-              <p className="mt-6 font-mono text-[13px] uppercase tracking-[0.06em] text-[#54585F]">
-                Free 30-minute call. No obligation.
-              </p>
+            <FadeUp animateOnMount delay={0.44}>
+              <div className="mt-8 flex flex-col gap-4">
+                <p className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#54585F]">
+                  Free 30-minute call. No obligation.
+                </p>
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                  <span className="font-mono text-[12px] uppercase tracking-[0.06em] text-foreground">3 AI products shipped</span>
+                  <span className="h-3.5 w-px bg-border" aria-hidden="true" />
+                  <div className="flex flex-wrap items-center gap-x-3 text-[13px] font-medium text-[#8A8D93]">
+                    <span>React</span><span>Python</span><span>PostgreSQL</span><span>Anthropic</span>
+                  </div>
+                </div>
+              </div>
             </FadeUp>
           </div>
 
           <Parallax className="relative" distance={40}>
             <div className="relative z-10">
               <ProjectFrame mock="chatconnect" alt="ChatConnect AI dashboard showing today's conversations, captured leads, and the recent conversation list" />
+            </div>
+
+            {/* Floating "new lead" toast — a third layer in the composition, flat
+                like the rest. Fades in after the demo conversation resolves. */}
+            <div
+              className="absolute -right-4 -top-5 z-30 flex animate-fade-up items-center gap-2.5 rounded-lg border border-border bg-white px-3.5 py-2.5 shadow-[0_1px_2px_rgba(22,24,29,0.06)]"
+              style={{ animationDelay: "1.4s" }}
+            >
+              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-accent-tint text-accent">
+                <UserPlus size={16} aria-hidden="true" />
+              </span>
+              <span className="flex flex-col">
+                <span className="text-[12.5px] font-semibold leading-tight text-foreground">New lead captured</span>
+                <span className="text-[11px] leading-tight text-[#54585F]">Bulk order enquiry</span>
+              </span>
             </div>
 
             <div className="absolute -bottom-8 -left-8 z-20 w-[260px] animate-float overflow-hidden rounded-[16px] border border-border bg-white shadow-[0_1px_2px_rgba(22,24,29,0.06)]">
@@ -158,33 +200,33 @@ export function ModernHome() {
       </section>
 
       {/* 01 SERVICES */}
-      <Section number="01" title="Services">
+      <Section number="01" title="Services" dark>
          <div className="flex flex-col">
-           <div className="border-b border-border px-8 pt-12 md:px-12 md:pt-16 lg:px-16 lg:pt-20">
+           <div className="border-b border-[#2A2D33] px-8 pt-12 md:px-12 md:pt-16 lg:px-16 lg:pt-20">
              <FadeUp>
                <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">
-                 Four services. <em className="font-serif font-normal italic text-accent">One team.</em>
+                 Four services. <em className="font-serif font-normal italic text-accent-dark">One team.</em>
                </h2>
              </FadeUp>
            </div>
            {services.map((s, i) => (
              <FadeUp key={s.title} delay={i * 0.07}>
-               <Link href={s.href} className={`group flex flex-col gap-6 p-8 transition-colors duration-150 hover:bg-[#F6F6F3] md:p-12 lg:flex-row lg:items-center ${i > 0 ? 'border-t border-border' : ''}`}>
-                 <div className="font-mono text-3xl font-light text-muted-foreground transition-colors duration-200 group-hover:text-accent lg:w-24">
+               <Link href={s.href} className={`group flex flex-col gap-6 p-8 transition-colors duration-150 hover:bg-[#1B1E22] md:p-12 lg:flex-row lg:items-center ${i > 0 ? 'border-t border-[#2A2D33]' : ''}`}>
+                 <div className="font-mono text-3xl font-light text-[#8A8D93] transition-colors duration-200 group-hover:text-accent-dark lg:w-24">
                    {s.num}
                  </div>
                  <div className="flex-1 transition-transform duration-150 group-hover:translate-x-2">
-                   <h3 className="font-display text-[32px] font-bold tracking-tight transition-colors duration-200 group-hover:text-accent">
+                   <h3 className="font-display text-[32px] font-bold tracking-tight transition-colors duration-200 group-hover:text-accent-dark">
                      {s.title}
                    </h3>
-                 <p className="mt-2 whitespace-pre-line text-[18px] leading-[1.6] text-[#54585F]">{s.copy}</p>
+                 <p className="mt-2 whitespace-pre-line text-[18px] leading-[1.6] text-[#A9ACB2]">{s.copy}</p>
                  <div className="mt-5 flex flex-wrap gap-3">
                    {s.tags.map(t => (
-                     <span key={t} className="font-mono text-[12px] uppercase tracking-[0.06em] text-accent">[{t}]</span>
+                     <span key={t} className="font-mono text-[12px] uppercase tracking-[0.06em] text-accent-dark">[{t}]</span>
                    ))}
                  </div>
                </div>
-               <div className="mt-4 flex items-center lg:mt-0 lg:w-16 lg:justify-end text-accent">
+               <div className="mt-4 flex items-center lg:mt-0 lg:w-16 lg:justify-end text-accent-dark">
                  <ArrowRight size={24} className="transition-transform duration-200 group-hover:translate-x-2" />
                </div>
                {/* Accent underline on hover for the name is somewhat complex natively without extra dom, relying on the translate effect for now as it's cleaner */}
