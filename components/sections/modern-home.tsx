@@ -4,6 +4,7 @@ import { ProjectFrame, type MockName } from '@/components/mockups/MockFrame'
 import { FadeUp, StaggerContainer, StaggerItem } from '@/components/motion/FadeUp'
 import { Magnetic } from '@/components/motion/Magnetic'
 import { Parallax } from '@/components/motion/Parallax'
+import { ServicesCarousel } from '@/components/sections/services-carousel'
 import { HeroServiceCarousel } from '@/components/sections/hero-service-carousel'
 
 const services = [
@@ -213,30 +214,7 @@ export function ModernHome() {
                </h2>
              </FadeUp>
            </div>
-           {services.map((s, i) => (
-             <FadeUp key={s.title} delay={i * 0.07}>
-               <Link href={s.href} className={`group flex flex-col gap-6 p-8 transition-colors duration-150 hover:bg-[#1B1E22] md:p-12 lg:flex-row lg:items-center ${i > 0 ? 'border-t border-[#2A2D33]' : ''}`}>
-                 <div className="font-mono text-3xl font-light text-[#8A8D93] transition-colors duration-200 group-hover:text-accent-dark lg:w-24">
-                   {s.num}
-                 </div>
-                 <div className="flex-1 transition-transform duration-150 group-hover:translate-x-2">
-                   <h3 className="font-display text-[32px] font-bold tracking-tight transition-colors duration-200 group-hover:text-accent-dark">
-                     {s.title}
-                   </h3>
-                 <p className="mt-2 whitespace-pre-line text-[18px] leading-[1.6] text-[#A9ACB2]">{s.copy}</p>
-                 <div className="mt-5 flex flex-wrap gap-3">
-                   {s.tags.map(t => (
-                     <span key={t} className="font-mono text-[12px] uppercase tracking-[0.06em] text-accent-dark">[{t}]</span>
-                   ))}
-                 </div>
-               </div>
-               <div className="mt-4 flex items-center lg:mt-0 lg:w-16 lg:justify-end text-accent-dark">
-                 <ArrowRight size={24} className="transition-transform duration-200 group-hover:translate-x-2" />
-               </div>
-               {/* Accent underline on hover for the name is somewhat complex natively without extra dom, relying on the translate effect for now as it's cleaner */}
-             </Link>
-             </FadeUp>
-           ))}
+           <ServicesCarousel services={services} />
          </div>
       </Section>
 
