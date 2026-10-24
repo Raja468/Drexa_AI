@@ -5,7 +5,6 @@ import { FadeUp, StaggerContainer, StaggerItem } from '@/components/motion/FadeU
 import { Magnetic } from '@/components/motion/Magnetic'
 import { Parallax } from '@/components/motion/Parallax'
 import { ServicesCarousel } from '@/components/sections/services-carousel'
-import { HeroServiceCarousel } from '@/components/sections/hero-service-carousel'
 
 const services = [
   { num: '01', title: 'AI Development & Automation', href: '/services/ai-automation', copy: 'Automate repetitive work with AI agents, chatbots, and workflow automation.\nWhatsApp support bots, lead capture, document processing, and internal tools.', tags: ['Python', 'Anthropic', 'Node.js'] },
@@ -175,9 +174,6 @@ export function ModernHome() {
               Demo conversation. ChatConnect AI.
             </p>
           </Parallax>
-        </div>
-        <div className="border-t border-border px-6 py-10 md:px-10 lg:px-16">
-          <HeroServiceCarousel />
         </div>
       </Section>
 
