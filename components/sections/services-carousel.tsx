@@ -72,8 +72,8 @@ export function ServicesCarousel({ services }: { services: ServiceCarouselItem[]
         .services-glow { animation: services-glow 2s ease-in-out infinite; }
       `}</style>
 
-      <div className="grid gap-6 p-8 md:p-12 lg:grid-cols-[1.25fr_0.75fr] lg:p-16">
-        <div key={active.num} className="animate-fade-up relative overflow-hidden rounded-[16px] border border-[#2A2D33] bg-[#1B1E22] p-8 md:p-10">
+      <div className="grid gap-6 p-6 md:p-10 lg:grid-cols-[1.6fr_0.9fr] lg:p-12">
+        <div key={active.num} className="animate-fade-up relative overflow-hidden rounded-[16px] border border-[#2A2D33] bg-[#1B1E22] p-8 md:p-12">
           <span aria-hidden="true" className="pointer-events-none absolute -bottom-8 right-4 select-none font-display text-[140px] font-[800] leading-none text-[#23262B] md:text-[180px]">
             {active.num}
           </span>
@@ -86,7 +86,7 @@ export function ServicesCarousel({ services }: { services: ServiceCarouselItem[]
                 <ActiveIcon size={24} strokeWidth={1.5} />
               </span>
             </div>
-            <h3 className="mt-8 font-display text-[32px] font-bold leading-[1.05] tracking-tight text-[#F2F2EE] md:text-[44px]">
+            <h3 className="mt-8 font-display text-[32px] font-bold leading-[1.05] tracking-tight text-[#F2F2EE] md:text-[52px]">
               {active.title}
             </h3>
             <p className="mt-4 max-w-[56ch] whitespace-pre-line text-[18px] leading-[1.6] text-[#A9ACB2]">{active.copy}</p>
@@ -112,7 +112,7 @@ export function ServicesCarousel({ services }: { services: ServiceCarouselItem[]
         </button>
       </div>
 
-      <div className="border-t border-[#2A2D33] px-8 py-5 md:px-12 lg:px-16">
+      <div className="border-t border-[#2A2D33] px-6 py-5 md:px-10 lg:px-12">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex flex-wrap gap-2">
             {services.map((service, i) => (
