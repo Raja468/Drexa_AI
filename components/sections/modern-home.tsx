@@ -200,19 +200,20 @@ export function ModernHome() {
         </StaggerContainer>
       </section>
 
-      {/* 01 SERVICES */}
-      <Section number="01" title="Services" dark>
-         <div className="flex flex-col">
-           <div className="border-b border-[#2A2D33] px-8 pt-12 md:px-12 md:pt-16 lg:px-16 lg:pt-20">
-             <FadeUp>
-               <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">
-                 Four services. <em className="font-serif font-normal italic text-accent-dark">One team.</em>
-               </h2>
-             </FadeUp>
-           </div>
-           <ServicesCarousel services={services} />
-         </div>
-      </Section>
+      {/* 01 SERVICES - full-width, centred, wide cards */}
+      <section className="relative border-t border-[#2A2D33] bg-[#16181D] text-[#F2F2EE]">
+        <div className="mx-auto max-w-[1440px] border-x border-[#2A2D33]">
+          <div className="border-b border-[#2A2D33] px-6 py-12 text-center md:px-10 md:py-16 lg:px-12 lg:py-20">
+            <FadeUp>
+              <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-[#A9ACB2]">01 / Services</p>
+              <h2 className="mt-4 font-display text-[28px] font-bold tracking-[-0.02em] md:text-[44px]">
+                Four services. <em className="font-serif font-normal italic text-accent-dark">One team.</em>
+              </h2>
+            </FadeUp>
+          </div>
+          <ServicesCarousel services={services} />
+        </div>
+      </section>
 
       {/* 02 PROCESS */}
       <Section number="02" title="Process">
