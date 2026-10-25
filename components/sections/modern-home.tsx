@@ -202,7 +202,7 @@ export function ModernHome() {
 
       {/* 01 SERVICES - full-width, centred, wide cards */}
       <section className="relative border-t border-[#2A2D33] bg-[#16181D] text-[#F2F2EE]">
-        <div className="mx-auto max-w-[1440px] border-x border-[#2A2D33]">
+        <div className="mx-auto max-w-[1280px] border-x border-[#2A2D33]">
           <div className="border-b border-[#2A2D33] px-6 py-12 text-center md:px-10 md:py-16 lg:px-12 lg:py-20">
             <FadeUp>
               <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-[#A9ACB2]">01 / Services</p>
