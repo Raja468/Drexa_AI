@@ -10,7 +10,7 @@ const services = [
   { num: '01', title: 'AI Development & Automation', href: '/services/ai-automation', copy: 'Automate repetitive work with AI agents, chatbots, and workflow automation.\nWhatsApp support bots, lead capture, document processing, and internal tools.', tags: ['Python', 'Anthropic', 'Node.js'] },
   { num: '02', title: 'Web Development', href: '/services/web-development', copy: 'Fast, clear, search-friendly websites and web apps.\nBusiness sites, landing pages, WordPress, and custom Next.js builds.', tags: ['Next.js', 'React', 'Tailwind'] },
   { num: '03', title: 'Custom Software', href: '/services/software-development', copy: 'Dashboards, management systems, SaaS products, and internal tools\nbuilt around how your business actually works.', tags: ['Node.js', 'PostgreSQL', 'Express'] },
-  { num: '04', title: 'Cybersecurity', href: '/services/cybersecurity', copy: 'Web application security checks, security monitoring support, and staff awareness training.\nFind weak points before attackers do.', tags: ['Pentesting', 'Audit', 'Monitoring'] },
+  { num: '04', title: 'Cybersecurity', href: '/security-audit', copy: 'Web application security checks, security monitoring support, and staff awareness training.\nFind weak points before attackers do.', tags: ['Pentesting', 'Audit', 'Monitoring'] },
 ]
 
 type Project = {
