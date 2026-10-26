@@ -111,7 +111,11 @@ export function ModernHome() {
               <div className="mt-10 flex flex-wrap gap-4">
                 <Magnetic strength={8}><Button href="/contact">Book a free consultation</Button></Magnetic>
                 <Magnetic strength={8}><Button href="/work" secondary>See our work</Button></Magnetic>
+                <Magnetic strength={8}><Button href="/security-score" secondary>Free security score check</Button></Magnetic>
               </div>
+              <p className="mt-4 max-w-[60ch] text-[14px] leading-[1.6] text-[#54585F]">
+                Free, no login: <Link href="/security-score" className="font-semibold text-accent underline underline-offset-4">check your own site&apos;s security score in seconds</Link> — Drexa itself scores 95/100.
+              </p>
             </FadeUp>
             <FadeUp animateOnMount delay={0.44}>
               <div className="mt-8 flex flex-col gap-4">
