@@ -8,7 +8,7 @@ import { ChevronDown, Menu, X, ArrowRight } from 'lucide-react'
 import { Magnetic } from '@/components/motion/Magnetic'
 
 const links = [['Work', '/work'], ['About', '/about'], ['Blog', '/blog'], ['Contact', '/contact']] as const
-const services = [['AI Development & Automation', '/services/ai-automation'], ['Web Development', '/services/web-development'], ['Software Development', '/services/software-development'], ['Cybersecurity', '/services/cybersecurity']] as const
+const services = [['AI Development & Automation', '/services/ai-automation'], ['Web Development', '/services/web-development'], ['Software Development', '/services/software-development'], ['Cybersecurity', '/security-audit']] as const
 
 export function Navbar() {
   const [open, setOpen] = useState(false)
