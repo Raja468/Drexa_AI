@@ -104,7 +104,7 @@ export function ModernHome() {
             </FadeUp>
             <FadeUp animateOnMount delay={0.2}>
               <p className="mt-8 max-w-[60ch] text-[18px] leading-[1.6] text-[#54585F]">
-                Drexa AI builds AI automation, websites, custom software, and security services for small and growing businesses. You work directly with the people building it.
+                Drexa AI builds AI automation, websites, custom software, and security services for small and growing businesses. Start free: check your website in seconds, no login. You work directly with the people building it.
               </p>
             </FadeUp>
             <FadeUp animateOnMount delay={0.32}>
@@ -114,7 +114,7 @@ export function ModernHome() {
                 <Magnetic strength={8}><Button href="/security-score" secondary>Free security score check</Button></Magnetic>
               </div>
               <p className="mt-4 max-w-[60ch] text-[14px] leading-[1.6] text-[#54585F]">
-                Free, no login: <Link href="/security-score" className="font-semibold text-accent underline underline-offset-4">check your own site&apos;s security score in seconds</Link> — Drexa itself scores 95/100.
+                Free tools, no login: <Link href="/security-score" className="font-semibold text-accent underline underline-offset-4">security score 95/100</Link> and <Link href="/seo-check" className="font-semibold text-accent underline underline-offset-4">SEO check 100/100</Link> on our own site — check yours in seconds.
               </p>
             </FadeUp>
             <FadeUp animateOnMount delay={0.44}>
