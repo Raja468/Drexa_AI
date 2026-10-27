@@ -16,6 +16,9 @@
      dark row-hover #1B1E22 (5.71:1). Verified in scripts/contrast-audit.mjs. */
   --color-accent-dark: #3ea88a;
   --color-accent-tint: #e7f2ee;
+  /* Warm highlight, used ONLY for proof badges (own scores), never for primary buttons or links, so green stays the brand colour. Pale tint is for backgrounds, gold is for borders only, never for small text on white. */
+  --color-highlight: #c7a252;
+  --color-highlight-tint: #fdf6e3;
   --color-dark: #16181d;
   --color-on-dark: #f2f2ee;
   --color-on-dark-muted: #a9acb2;
