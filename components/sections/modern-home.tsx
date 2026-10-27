@@ -113,7 +113,7 @@ export function ModernHome() {
                 <Magnetic strength={8}><Button href="/work" secondary>See our work</Button></Magnetic>
                 <Magnetic strength={8}><Button href="/security-score" secondary>Free security score check</Button></Magnetic>
               </div>
-              <p className="mt-4 max-w-[60ch] text-[14px] leading-[1.6] text-[#54585F]">
+              <p className="mt-4 max-w-[60ch] rounded-lg border border-highlight bg-highlight-tint px-4 py-3 text-[14px] leading-[1.6] text-foreground">
                 Free tools, no login: <Link href="/security-score" className="font-semibold text-accent underline underline-offset-4">security score 95/100</Link> and <Link href="/seo-check" className="font-semibold text-accent underline underline-offset-4">SEO check 100/100</Link> on our own site — check yours in seconds.
               </p>
             </FadeUp>
