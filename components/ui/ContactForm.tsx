@@ -33,7 +33,7 @@ type Status = "idle" | "sending" | "sent" | "error"
  * keyboard users get a real indicator rather than a colour change alone.
  */
 const FIELD =
-  "min-h-24 w-full border-b-2 border-border bg-transparent px-0 py-4 font-display text-2xl font-bold tracking-tighter text-foreground transition-colors duration-200 placeholder:font-bold placeholder:uppercase placeholder:text-muted-foreground/80 focus:border-accent md:text-3xl"
+  "min-h-24 w-full border-b-2 border-border bg-transparent px-0 py-4 font-display text-2xl font-bold tracking-tighter text-foreground transition-colors duration-200 placeholder:font-bold placeholder:uppercase placeholder:text-muted-foreground/80 focus:border-accent focus:outline-none focus-visible:outline-none md:text-3xl"
 
 /* Email field exception (design brief §2 rule 8): the placeholder renders in
    normal case and semibold (D7) — uppercase + bold at 24–30px clipped
@@ -161,7 +161,7 @@ export function ContactForm({
   }
 
   return (
-    <form onSubmit={onSubmit} noValidate className="mt-8 space-y-8">
+    <form onSubmit={onSubmit} noValidate autoComplete="off" className="mt-8 space-y-8">
       {/* Honeypot — visually hidden, ignored by keyboard and screen readers. */}
       <div className="hidden" aria-hidden="true">
         <label>
@@ -174,7 +174,7 @@ export function ContactForm({
         <label className="block">
           <span className={LABEL}>Name</span>
           <input
-            autoComplete="name"
+            autoComplete="off"
             {...register("name")}
             aria-invalid={errors.name ? true : undefined}
             aria-describedby={errors.name ? "name-error" : undefined}
@@ -191,7 +191,7 @@ export function ContactForm({
         <label className="block">
           <span className={LABEL}>Email</span>
           <input
-            autoComplete="email"
+            autoComplete="off"
             {...register("email")}
             type="email"
             aria-invalid={errors.email ? true : undefined}
@@ -223,7 +223,7 @@ export function ContactForm({
               type="button"
               aria-pressed={service === option}
               onClick={() => setService(option)}
-              className={`min-h-11 rounded-full border px-5 py-2.5 text-[15px] font-semibold transition-colors ${
+              className={`min-h-11 rounded-full border px-5 py-2.5 text-[15px] font-semibold transition-colors focus:outline-none focus-visible:outline-none focus-visible:border-accent ${
                 service === option
                   ? "border-accent bg-accent text-white"
                   : "border-border bg-white text-foreground hover:border-accent hover:text-accent"
@@ -245,7 +245,7 @@ export function ContactForm({
               type="button"
               aria-pressed={budgetChoice === option}
               onClick={() => setBudgetChoice(option)}
-              className={`min-h-11 rounded-full border px-5 py-2.5 text-[15px] font-semibold transition-colors ${
+              className={`min-h-11 rounded-full border px-5 py-2.5 text-[15px] font-semibold transition-colors focus:outline-none focus-visible:outline-none focus-visible:border-accent ${
                 budgetChoice === option
                   ? "border-accent bg-accent text-white"
                   : "border-border bg-white text-foreground hover:border-accent hover:text-accent"
