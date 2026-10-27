@@ -93,6 +93,8 @@ export function ContactForm({
   const [status, setStatus] = useState<Status>("idle")
   const [selected, setSelected] = useState<string[]>([])
   const [budget, setBudget] = useState<string | null>(null)
+  const [service, setService] = useState<string>("Not sure")
+  const [budgetChoice, setBudgetChoice] = useState<string>("Not sure yet")
 
   const {
     register,
@@ -124,8 +126,9 @@ export function ContactForm({
     }
     if (showCompany && values.company) data.company = values.company
     if (services && selected.length > 0) data.projectType = selected.join(", ")
+    else data.projectType = service
     if (budgets && budget) data.budget = budget
-    else if (!budgets && values.budget) data.budget = values.budget
+    else data.budget = budgetChoice
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -137,6 +140,8 @@ export function ContactForm({
       reset()
       setSelected([])
       setBudget(null)
+      setService("Not sure")
+      setBudgetChoice("Not sure yet")
     } catch {
       setStatus("error")
     }
@@ -169,6 +174,7 @@ export function ContactForm({
         <label className="block">
           <span className={LABEL}>Name</span>
           <input
+            autoComplete="name"
             {...register("name")}
             aria-invalid={errors.name ? true : undefined}
             aria-describedby={errors.name ? "name-error" : undefined}
@@ -185,6 +191,7 @@ export function ContactForm({
         <label className="block">
           <span className={LABEL}>Email</span>
           <input
+            autoComplete="email"
             {...register("email")}
             type="email"
             aria-invalid={errors.email ? true : undefined}
@@ -207,27 +214,48 @@ export function ContactForm({
         )}
       </div>
 
-      <label className="block">
-        <span className={LABEL}>Service</span>
-        <select {...register("company")} className={FIELD}>
-          <option value="Not sure">Not sure</option>
-          <option value="AI Development & Automation">AI Development & Automation</option>
-          <option value="Web Development">Web Development</option>
-          <option value="Custom Software">Custom Software</option>
-          <option value="Cybersecurity">Cybersecurity</option>
-        </select>
-      </label>
+      <fieldset className="block">
+        <legend className={LABEL}>Service</legend>
+        <div className="flex flex-wrap gap-3">
+          {["Not sure", "AI Development & Automation", "Web Development", "Custom Software", "Cybersecurity"].map((option) => (
+            <button
+              key={option}
+              type="button"
+              aria-pressed={service === option}
+              onClick={() => setService(option)}
+              className={`min-h-11 rounded-full border px-5 py-2.5 text-[15px] font-semibold transition-colors ${
+                service === option
+                  ? "border-accent bg-accent text-white"
+                  : "border-border bg-white text-foreground hover:border-accent hover:text-accent"
+              }`}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+        <p className="mt-3 text-[14px] text-muted-foreground">Pick one. &quot;Not sure&quot; is fine — we will help you decide on the call.</p>
+      </fieldset>
 
-      <label className="block">
-        <span className={LABEL}>Budget</span>
-        <select {...register("budget")} className={FIELD}>
-          <option value="Not sure yet">Not sure yet</option>
-          <option value="Under $500">Under $500</option>
-          <option value="$500 - $2,000">$500 - $2,000</option>
-          <option value="$2,000 - $5,000">$2,000 - $5,000</option>
-          <option value="$5,000+">$5,000+</option>
-        </select>
-      </label>
+      <fieldset className="block">
+        <legend className={LABEL}>Budget</legend>
+        <div className="flex flex-wrap gap-3">
+          {["Not sure yet", "Under $500", "$500 - $2,000", "$2,000 - $5,000", "$5,000+"].map((option) => (
+            <button
+              key={option}
+              type="button"
+              aria-pressed={budgetChoice === option}
+              onClick={() => setBudgetChoice(option)}
+              className={`min-h-11 rounded-full border px-5 py-2.5 text-[15px] font-semibold transition-colors ${
+                budgetChoice === option
+                  ? "border-accent bg-accent text-white"
+                  : "border-border bg-white text-foreground hover:border-accent hover:text-accent"
+              }`}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      </fieldset>
 
       <label className="block">
         <span className={LABEL}>Project details</span>
