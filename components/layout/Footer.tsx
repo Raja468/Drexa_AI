@@ -15,7 +15,7 @@ export function Footer() {
             </Link>
             <p className="mt-5 text-[18px] font-bold">Build smarter. Run safer.</p>
             <p className="mt-4 max-w-[30ch] text-[16px] leading-[1.6] text-[#A9ACB2]">
-              Drexa AI is an independent technology studio based in Pakistan, working with clients worldwide.
+              Drexa AI is a remote-first technology studio, working with clients worldwide.
             </p>
           </div>
           <div>

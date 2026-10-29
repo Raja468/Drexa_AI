@@ -6,7 +6,7 @@ import { Section } from '@/components/layout/Section'
 
 export const metadata: Metadata = {
   title: 'About Drexa AI | Independent Technology Studio',
-  description: 'Drexa AI is an independent studio in Pakistan building AI automation, web and software development, and security services. Meet the founder.',
+  description: 'Drexa AI is a remote-first independent studio building AI automation, web and software development, and security services. Meet the founder.',
 }
 
 export default function AboutPage() {
@@ -81,7 +81,7 @@ export default function AboutPage() {
       <Section number="04" title="Where we work">
         <div className="p-8 py-16 md:p-14 lg:p-24 border-b border-border">
           <p className="max-w-[60ch] text-[20px] leading-[1.6] text-[#F2F2EE]">
-            Based near Islamabad, Pakistan. We work remotely with clients worldwide.
+            A remote-first studio with no physical office yet. We work remotely with clients worldwide.
           </p>
         </div>
       </Section>

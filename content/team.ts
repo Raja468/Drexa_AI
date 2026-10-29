@@ -19,7 +19,7 @@ export const teamPage = {
   members: {
     label: "Core Team",
     title: "Meet the crew",
-    note: "Based in PK · Working Globally",
+    note: "Remote-first · Working Globally",
     items: [
       {
         icon: "cpu" as const,

@@ -57,8 +57,8 @@ export default function ContactPage() {
                   <div className="flex items-start gap-4">
                     <MapPin className="mt-1 h-5 w-5 shrink-0 text-accent-dark" />
                     <div>
-                      <p className="font-semibold text-foreground">Location</p>
-                      <p className="mt-1 text-[#A9ACB2]">Islamabad, Pakistan.<br/>Working remotely worldwide.</p>
+                      <p className="font-semibold text-foreground">Office</p>
+                      <p className="mt-1 text-[#A9ACB2]">Remote — no physical office yet.<br/>Working remotely worldwide.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
