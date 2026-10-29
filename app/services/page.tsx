@@ -33,11 +33,11 @@ const servicesList = [
 
 export default function ServicesOverviewPage() {
   return (
-    <main className="bg-white pt-[88px]">
-      <section className="relative border-b border-border bg-[#F6F6F3]">
+    <main className="bg-[#1B1E22] pt-[88px]">
+      <section className="relative border-b border-border bg-[#1B1E22]">
         <div className="mx-auto flex max-w-[1440px] flex-col lg:flex-row border-x border-border">
           <div className="lg:w-80 shrink-0 border-b lg:border-b-0 lg:border-r border-border p-6 md:p-8 lg:p-10">
-            <div className="sticky top-28 font-mono text-[13px] uppercase tracking-[0.06em] text-[#54585F]">
+            <div className="sticky top-28 font-mono text-[13px] uppercase tracking-[0.06em] text-[#A9ACB2]">
               Services
             </div>
           </div>
@@ -45,7 +45,7 @@ export default function ServicesOverviewPage() {
             <h1 className="font-display text-[40px] md:text-[56px] font-[800] leading-[1.02] tracking-[-0.03em] text-foreground">
               Our services
             </h1>
-            <p className="mt-6 max-w-[60ch] text-[20px] md:text-[24px] font-semibold leading-[1.4] text-[#16181D]">
+            <p className="mt-6 max-w-[60ch] text-[20px] md:text-[24px] font-semibold leading-[1.4] text-[#F2F2EE]">
               Drexa AI is a small studio that covers the full path from idea to secure, working product. Pick one service or combine several.
             </p>
           </div>
@@ -59,10 +59,10 @@ export default function ServicesOverviewPage() {
               <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">
                 {service.title}
               </h2>
-              <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#54585F]">
+              <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#A9ACB2]">
                 {service.copy}
               </p>
-              <ul className="space-y-3 text-[18px] leading-[1.6] text-[#54585F] list-disc list-inside marker:text-accent">
+              <ul className="space-y-3 text-[18px] leading-[1.6] text-[#A9ACB2] list-disc list-inside marker:text-accent-dark">
                 {service.items.map(item => (
                   <li key={item}>{item}</li>
                 ))}
@@ -87,7 +87,7 @@ export default function ServicesOverviewPage() {
             ].map(([title, desc]) => (
               <div key={title} className="flex flex-col gap-3 rounded-[12px] border border-border p-8 transition-colors hover:border-accent">
                 <h3 className="text-[20px] font-bold leading-tight">{title}</h3>
-                <p className="text-[16px] leading-[1.6] text-[#54585F]">{desc}</p>
+                <p className="text-[16px] leading-[1.6] text-[#A9ACB2]">{desc}</p>
               </div>
             ))}
           </div>

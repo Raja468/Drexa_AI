@@ -11,11 +11,11 @@ export const metadata: Metadata = {
 
 export default function ChatConnectAIPage() {
   return (
-    <main className="bg-white pt-[88px]">
-      <section className="relative border-b border-border bg-[#F6F6F3]">
+    <main className="bg-[#1B1E22] pt-[88px]">
+      <section className="relative border-b border-border bg-[#1B1E22]">
         <div className="mx-auto flex max-w-[1440px] flex-col lg:flex-row border-x border-border">
           <div className="lg:w-80 shrink-0 border-b lg:border-b-0 lg:border-r border-border p-6 md:p-8 lg:p-10">
-            <div className="sticky top-28 font-mono text-[13px] uppercase tracking-[0.06em] text-[#54585F]">
+            <div className="sticky top-28 font-mono text-[13px] uppercase tracking-[0.06em] text-[#A9ACB2]">
               Work / Case Study
             </div>
           </div>
@@ -23,14 +23,14 @@ export default function ChatConnectAIPage() {
             <h1 className="font-display text-[40px] md:text-[56px] font-[800] leading-[1.02] tracking-[-0.03em] text-foreground">
               ChatConnect AI
             </h1>
-            <p className="mt-6 max-w-[60ch] text-[20px] md:text-[24px] font-semibold leading-[1.4] text-[#16181D]">
+            <p className="mt-6 max-w-[60ch] text-[20px] md:text-[24px] font-semibold leading-[1.4] text-[#F2F2EE]">
               AI-powered WhatsApp support and lead capture
             </p>
-            <div className="mt-8 flex flex-wrap gap-x-8 gap-y-4 font-mono text-[13px] text-[#54585F]">
+            <div className="mt-8 flex flex-wrap gap-x-8 gap-y-4 font-mono text-[13px] text-[#A9ACB2]">
               <span>Type: <span className="font-semibold text-foreground">Internal build</span></span>
               <span>Stack: <span className="font-semibold text-foreground">React, Express, PostgreSQL, Anthropic API</span></span>
               <span>Role: <span className="font-semibold text-foreground">Design, development, deployment</span></span>
-              <span>Code: <a href="https://github.com/Raja468/chatconnect" target="_blank" rel="noreferrer" className="text-accent hover:underline">GitHub link</a></span>
+              <span>Code: <a href="https://github.com/Raja468/chatconnect" target="_blank" rel="noreferrer" className="text-accent-dark hover:underline">GitHub link</a></span>
             </div>
           </div>
         </div>
@@ -38,7 +38,7 @@ export default function ChatConnectAIPage() {
 
       <Section number="01" title="The problem">
         <div className="p-8 py-16 md:p-14 lg:p-24">
-          <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#54585F]">
+          <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#A9ACB2]">
             Small businesses receive the same questions on WhatsApp all day: prices, timings, availability. Answering manually is slow, and leads get lost when nobody replies.
           </p>
         </div>
@@ -46,13 +46,13 @@ export default function ChatConnectAIPage() {
 
       <Section number="02" title="What we built">
         <div className="p-8 py-16 md:p-14 lg:p-24">
-          <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#54585F]">
+          <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#A9ACB2]">
             A platform that answers customer messages using the business's own knowledge base, captures lead details, hands the chat to a human when needed, and gives the owner a dashboard to manage conversations.
           </p>
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             <div>
               <h3 className="font-display text-[24px] font-bold">Key features</h3>
-              <ul className="mt-4 space-y-3 text-[18px] leading-[1.6] text-[#54585F] list-disc list-inside marker:text-accent">
+              <ul className="mt-4 space-y-3 text-[18px] leading-[1.6] text-[#A9ACB2] list-disc list-inside marker:text-accent-dark">
                 <li>Knowledge-base answers</li>
                 <li>Lead capture</li>
                 <li>Human handoff</li>
@@ -61,7 +61,7 @@ export default function ChatConnectAIPage() {
             </div>
             <div>
               <h3 className="font-display text-[24px] font-bold">How it works</h3>
-              <ol className="mt-4 space-y-3 text-[18px] leading-[1.6] text-[#54585F] list-decimal list-inside marker:font-semibold marker:text-foreground">
+              <ol className="mt-4 space-y-3 text-[18px] leading-[1.6] text-[#A9ACB2] list-decimal list-inside marker:font-semibold marker:text-foreground">
                 <li>Customer message</li>
                 <li>AI checks knowledge base</li>
                 <li>Answer or handoff</li>
@@ -74,7 +74,7 @@ export default function ChatConnectAIPage() {
 
       <Section number="03" title="Technology choices">
         <div className="p-8 py-16 md:p-14 lg:p-24">
-          <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#54585F]">
+          <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#A9ACB2]">
             React for the dashboard, Express and PostgreSQL for the backend, and Anthropic models for language understanding. Answers are restricted to approved business information to avoid made-up replies.
           </p>
         </div>
@@ -82,14 +82,14 @@ export default function ChatConnectAIPage() {
 
       <Section number="04" title="Results">
         <div className="p-8 py-16 md:p-14 lg:p-24 border-b border-border">
-          <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#54585F]">
+          <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#A9ACB2]">
             Currently in active development and testing.
           </p>
         </div>
       </Section>
 
       <Section title="Gallery" noBorderTop>
-        <div className="flex flex-col gap-12 p-8 py-16 md:p-14 lg:p-24 bg-[#F6F6F3]">
+        <div className="flex flex-col gap-12 p-8 py-16 md:p-14 lg:p-24 bg-[#1B1E22]">
            <ProjectFrame
              mock="chatconnect"
             alt="ChatConnect AI dashboard with demo data: conversations today, leads captured, and recent conversations"

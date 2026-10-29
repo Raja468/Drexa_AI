@@ -23,7 +23,7 @@ export function PageHero({ eyebrow, title, accent, description }: Props) {
     <section className="border-b-2 border-border pt-36 pb-16 md:pt-44 md:pb-24">
       <Container>
         <FadeUp animateOnMount>
-          <span className="mb-6 inline-flex items-center gap-3 border-2 border-border px-4 py-2 font-mono text-xs uppercase tracking-widest text-accent md:text-sm">
+          <span className="mb-6 inline-flex items-center gap-3 border-2 border-border px-4 py-2 font-mono text-xs uppercase tracking-widest text-accent-dark md:text-sm">
             <span aria-hidden="true" className="beacon-pulse h-2 w-2 rounded-full bg-accent" />
             {eyebrow}
           </span>

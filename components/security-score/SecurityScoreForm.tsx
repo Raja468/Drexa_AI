@@ -28,7 +28,7 @@ const badge: Record<CheckStatus, string> = {
   pass: 'bg-[#E7F2EE] text-[#0B6B57]',
   fail: 'bg-[#FDECEA] text-[#9B1C1C]',
   warning: 'bg-[#FEF3C7] text-[#92400E]',
-  info: 'bg-[#F6F6F3] text-[#54585F]',
+  info: 'bg-[#1B1E22] text-[#A9ACB2]',
 }
 
 const label: Record<CheckStatus, string> = {
@@ -82,7 +82,7 @@ export function SecurityScoreForm() {
           placeholder="example.com"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="min-h-12 flex-1 rounded-lg border border-border bg-white px-4 text-[16px] text-foreground placeholder:text-[#54585F]"
+          className="min-h-12 flex-1 rounded-lg border border-border bg-[#1B1E22] px-4 text-[16px] text-foreground placeholder:text-[#A9ACB2]"
         />
         <button
           type="submit"
@@ -92,7 +92,7 @@ export function SecurityScoreForm() {
           {loading ? 'Checking…' : 'Run check'} <ArrowRight size={16} />
         </button>
       </form>
-      <p className="mt-4 max-w-[60ch] text-[14px] leading-[1.6] text-[#54585F]">
+      <p className="mt-4 max-w-[60ch] text-[14px] leading-[1.6] text-[#A9ACB2]">
         Public-surface check only, not a full audit. Only enter your own site, or a site you have permission
         to check. No login details are asked for, and nothing is fixed automatically.
       </p>
@@ -112,13 +112,13 @@ export function SecurityScoreForm() {
             </div>
             <div>
               <h2 className="text-[24px] font-bold leading-tight">{result.grade}</h2>
-              <p className="mt-2 max-w-[60ch] text-[16px] leading-[1.6] text-[#54585F]">
+              <p className="mt-2 max-w-[60ch] text-[16px] leading-[1.6] text-[#A9ACB2]">
                 Checked {result.url}
                 {result.finalUrl !== result.url ? `, which finished at ${result.finalUrl}` : ''}. Each check below
                 is worth up to 10 points, so the total is out of 100. Partial credit is explained in the detail
                 for each check.
               </p>
-              <p className="mt-3 max-w-[60ch] text-[16px] leading-[1.6] text-[#54585F]">{result.wordpress.detail}</p>
+              <p className="mt-3 max-w-[60ch] text-[16px] leading-[1.6] text-[#A9ACB2]">{result.wordpress.detail}</p>
             </div>
           </div>
 
@@ -131,8 +131,8 @@ export function SecurityScoreForm() {
                     {label[c.status]} · {c.points}/10
                   </span>
                 </div>
-                <p className="mt-3 text-[16px] leading-[1.6] text-[#54585F]">{c.detail}</p>
-                <p className="mt-2 text-[16px] leading-[1.6] text-[#54585F]">
+                <p className="mt-3 text-[16px] leading-[1.6] text-[#A9ACB2]">{c.detail}</p>
+                <p className="mt-2 text-[16px] leading-[1.6] text-[#A9ACB2]">
                   <span className="font-semibold text-foreground">Fix: </span>
                   {c.fix}
                 </p>
@@ -149,12 +149,12 @@ export function SecurityScoreForm() {
             </a>
             <Link
               href="/security-audit"
-              className="inline-flex min-h-12 items-center justify-center rounded-lg border border-border bg-white px-6 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg border border-border bg-[#1B1E22] px-6 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent-dark"
             >
               Get a full security audit
             </Link>
           </div>
-          <p className="mt-6 text-[13px] font-mono text-[#54585F]">
+          <p className="mt-6 text-[13px] font-mono text-[#A9ACB2]">
             Checked at {new Date(result.timestamp).toLocaleString()}. This is a public-surface score only, not a
             full audit.
           </p>
