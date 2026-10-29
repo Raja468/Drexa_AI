@@ -28,11 +28,11 @@ const projects: Project[] = [
 
 export default function WorkListPage() {
   return (
-    <main className="bg-white pt-[88px]">
-      <section className="relative border-b border-border bg-[#F6F6F3]">
+    <main className="bg-[#1B1E22] pt-[88px]">
+      <section className="relative border-b border-border bg-[#1B1E22]">
         <div className="mx-auto flex max-w-[1440px] flex-col lg:flex-row border-x border-border">
           <div className="lg:w-80 shrink-0 border-b lg:border-b-0 lg:border-r border-border p-6 md:p-8 lg:p-10">
-            <div className="sticky top-28 font-mono text-[13px] uppercase tracking-[0.06em] text-[#54585F]">
+            <div className="sticky top-28 font-mono text-[13px] uppercase tracking-[0.06em] text-[#A9ACB2]">
               Work
             </div>
           </div>
@@ -40,7 +40,7 @@ export default function WorkListPage() {
             <h1 className="font-display text-[40px] md:text-[56px] font-[800] leading-[1.02] tracking-[-0.03em] text-foreground">
               Our work
             </h1>
-            <p className="mt-6 max-w-[60ch] text-[20px] md:text-[24px] font-semibold leading-[1.4] text-[#16181D]">
+            <p className="mt-6 max-w-[60ch] text-[20px] md:text-[24px] font-semibold leading-[1.4] text-[#F2F2EE]">
               These are our own products and R&D projects. We build real working systems and publish the code where we can. Client projects will be added as they are completed with permission.
             </p>
           </div>
@@ -57,16 +57,16 @@ export default function WorkListPage() {
                  </div>
                </div>
                <div className="lg:w-[360px] shrink-0">
-                 <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-accent">Internal build</p>
+                 <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-accent-dark">Internal build</p>
                  <h2 className="mt-4 font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">{project.title}</h2>
-                 <p className="mt-4 text-[18px] leading-[1.6] text-[#54585F]">{project.copy}</p>
+                 <p className="mt-4 text-[18px] leading-[1.6] text-[#A9ACB2]">{project.copy}</p>
                  <div className="mt-6 flex flex-wrap gap-2">
                    {project.tags.map(tag => (
-                     <span key={tag} className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#54585F]">[{tag}]</span>
+                     <span key={tag} className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#A9ACB2]">[{tag}]</span>
                    ))}
                  </div>
                  <div className="mt-8 flex items-center gap-6">
-                   <Link href={project.href} className="group inline-flex items-center gap-2 font-semibold text-accent hover:text-accent-hover decoration-2 underline-offset-4 hover:underline">
+                   <Link href={project.href} className="group inline-flex items-center gap-2 font-semibold text-accent-dark hover:text-accent-dark-hover decoration-2 underline-offset-4 hover:underline">
                      Read case study <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-1" />
                    </Link>
                    <a href={project.code} target="_blank" rel="noreferrer" className="font-semibold text-foreground underline decoration-border decoration-2 underline-offset-4 hover:decoration-foreground transition-colors">

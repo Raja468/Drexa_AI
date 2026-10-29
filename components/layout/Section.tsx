@@ -11,11 +11,14 @@ interface SectionProps {
 }
 
 export function Section({ id, number, title, children, dark = false, noBorderTop = false, headerTextMuted = true }: SectionProps) {
-  const borderColor = dark ? 'border-[#2A2D33]' : 'border-border'
-  const textColor = dark ? 'text-[#A9ACB2]' : (headerTextMuted ? 'text-[#54585F]' : 'text-accent')
-  
+  // Site-wide dark theme (homepage was darkened first, other pages follow here):
+  // both branches are dark now. `dark` is kept so existing callers still compile.
+  void dark
+  const borderColor = 'border-[#2A2D33]'
+  const textColor = headerTextMuted ? 'text-[#A9ACB2]' : 'text-accent-dark'
+
   return (
-    <section id={id} className={`relative ${noBorderTop ? '' : `border-t ${borderColor}`} ${dark ? 'bg-[#16181D] text-[#F2F2EE]' : 'bg-white text-foreground'}`}>
+    <section id={id} className={`relative ${noBorderTop ? '' : `border-t ${borderColor}`} bg-[#16181D] text-[#F2F2EE]`}>
       <div className={`mx-auto flex max-w-[1440px] flex-col border-x ${borderColor} lg:flex-row`}>
         {title && (
           <div className={`lg:w-80 shrink-0 border-b lg:border-b-0 lg:border-r ${borderColor} p-6 md:p-8 lg:p-10`}>

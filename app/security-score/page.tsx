@@ -12,11 +12,11 @@ export const metadata: Metadata = {
 
 export default function SecurityScorePage() {
   return (
-    <main className="bg-white pt-[88px]">
-      <section className="relative border-b border-border bg-[#F6F6F3]">
+    <main className="bg-[#1B1E22] pt-[88px]">
+      <section className="relative border-b border-border bg-[#1B1E22]">
         <div className="mx-auto flex max-w-[1440px] flex-col lg:flex-row border-x border-border">
           <div className="lg:w-80 shrink-0 border-b lg:border-b-0 lg:border-r border-border p-6 md:p-8 lg:p-10">
-            <div className="sticky top-28 font-mono text-[13px] uppercase tracking-[0.06em] text-[#54585F]">
+            <div className="sticky top-28 font-mono text-[13px] uppercase tracking-[0.06em] text-[#A9ACB2]">
               Free Security Score
             </div>
           </div>
@@ -24,11 +24,11 @@ export default function SecurityScorePage() {
             <h1 className="font-display text-[40px] md:text-[56px] font-[800] leading-[1.02] tracking-[-0.03em] text-foreground">
               Is your website secure, or just untested?
             </h1>
-            <p className="mt-6 max-w-[60ch] text-[20px] md:text-[24px] font-semibold leading-[1.4] text-[#16181D]">
+            <p className="mt-6 max-w-[60ch] text-[20px] md:text-[24px] font-semibold leading-[1.4] text-[#F2F2EE]">
               Type in a website address and get a free score out of 100, with a plain-language pass, fail or
               warning for each public check, and the fix for each one.
             </p>
-            <p className="mt-6 max-w-[60ch] text-[16px] leading-[1.6] text-[#54585F]">
+            <p className="mt-6 max-w-[60ch] text-[16px] leading-[1.6] text-[#A9ACB2]">
               This is a public-surface check only. It reads the same public headers and homepage anyone can see
               in a browser. It does not log in, read code, test logins or plugins, check backups, or look inside
               the server. Only check your own site, or a site you have permission to check.
@@ -45,12 +45,12 @@ export default function SecurityScorePage() {
 
       <Section number="02" title="What this score does not check">
         <div className="p-8 py-16 md:p-14 lg:p-24">
-          <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#54585F]">
+          <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#A9ACB2]">
             A good score here is a good start, not a guarantee. This tool cannot see login strength, plugin or
             theme versions, backups, database settings, code bugs, or anything behind a login. That is what a
             full audit is for.
           </p>
-          <ul className="mt-8 grid gap-3 md:grid-cols-2 text-[18px] leading-[1.6] text-[#54585F] list-disc list-inside marker:text-accent">
+          <ul className="mt-8 grid gap-3 md:grid-cols-2 text-[18px] leading-[1.6] text-[#A9ACB2] list-disc list-inside marker:text-accent-dark">
             <li>Login strength and two-factor authentication</li>
             <li>Plugin, theme and software versions</li>
             <li>Backups and recovery</li>
@@ -65,7 +65,7 @@ export default function SecurityScorePage() {
             </a>
             <Link
               href="/security-audit"
-              className="inline-flex min-h-12 items-center justify-center rounded-lg border border-border bg-white px-6 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg border border-border bg-[#1B1E22] px-6 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent-dark"
             >
               Get a full security audit
             </Link>

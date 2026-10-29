@@ -226,7 +226,7 @@ export function ContactForm({
               className={`min-h-11 rounded-full border px-5 py-2.5 text-[15px] font-semibold transition-colors focus:outline-none focus-visible:outline-none focus-visible:border-accent ${
                 service === option
                   ? "border-accent bg-accent text-white"
-                  : "border-border bg-white text-foreground hover:border-accent hover:text-accent"
+                  : "border-border bg-[#1B1E22] text-foreground hover:border-accent hover:text-accent-dark"
               }`}
             >
               {option}
@@ -248,7 +248,7 @@ export function ContactForm({
               className={`min-h-11 rounded-full border px-5 py-2.5 text-[15px] font-semibold transition-colors focus:outline-none focus-visible:outline-none focus-visible:border-accent ${
                 budgetChoice === option
                   ? "border-accent bg-accent text-white"
-                  : "border-border bg-white text-foreground hover:border-accent hover:text-accent"
+                  : "border-border bg-[#1B1E22] text-foreground hover:border-accent hover:text-accent-dark"
               }`}
             >
               {option}
