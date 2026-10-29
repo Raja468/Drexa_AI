@@ -13,7 +13,7 @@ const jetbrainsMono = localFont({ src: './fonts/jetbrains-mono-var.woff2', varia
 
 export const metadata: Metadata = {
   title: 'Drexa AI | AI Automation, Web & Software Development',
-  description: 'Independent studio in Pakistan building AI automation, websites, custom software and cybersecurity services for growing businesses. Free consultation.',
+  description: 'Remote-first independent studio building AI automation, websites, custom software and cybersecurity services for growing businesses. Free consultation.',
   metadataBase: new URL('https://drexa.tech'),
   alternates: { canonical: 'https://drexa.tech' },
   openGraph: { title: 'Drexa AI | Build smarter. Run safer.', description: 'AI automation, web and software development, and cybersecurity for growing businesses.', url: 'https://drexa.tech', siteName: 'Drexa AI', type: 'website', images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }] },
@@ -41,15 +41,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               url: "https://drexa.tech",
               logo: "https://drexa.tech/logo.png",
               description:
-                "Independent technology studio building AI automation, web and software development, and cybersecurity services.",
+                "Remote-first independent technology studio building AI automation, web and software development, and cybersecurity services.",
               email: "hello@drexa.tech",
               telephone: "+923715082737",
               areaServed: ["Pakistan", "Worldwide"],
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Islamabad",
-                addressCountry: "PK",
-              },
               sameAs: ["https://github.com/Raja468"],
             }),
           }}

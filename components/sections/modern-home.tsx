@@ -183,7 +183,7 @@ export function ModernHome() {
 
       <div className="border-t border-[#2A2D33]">
          <div className="mx-auto max-w-[1440px] border-x border-[#2A2D33] p-4 text-center font-mono text-[13px] uppercase tracking-[0.06em] text-[#A9ACB2]">
-            Independent studio / Islamabad, Pakistan / Working worldwide
+            Independent studio / Remote-first / Working worldwide
          </div>
       </div>
 
