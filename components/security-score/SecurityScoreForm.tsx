@@ -28,7 +28,7 @@ const badge: Record<CheckStatus, string> = {
   pass: 'bg-[#E7F2EE] text-[#0B6B57]',
   fail: 'bg-[#FDECEA] text-[#9B1C1C]',
   warning: 'bg-[#FEF3C7] text-[#92400E]',
-  info: 'bg-[#1B1E22] text-[#A9ACB2]',
+  info: 'bg-[#141416] text-[#A1A1AA]',
 }
 
 const label: Record<CheckStatus, string> = {
@@ -82,17 +82,17 @@ export function SecurityScoreForm() {
           placeholder="example.com"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="min-h-12 flex-1 rounded-lg border border-border bg-[#1B1E22] px-4 text-[16px] text-foreground placeholder:text-[#A9ACB2]"
+          className="min-h-12 flex-1 rounded-lg border border-border bg-[#141416] px-4 text-[16px] text-foreground placeholder:text-[#A1A1AA]"
         />
         <button
           type="submit"
           disabled={loading || !input.trim()}
-          className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-white transition hover:bg-accent-hover disabled:opacity-50"
+          className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-accent-foreground transition hover:bg-accent-hover disabled:opacity-50"
         >
           {loading ? 'Checking…' : 'Run check'} <ArrowRight size={16} />
         </button>
       </form>
-      <p className="mt-4 max-w-[60ch] text-[14px] leading-[1.6] text-[#A9ACB2]">
+      <p className="mt-4 max-w-[60ch] text-[14px] leading-[1.6] text-[#A1A1AA]">
         Public-surface check only, not a full audit. Only enter your own site, or a site you have permission
         to check. No login details are asked for, and nothing is fixed automatically.
       </p>
@@ -106,19 +106,19 @@ export function SecurityScoreForm() {
       {result && (
         <div className="mt-10">
           <div className="flex flex-col gap-6 rounded-[12px] border border-border p-8 md:flex-row md:items-center">
-            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-[#16181D] font-display text-[32px] font-[800] text-white">
+            <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-[#09090B] font-display text-[32px] font-[800] text-white">
               {result.score}
-              <span className="text-[16px] font-semibold text-[#A9ACB2]">/100</span>
+              <span className="text-[16px] font-semibold text-[#A1A1AA]">/100</span>
             </div>
             <div>
               <h2 className="text-[24px] font-bold leading-tight">{result.grade}</h2>
-              <p className="mt-2 max-w-[60ch] text-[16px] leading-[1.6] text-[#A9ACB2]">
+              <p className="mt-2 max-w-[60ch] text-[16px] leading-[1.6] text-[#A1A1AA]">
                 Checked {result.url}
                 {result.finalUrl !== result.url ? `, which finished at ${result.finalUrl}` : ''}. Each check below
                 is worth up to 10 points, so the total is out of 100. Partial credit is explained in the detail
                 for each check.
               </p>
-              <p className="mt-3 max-w-[60ch] text-[16px] leading-[1.6] text-[#A9ACB2]">{result.wordpress.detail}</p>
+              <p className="mt-3 max-w-[60ch] text-[16px] leading-[1.6] text-[#A1A1AA]">{result.wordpress.detail}</p>
             </div>
           </div>
 
@@ -131,8 +131,8 @@ export function SecurityScoreForm() {
                     {label[c.status]} · {c.points}/10
                   </span>
                 </div>
-                <p className="mt-3 text-[16px] leading-[1.6] text-[#A9ACB2]">{c.detail}</p>
-                <p className="mt-2 text-[16px] leading-[1.6] text-[#A9ACB2]">
+                <p className="mt-3 text-[16px] leading-[1.6] text-[#A1A1AA]">{c.detail}</p>
+                <p className="mt-2 text-[16px] leading-[1.6] text-[#A1A1AA]">
                   <span className="font-semibold text-foreground">Fix: </span>
                   {c.fix}
                 </p>
@@ -143,18 +143,18 @@ export function SecurityScoreForm() {
           <div className="mt-10 flex flex-wrap gap-4">
             <a
               href="https://ahmedverse363.gumroad.com/l/wkkavg"
-              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-white transition hover:bg-accent-hover"
+              className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-accent-foreground transition hover:bg-accent-hover"
             >
               Get the full $5 checklist <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-[3px]" />
             </a>
             <Link
               href="/security-audit"
-              className="inline-flex min-h-12 items-center justify-center rounded-lg border border-border bg-[#1B1E22] px-6 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent-dark"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg border border-border bg-[#141416] px-6 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent-dark"
             >
               Get a full security audit
             </Link>
           </div>
-          <p className="mt-6 text-[13px] font-mono text-[#A9ACB2]">
+          <p className="mt-6 text-[13px] font-mono text-[#A1A1AA]">
             Checked at {new Date(result.timestamp).toLocaleString()}. This is a public-surface score only, not a
             full audit.
           </p>

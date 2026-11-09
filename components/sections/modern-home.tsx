@@ -46,7 +46,7 @@ const faqs = [
 ]
 
 const Button = ({ href, children, secondary = false }: { href: string; children: React.ReactNode; secondary?: boolean }) => (
-  <Link href={href} className={`group inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-6 text-sm font-semibold transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B6B57] ${secondary ? 'border border-white/20 text-[#F2F2EE] hover:-translate-y-0.5 hover:bg-white/5' : 'bg-accent text-white hover:-translate-y-0.5 hover:bg-accent-hover active:translate-y-0'}`}>
+  <Link href={href} className={`group inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-6 text-sm font-semibold transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#21F48B] ${secondary ? 'border border-white/20 text-[#F2F2EE] hover:-translate-y-0.5 hover:bg-white/5' : 'bg-accent text-accent-foreground hover:-translate-y-0.5 hover:bg-accent-hover active:translate-y-0'}`}>
     {children}
     <ArrowRight size={16} className="transition group-hover:translate-x-[3px]" />
   </Link>
@@ -55,11 +55,11 @@ const Button = ({ href, children, secondary = false }: { href: string; children:
 const Section = ({ id, number, title, children, dark = false, noBorderTop = false }: any) => {
   const borderColor = dark ? 'border-[#2A2D33]' : 'border-[#2A2D33]'
   return (
-    <section id={id} className={`relative ${noBorderTop ? '' : `border-t ${borderColor}`} ${dark ? 'bg-[#16181D] text-[#F2F2EE]' : 'bg-[#16181D] text-[#F2F2EE]'}`}>
+    <section id={id} className={`relative ${noBorderTop ? '' : `border-t ${borderColor}`} ${dark ? 'bg-[#09090B] text-[#F2F2EE]' : 'bg-[#09090B] text-[#F2F2EE]'}`}>
       <div className={`mx-auto flex max-w-[1440px] flex-col border-x ${borderColor} lg:flex-row`}>
         {title && (
           <div className={`lg:w-80 shrink-0 border-b lg:border-b-0 lg:border-r ${borderColor} p-6 md:p-8 lg:p-10`}>
-            <div className={`sticky top-28 font-mono text-[13px] uppercase tracking-[0.06em] ${dark ? 'text-[#A9ACB2]' : 'text-[#A9ACB2]'}`}>
+            <div className={`sticky top-28 font-mono text-[13px] uppercase tracking-[0.06em] ${dark ? 'text-[#A1A1AA]' : 'text-[#A1A1AA]'}`}>
               {number} / {title}
             </div>
           </div>
@@ -74,7 +74,7 @@ const Section = ({ id, number, title, children, dark = false, noBorderTop = fals
 
 export function ModernHome() {
   return (
-    <main className="bg-[#16181D]">
+    <main className="bg-[#09090B]">
       {/* HERO */}
       <Section noBorderTop dark>
         <div className="grid gap-12 overflow-x-clip px-6 py-14 md:px-10 lg:grid-cols-[1fr_1.1fr] lg:px-16 lg:py-28">
@@ -103,7 +103,7 @@ export function ModernHome() {
               </h1>
             </FadeUp>
             <FadeUp animateOnMount delay={0.2}>
-              <p className="mt-8 max-w-[60ch] text-[18px] leading-[1.6] text-[#A9ACB2]">
+              <p className="mt-8 max-w-[60ch] text-[18px] leading-[1.6] text-[#A1A1AA]">
                 Drexa AI builds AI automation, websites, custom software, and security services for small and growing businesses. Start free: check your website in seconds, no login. You work directly with the people building it.
               </p>
             </FadeUp>
@@ -119,7 +119,7 @@ export function ModernHome() {
             </FadeUp>
             <FadeUp animateOnMount delay={0.44}>
               <div className="mt-8 flex flex-col gap-4">
-                <p className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#A9ACB2]">
+                <p className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#A1A1AA]">
                   Free 30-minute call. No obligation.
                 </p>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
@@ -154,7 +154,7 @@ export function ModernHome() {
             </div>
 
             <div className="absolute -bottom-8 -left-8 z-20 w-[260px] animate-float overflow-hidden rounded-[16px] border border-border bg-white shadow-[0_1px_2px_rgba(22,24,29,0.06)]">
-               <div className="bg-[#0B6B57] px-4 py-3 text-white">
+               <div className="bg-[#21F48B] px-4 py-3 text-[#09090B]">
                  <p className="text-[13px] font-semibold">Support Team</p>
                  <p className="text-[11px] opacity-80">Typically replies instantly</p>
                </div>
@@ -174,7 +174,7 @@ export function ModernHome() {
                </div>
             </div>
             
-            <p className="mt-12 text-right font-mono text-[13px] uppercase tracking-[0.06em] text-[#A9ACB2]">
+            <p className="mt-12 text-right font-mono text-[13px] uppercase tracking-[0.06em] text-[#A1A1AA]">
               Demo conversation. ChatConnect AI.
             </p>
           </Parallax>
@@ -182,13 +182,13 @@ export function ModernHome() {
       </Section>
 
       <div className="border-t border-[#2A2D33]">
-         <div className="mx-auto max-w-[1440px] border-x border-[#2A2D33] p-4 text-center font-mono text-[13px] uppercase tracking-[0.06em] text-[#A9ACB2]">
+         <div className="mx-auto max-w-[1440px] border-x border-[#2A2D33] p-4 text-center font-mono text-[13px] uppercase tracking-[0.06em] text-[#A1A1AA]">
             Independent studio / Remote-first / Working worldwide
          </div>
       </div>
 
       {/* TRUST STRIP */}
-      <section className="border-t border-[#2A2D33] bg-[#1B1E22]">
+      <section className="border-t border-[#2A2D33] bg-[#141416]">
         <StaggerContainer className="mx-auto grid max-w-[1440px] border-x border-[#2A2D33] md:grid-cols-4 md:divide-x md:divide-[#2A2D33]">
           {[
             ['DIRECT COMMUNICATION', 'No account managers'],
@@ -196,20 +196,20 @@ export function ModernHome() {
             ['FIXED SCOPE', 'Agreed before work starts'],
             ['SECURITY BUILT IN', 'Not added at the end']
           ].map(([label, text]) => (
-            <StaggerItem key={label} className="group p-6 md:p-8 transition-colors duration-300 hover:bg-[#1B1E22]">
+            <StaggerItem key={label} className="group p-6 md:p-8 transition-colors duration-300 hover:bg-[#141416]">
               <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-[#F2F2EE] transition-colors duration-300 group-hover:text-accent-dark-dark">{label}</p>
-              <p className="mt-2 text-[15px] text-[#A9ACB2]">{text}</p>
+              <p className="mt-2 text-[15px] text-[#A1A1AA]">{text}</p>
             </StaggerItem>
           ))}
         </StaggerContainer>
       </section>
 
       {/* 01 SERVICES - full-width, centred, wide cards */}
-      <section className="relative border-t border-[#2A2D33] bg-[#16181D] text-[#F2F2EE]">
+      <section className="relative border-t border-[#2A2D33] bg-[#09090B] text-[#F2F2EE]">
         <div className="mx-auto max-w-[1280px] border-x border-[#2A2D33]">
           <div className="border-b border-[#2A2D33] px-6 py-12 text-center md:px-10 md:py-16 lg:px-12 lg:py-20">
             <FadeUp>
-              <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-[#A9ACB2]">01 / Services</p>
+              <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-[#A1A1AA]">01 / Services</p>
               <h2 className="mt-4 font-display text-[28px] font-bold tracking-[-0.02em] md:text-[44px]">
                 Four services. <em className="font-serif font-normal italic text-accent-dark">One team.</em>
               </h2>
@@ -236,7 +236,7 @@ export function ModernHome() {
                <StaggerItem key={num} className="group pt-8 pb-8 md:px-8 md:pt-12 md:pb-0 first:md:pl-0 last:md:pr-0">
                  <p className="font-display text-[64px] font-[800] leading-none text-[#2A2D33] transition-colors duration-300 group-hover:text-accent-dark-dark">{num}</p>
                  <h3 className="mt-6 text-[24px] font-bold tracking-tight text-[#F2F2EE] transition-colors duration-300 group-hover:text-accent-dark-dark">{title}</h3>
-                 <p className="mt-4 text-[16px] leading-[1.6] text-[#A9ACB2]">{copy}</p>
+                 <p className="mt-4 text-[16px] leading-[1.6] text-[#A1A1AA]">{copy}</p>
                </StaggerItem>
              ))}
            </StaggerContainer>
@@ -266,10 +266,10 @@ export function ModernHome() {
                <div className="lg:w-[360px] shrink-0">
                  <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-accent-dark">Internal build</p>
                  <h3 className="mt-4 font-display text-[32px] font-bold tracking-tight transition-colors duration-300 group-hover:text-accent-dark-dark">{project.title}</h3>
-                 <p className="mt-4 text-[18px] leading-[1.6] text-[#A9ACB2]">{project.copy}</p>
+                 <p className="mt-4 text-[18px] leading-[1.6] text-[#A1A1AA]">{project.copy}</p>
                  <div className="mt-6 flex flex-wrap gap-2">
                    {project.tags.map(tag => (
-                     <span key={tag} className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#A9ACB2]">[{tag}]</span>
+                     <span key={tag} className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#A1A1AA]">[{tag}]</span>
                    ))}
                  </div>
                  <div className="mt-8 flex items-center gap-6">
@@ -303,9 +303,9 @@ export function ModernHome() {
                ['Small team, direct access', 'You talk to the person doing the work. Questions get answered fast.'],
                ['Built to last', 'Clean code, secure setup, and documentation, so you are never locked in.']
              ].map(([title, copy], idx) => (
-               <FadeUp key={title} delay={idx * 0.08} className="group p-8 md:p-14 lg:p-16 transition-colors duration-300 hover:bg-[#1B1E22]">
+               <FadeUp key={title} delay={idx * 0.08} className="group p-8 md:p-14 lg:p-16 transition-colors duration-300 hover:bg-[#141416]">
                  <h3 className="text-[20px] font-bold text-[#F2F2EE]">{title}</h3>
-                 <p className="mt-3 text-[18px] leading-[1.6] text-[#A9ACB2]">{copy}</p>
+                 <p className="mt-3 text-[18px] leading-[1.6] text-[#A1A1AA]">{copy}</p>
                </FadeUp>
              ))}
            </div>
@@ -321,7 +321,7 @@ export function ModernHome() {
            </h2>
            </FadeUp>
            <FadeUp delay={0.12}>
-           <p className="mt-6 text-[20px] leading-[1.6] text-[#A9ACB2]">
+           <p className="mt-6 text-[20px] leading-[1.6] text-[#A1A1AA]">
              I am the founder of Drexa AI. I am a software developer and Computer Science student with hands-on experience in web development, AI automation, and cybersecurity. I started Drexa to help businesses use technology in practical ways, without confusing jargon or inflated promises.
            </p>
            </FadeUp>
@@ -334,9 +334,9 @@ export function ModernHome() {
       </Section>
 
       {/* TOOLS STRIP */}
-      <section className="border-t border-[#2A2D33] bg-[#1B1E22]">
+      <section className="border-t border-[#2A2D33] bg-[#141416]">
         <div className="mx-auto flex flex-col md:flex-row md:items-center justify-between max-w-[1440px] border-x border-[#2A2D33] p-6 md:px-10">
-          <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-[#A9ACB2] mb-4 md:mb-0 shrink-0 mr-8">Tools we build with</p>
+          <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-[#A1A1AA] mb-4 md:mb-0 shrink-0 mr-8">Tools we build with</p>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-4 text-[15px] font-semibold text-[#8A8D93] uppercase tracking-wider">
             <span className="transition-colors hover:text-white">Python</span>
             <span className="transition-colors hover:text-white">Next.js</span>
@@ -355,12 +355,12 @@ export function ModernHome() {
            {faqs.map(([q, a], i) => (
              <FadeUp key={q} delay={i * 0.04}>
              <details key={q} className={`group ${i > 0 ? 'border-t border-[#2A2D33]' : ''}`}>
-               <summary className="flex cursor-pointer list-none items-center justify-between gap-5 p-8 md:px-14 lg:px-20 text-[20px] font-semibold transition-colors hover:bg-[#1B1E22] [&::-webkit-details-marker]:hidden">
+               <summary className="flex cursor-pointer list-none items-center justify-between gap-5 p-8 md:px-14 lg:px-20 text-[20px] font-semibold transition-colors hover:bg-[#141416] [&::-webkit-details-marker]:hidden">
                  {q}
                  <Plus size={24} className="shrink-0 text-accent-dark transition-transform duration-300 group-open:rotate-45" />
                </summary>
                <div className="px-8 pb-10 md:px-14 lg:px-20 pt-2">
-                 <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#A9ACB2]">{a}</p>
+                 <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#A1A1AA]">{a}</p>
                </div>
              </details>
              </FadeUp>
@@ -368,22 +368,22 @@ export function ModernHome() {
          </div>
       </Section>
       {/* CTA */}
-      <section className="bg-[#16181D] text-[#F2F2EE] border-t border-[#2A2D33]">
+      <section className="bg-[#09090B] text-[#F2F2EE] border-t border-[#2A2D33]">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-8 border-x border-[#2A2D33] p-8 py-20 md:p-14 lg:flex-row lg:items-center lg:justify-between lg:p-20">
           <FadeUp>
           <div>
             <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">Have a project in mind?</h2>
-            <p className="mt-4 max-w-2xl text-[18px] leading-[1.6] text-[#A9ACB2]">
+            <p className="mt-4 max-w-2xl text-[18px] leading-[1.6] text-[#A1A1AA]">
               Book a free 30-minute consultation. We will listen, ask questions, and tell you honestly what we would build and what it would cost. No obligation.
             </p>
           </div>
           </FadeUp>
           <FadeUp delay={0.15} className="shrink-0">
           <div className="flex shrink-0 flex-wrap gap-4">
-            <Link href="/contact" className="group inline-flex min-h-12 items-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-white transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B6B57] hover:-translate-y-0.5 hover:bg-accent-hover active:translate-y-0">
+            <Link href="/contact" className="group inline-flex min-h-12 items-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-accent-foreground transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#21F48B] hover:-translate-y-0.5 hover:bg-accent-hover active:translate-y-0">
               Book a free consultation <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-[3px]" />
             </Link>
-            <a href="https://wa.me/923715082737" className="group inline-flex min-h-12 items-center gap-2 rounded-lg border border-white/20 px-6 text-sm font-semibold text-white transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0B6B57] hover:-translate-y-0.5 hover:border-white hover:bg-[#1B1E22]/5 active:translate-y-0">
+            <a href="https://wa.me/923715082737" className="group inline-flex min-h-12 items-center gap-2 rounded-lg border border-white/20 px-6 text-sm font-semibold text-white transition-all duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#21F48B] hover:-translate-y-0.5 hover:border-white hover:bg-[#141416]/5 active:translate-y-0">
               Message on WhatsApp <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-[3px]" />
             </a>
           </div>

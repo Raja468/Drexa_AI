@@ -33,11 +33,11 @@ const servicesList = [
 
 export default function ServicesOverviewPage() {
   return (
-    <main className="bg-[#1B1E22] pt-[88px]">
-      <section className="relative border-b border-border bg-[#1B1E22]">
+    <main className="bg-[#141416] pt-[88px]">
+      <section className="relative border-b border-border bg-[#141416]">
         <div className="mx-auto flex max-w-[1440px] flex-col lg:flex-row border-x border-border">
           <div className="lg:w-80 shrink-0 border-b lg:border-b-0 lg:border-r border-border p-6 md:p-8 lg:p-10">
-            <div className="sticky top-28 font-mono text-[13px] uppercase tracking-[0.06em] text-[#A9ACB2]">
+            <div className="sticky top-28 font-mono text-[13px] uppercase tracking-[0.06em] text-[#A1A1AA]">
               Services
             </div>
           </div>
@@ -59,16 +59,16 @@ export default function ServicesOverviewPage() {
               <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">
                 {service.title}
               </h2>
-              <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#A9ACB2]">
+              <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#A1A1AA]">
                 {service.copy}
               </p>
-              <ul className="space-y-3 text-[18px] leading-[1.6] text-[#A9ACB2] list-disc list-inside marker:text-accent-dark">
+              <ul className="space-y-3 text-[18px] leading-[1.6] text-[#A1A1AA] list-disc list-inside marker:text-accent-dark">
                 {service.items.map(item => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>
               <div className="mt-4">
-                <Link href={service.href} className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-white transition hover:bg-accent-hover">
+                <Link href={service.href} className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-accent-foreground transition hover:bg-accent-hover">
                   Learn more <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-[3px]" />
                 </Link>
               </div>
@@ -87,23 +87,23 @@ export default function ServicesOverviewPage() {
             ].map(([title, desc]) => (
               <div key={title} className="flex flex-col gap-3 rounded-[12px] border border-border p-8 transition-colors hover:border-accent">
                 <h3 className="text-[20px] font-bold leading-tight">{title}</h3>
-                <p className="text-[16px] leading-[1.6] text-[#A9ACB2]">{desc}</p>
+                <p className="text-[16px] leading-[1.6] text-[#A1A1AA]">{desc}</p>
               </div>
             ))}
           </div>
         </div>
       </Section>
 
-      <section className="bg-[#16181D] text-[#F2F2EE] border-t border-[#2A2D33]">
+      <section className="bg-[#09090B] text-[#F2F2EE] border-t border-[#2A2D33]">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-8 border-x border-[#2A2D33] p-8 py-20 md:p-14 lg:flex-row lg:items-center lg:justify-between lg:p-20">
           <div>
             <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">Not sure what you need?</h2>
-            <p className="mt-4 max-w-2xl text-[18px] leading-[1.6] text-[#A9ACB2]">
+            <p className="mt-4 max-w-2xl text-[18px] leading-[1.6] text-[#A1A1AA]">
               Tell us the problem, not the solution. We will recommend the simplest approach that works.
             </p>
           </div>
           <div className="flex shrink-0">
-            <Link href="/contact" className="group inline-flex min-h-12 items-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-white transition hover:bg-accent-hover">
+            <Link href="/contact" className="group inline-flex min-h-12 items-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-accent-foreground transition hover:bg-accent-hover">
               Book a free consultation <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-[3px]" />
             </Link>
           </div>
