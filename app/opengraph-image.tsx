@@ -43,7 +43,7 @@ export default async function Image() {
             style={{
               fontSize: '40px',
               fontWeight: 600,
-              color: '#0B6B57', // Accent color
+              color: '#21F48B', // Accent color
               letterSpacing: '-0.02em',
             }}
           >

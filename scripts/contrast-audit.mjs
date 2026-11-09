@@ -2,8 +2,8 @@
  * One-off WCAG 2.1 contrast audit for the site's dark sections.
  *
  * Every informational text/background pair drawn on the three dark surfaces
- * (home "Approach" band, the CTA band, and the footer — all bg #16181D, with
- * hover states #1B1E22) is checked here. Decorative-only surfaces (the giant
+ * (home "Approach" band, the CTA band, and the footer — all bg #09090B, with
+ * hover states #141416) is checked here. Decorative-only surfaces (the giant
  * footer "Drexa" wordmark and the #2A2D33 hairlines) are excluded: WCAG
  * contrast applies to text that conveys information, not brand graphics.
  *
@@ -27,30 +27,29 @@ function ratio(fg, bg) {
   return (hi + 0.05) / (lo + 0.05);
 }
 
-const DARK = "#16181D";   // section bg
-const DARK_HOVER = "#1B1E22"; // Approach row hover
-const ACCENT = "#0B6B57";  // CTA button fill
+const DARK = "#09090B";   // section bg
+const DARK_HOVER = "#141416"; // Approach row hover
+const ACCENT = "#21F48B";  // CTA button fill
 
 const pairs = [
   ["Main heading / body on dark", "#F2F2EE", DARK, 4.5],
-  ["Secondary body text on dark", "#A9ACB2", DARK, 4.5],
-  ["Mono section label on dark (04 / Approach)", "#A9ACB2", DARK, 4.5],
-  ["Secondary body text on dark hover", "#A9ACB2", DARK_HOVER, 4.5],
+  ["Secondary body text on dark", "#A1A1AA", DARK, 4.5],
+  ["Mono section label on dark (04 / Approach)", "#A1A1AA", DARK, 4.5],
+  ["Secondary body text on dark hover", "#A1A1AA", DARK_HOVER, 4.5],
   ["Main heading on dark hover", "#F2F2EE", DARK_HOVER, 4.5],
-  ["CTA button: white on accent green", "#FFFFFF", ACCENT, 4.5],
+  ["CTA button: dark text on mint accent", "#09090B", ACCENT, 4.5],
   ["CTA WhatsApp button: white text on dark", "#FFFFFF", DARK, 4.5],
   ["Footer heading / link-hover on dark", "#F2F2EE", DARK, 4.5],
 ];
 
-// --- Candidate "accent on dark" tones: must read as the same brand-green
-// family as #0B6B57 but clear WCAG AA on the dark surface #16181D. Pick the
-// most subdued value that still passes 4.5:1 (normal text) so emphasized
-// words, hovers and numerals stay legible without going neon. -------------
-const ACCENT_DARK_CANDIDATES = ["#3EA88A", "#46B494", "#4EC3A2", "#57C9A9", "#5FCFAE"];
+// --- Candidate "accent on dark" tones: Electric Mint #21F48B on the dark
+// surface #09090B. Mint is ~13.6:1 on near-black, so it clears WCAG AA as
+// text as well as fill. The list below is kept for reference. -------------
+const ACCENT_DARK_CANDIDATES = ["#21F48B", "#18D17F", "#1BD67F"];
 for (const c of ACCENT_DARK_CANDIDATES) {
   console.log(`candidate ${c}: on dark ${ratio(c, DARK).toFixed(2)}:1  on hover ${ratio(c, DARK_HOVER).toFixed(2)}:1`);
 }
-console.log(`reference base accent #0B6B57 on dark: ${ratio(ACCENT, DARK).toFixed(2)}:1`);
+console.log(`reference base accent #21F48B on dark: ${ratio(ACCENT, DARK).toFixed(2)}:1`);
 
 // Dim numeral / secondary greys used inside the dark Services rows.
 console.log(`numeral grey #8A8D93 on dark: ${ratio("#8A8D93", DARK).toFixed(2)}:1  on hover: ${ratio("#8A8D93", DARK_HOVER).toFixed(2)}:1`);

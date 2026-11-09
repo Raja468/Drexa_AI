@@ -1,30 +1,29 @@
 @import "tailwindcss";
 
 @theme static {
-  /* Site-wide dark theme: homepage was darkened first (PR #19), this change
-     brings the remaining pages in line with it — same #16181D / #1B1E22
-     grounds, #2A2D33 borders and #A9ACB2 muted text. */
-  --color-background: #16181d;
+  /* Electric Mint palette (2026-11-09): Deep Black #09090B grounds, card
+     #141416, Cool Gray #A1A1AA muted text, Electric Mint #21F48B accent.
+     Mint on near-black is ~13.6:1, so it works as button fill (with dark
+     text) and as text on dark. */
+  --color-background: #09090b;
   --color-foreground: #f2f2ee;
-  --color-muted: #1b1e22;
-  --color-muted-foreground: #a9acb2;
-  --color-body: #a9acb2;
+  --color-muted: #141416;
+  --color-muted-foreground: #a1a1aa;
+  --color-body: #a1a1aa;
   --color-border: #2a2d33;
-  --color-accent: #0b6b57;
-  --color-accent-foreground: #ffffff;
-  --color-accent-hover: #08574a;
-  /* Accent tuned for DARK surfaces. The base #0B6B57 is only 2.75:1 on the
-     dark #16181D ground, so as TEXT it fails WCAG AA. #3EA88A is the same
-     brand-green family, subdued, and clears AA on dark (6.07:1) and on the
-     dark row-hover #1B1E22 (5.71:1). Verified in scripts/contrast-audit.mjs. */
-  --color-accent-dark: #3ea88a;
-  --color-accent-tint: #e7f2ee;
-  /* Warm highlight, used ONLY for proof badges (own scores), never for primary buttons or links, so green stays the brand colour. Pale tint is for backgrounds, gold is for borders only, never for small text on white. */
-  --color-highlight: #c7a252;
-  --color-highlight-tint: #fdf6e3;
-  --color-dark: #16181d;
+  --color-accent: #21f48b;
+  --color-accent-foreground: #09090b;
+  --color-accent-hover: #18d17f;
+  /* Accent as TEXT on dark: mint #21F48B clears WCAG AA on #09090B (~13.6:1).
+     Verified in scripts/contrast-audit.mjs. */
+  --color-accent-dark: #21f48b;
+  --color-accent-tint: #0e211a;
+  /* Mint highlight, used ONLY for proof badges (own scores), never for primary buttons or links. Dark mint tint is the pill background on the dark site, so the near-white pill text stays readable. */
+  --color-highlight: #21f48b;
+  --color-highlight-tint: #0e211a;
+  --color-dark: #09090b;
   --color-on-dark: #f2f2ee;
-  --color-on-dark-muted: #a9acb2;
+  --color-on-dark-muted: #a1a1aa;
   --font-display: var(--font-manrope, 'Manrope', sans-serif);
   --font-body: var(--font-inter, 'Inter', sans-serif);
   --font-serif: var(--font-instrument, serif);
@@ -34,12 +33,12 @@
 @layer base {
   :root { color-scheme: dark; }
   *, *::before, *::after { border-color: var(--color-border); }
-  html { scroll-behavior: smooth; scroll-padding-top: 5rem; background: #16181d; }
-  body { margin: 0; background: #16181d; color: #f2f2ee; font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; background: #09090b; }
+  body { margin: 0; background: #09090b; color: #f2f2ee; font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
   a { color: inherit; text-decoration: none; }
   h1, h2, h3, h4, p { margin: 0; }
-  :focus-visible { outline: 2px solid #3ea88a; outline-offset: 2px; }
-  ::selection { background: #3ea88a; color: #16181d; }
+  :focus-visible { outline: 2px solid #21f48b; outline-offset: 2px; }
+  ::selection { background: #21f48b; color: #09090b; }
 }
 
 @keyframes fade-up { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
@@ -86,7 +85,7 @@
   padding: 9px 12px;
   border-radius: 12px 12px 12px 2px;
   background: #fff;
-  box-shadow: 0 1px 2px rgba(22, 24, 29, .06);
+  box-shadow: 0 1px 2px rgba(9, 9, 11, .06);
   opacity: 0;
   animation: typing-bubble 600ms linear forwards;
   animation-delay: calc(var(--i) * 1200ms - 600ms);

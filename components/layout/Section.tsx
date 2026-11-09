@@ -15,10 +15,10 @@ export function Section({ id, number, title, children, dark = false, noBorderTop
   // both branches are dark now. `dark` is kept so existing callers still compile.
   void dark
   const borderColor = 'border-[#2A2D33]'
-  const textColor = headerTextMuted ? 'text-[#A9ACB2]' : 'text-accent-dark'
+  const textColor = headerTextMuted ? 'text-[#A1A1AA]' : 'text-accent-dark'
 
   return (
-    <section id={id} className={`relative ${noBorderTop ? '' : `border-t ${borderColor}`} bg-[#16181D] text-[#F2F2EE]`}>
+    <section id={id} className={`relative ${noBorderTop ? '' : `border-t ${borderColor}`} bg-[#09090B] text-[#F2F2EE]`}>
       <div className={`mx-auto flex max-w-[1440px] flex-col border-x ${borderColor} lg:flex-row`}>
         {title && (
           <div className={`lg:w-80 shrink-0 border-b lg:border-b-0 lg:border-r ${borderColor} p-6 md:p-8 lg:p-10`}>

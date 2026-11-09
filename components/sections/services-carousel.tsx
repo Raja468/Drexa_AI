@@ -73,7 +73,7 @@ export function ServicesCarousel({ services }: { services: ServiceCarouselItem[]
       `}</style>
 
       <div className="grid gap-6 p-6 md:p-10 lg:grid-cols-[1.6fr_0.9fr] lg:p-12">
-        <div key={active.num} className="animate-fade-up relative overflow-hidden rounded-[16px] border border-[#2A2D33] bg-[#1B1E22] p-8 md:p-12">
+        <div key={active.num} className="animate-fade-up relative overflow-hidden rounded-[16px] border border-[#2A2D33] bg-[#141416] p-8 md:p-12">
           <span aria-hidden="true" className="pointer-events-none absolute -bottom-8 right-4 select-none font-display text-[140px] font-[800] leading-none text-[#23262B] md:text-[180px]">
             {active.num}
           </span>
@@ -82,29 +82,29 @@ export function ServicesCarousel({ services }: { services: ServiceCarouselItem[]
               <span className="font-mono text-[12px] uppercase tracking-[0.06em] text-accent-dark">
                 Service {active.num} / {services.length.toString().padStart(2, "0")}
               </span>
-              <span className="services-glow grid h-12 w-12 shrink-0 place-items-center rounded-full border border-[#2A2D33] bg-[#16181D] text-accent-dark">
+              <span className="services-glow grid h-12 w-12 shrink-0 place-items-center rounded-full border border-[#2A2D33] bg-[#09090B] text-accent-dark">
                 <ActiveIcon size={24} strokeWidth={1.5} />
               </span>
             </div>
             <h3 className="mt-8 font-display text-[32px] font-bold leading-[1.05] tracking-tight text-[#F2F2EE] md:text-[52px]">
               {active.title}
             </h3>
-            <p className="mt-4 max-w-[56ch] whitespace-pre-line text-[18px] leading-[1.6] text-[#A9ACB2]">{active.copy}</p>
+            <p className="mt-4 max-w-[56ch] whitespace-pre-line text-[18px] leading-[1.6] text-[#A1A1AA]">{active.copy}</p>
             <p className="mt-4 max-w-[56ch] text-[16px] leading-[1.6] text-[#F2F2EE]">{EXAMPLES[index % EXAMPLES.length]}</p>
             <div className="mt-6 flex flex-wrap gap-3">
               {active.tags.map((tag) => (
                 <span key={tag} className="font-mono text-[12px] uppercase tracking-[0.06em] text-accent-dark">[{tag}]</span>
               ))}
             </div>
-            <Link href={active.href} className="group mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-white transition hover:bg-accent-hover">
+            <Link href={active.href} className="group mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-accent-foreground transition hover:bg-accent-hover">
               Explore {active.title} <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-[3px]" />
             </Link>
           </div>
         </div>
 
-        <button type="button" onClick={() => goTo(index + 1)} aria-label={`Next service: ${next.title}`} className="group relative overflow-hidden rounded-[16px] border border-[#2A2D33] bg-[#16181D] p-8 text-left transition hover:border-accent-dark md:p-10">
+        <button type="button" onClick={() => goTo(index + 1)} aria-label={`Next service: ${next.title}`} className="group relative overflow-hidden rounded-[16px] border border-[#2A2D33] bg-[#09090B] p-8 text-left transition hover:border-accent-dark md:p-10">
           <span className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#8A8D93]">Up next</span>
-          <span className="mt-6 grid h-12 w-12 place-items-center rounded-full bg-[#1B1E22] text-accent-dark">
+          <span className="mt-6 grid h-12 w-12 place-items-center rounded-full bg-[#141416] text-accent-dark">
             <NextIcon size={24} strokeWidth={1.5} />
           </span>
           <span className="mt-6 block font-display text-[24px] font-bold leading-tight text-[#F2F2EE]">{next.title}</span>
@@ -116,7 +116,7 @@ export function ServicesCarousel({ services }: { services: ServiceCarouselItem[]
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex flex-wrap gap-2">
             {services.map((service, i) => (
-              <button key={service.num} type="button" onClick={() => goTo(i)} aria-label={`Go to ${service.title}`} aria-current={i === index ? "true" : undefined} className={`rounded-full border px-4 py-2 font-mono text-[12px] uppercase tracking-[0.06em] transition ${i === index ? "border-accent-dark bg-accent-dark text-[#16181D]" : "border-[#2A2D33] text-[#A9ACB2] hover:border-accent-dark hover:text-[#F2F2EE]"}`}>
+              <button key={service.num} type="button" onClick={() => goTo(i)} aria-label={`Go to ${service.title}`} aria-current={i === index ? "true" : undefined} className={`rounded-full border px-4 py-2 font-mono text-[12px] uppercase tracking-[0.06em] transition ${i === index ? "border-accent-dark bg-accent-dark text-[#09090B]" : "border-[#2A2D33] text-[#A1A1AA] hover:border-accent-dark hover:text-[#F2F2EE]"}`}>
                 {service.num} {service.title.split(" &")[0]}
               </button>
             ))}

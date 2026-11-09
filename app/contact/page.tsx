@@ -9,11 +9,11 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="bg-[#1B1E22] pt-[88px]">
-      <section className="relative border-b border-border bg-[#1B1E22]">
+    <main className="bg-[#141416] pt-[88px]">
+      <section className="relative border-b border-border bg-[#141416]">
         <div className="mx-auto flex max-w-[1440px] flex-col lg:flex-row border-x border-border">
           <div className="lg:w-80 shrink-0 border-b lg:border-b-0 lg:border-r border-border p-6 md:p-8 lg:p-10">
-            <div className="sticky top-28 font-mono text-[13px] uppercase tracking-[0.06em] text-[#A9ACB2]">
+            <div className="sticky top-28 font-mono text-[13px] uppercase tracking-[0.06em] text-[#A1A1AA]">
               Contact
             </div>
           </div>
@@ -28,12 +28,12 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="relative bg-[#1B1E22] border-b border-border">
+      <section className="relative bg-[#141416] border-b border-border">
         <div className="mx-auto flex max-w-[1440px] flex-col lg:flex-row border-x border-border">
           <div className="flex-1 border-b lg:border-b-0 lg:border-r border-border p-8 py-16 md:p-14 lg:p-24">
             <ContactForm submitLabel="Send message" />
           </div>
-          <div className="lg:w-[500px] shrink-0 p-8 py-16 md:p-14 lg:p-24 bg-[#1B1E22]">
+          <div className="lg:w-[500px] shrink-0 p-8 py-16 md:p-14 lg:p-24 bg-[#141416]">
             <div className="space-y-10">
               <div>
                 <h2 className="font-mono text-[13px] uppercase tracking-[0.06em] text-accent-dark">Direct lines</h2>
@@ -42,14 +42,14 @@ export default function ContactPage() {
                     <Mail className="mt-1 h-5 w-5 shrink-0 text-accent-dark" />
                     <div>
                       <p className="font-semibold text-foreground">Email</p>
-                      <a href="mailto:hello@drexa.tech" className="mt-1 block text-[#A9ACB2] hover:text-accent-dark transition-colors">hello@drexa.tech</a>
+                      <a href="mailto:hello@drexa.tech" className="mt-1 block text-[#A1A1AA] hover:text-accent-dark transition-colors">hello@drexa.tech</a>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <MessageSquare className="mt-1 h-5 w-5 shrink-0 text-accent-dark" />
                     <div>
                       <p className="font-semibold text-foreground">WhatsApp</p>
-                      <a href="https://wa.me/923715082737" target="_blank" rel="noreferrer" className="mt-2 inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-border bg-[#1B1E22] px-4 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent-dark">
+                      <a href="https://wa.me/923715082737" target="_blank" rel="noreferrer" className="mt-2 inline-flex min-h-10 items-center justify-center gap-2 rounded-lg border border-border bg-[#141416] px-4 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent-dark">
                         Message on WhatsApp
                       </a>
                     </div>
@@ -58,14 +58,14 @@ export default function ContactPage() {
                     <MapPin className="mt-1 h-5 w-5 shrink-0 text-accent-dark" />
                     <div>
                       <p className="font-semibold text-foreground">Office</p>
-                      <p className="mt-1 text-[#A9ACB2]">Remote — no physical office yet.<br/>Working remotely worldwide.</p>
+                      <p className="mt-1 text-[#A1A1AA]">Remote — no physical office yet.<br/>Working remotely worldwide.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <Clock className="mt-1 h-5 w-5 shrink-0 text-accent-dark" />
                     <div>
                       <p className="font-semibold text-foreground">Hours</p>
-                      <p className="mt-1 text-[#A9ACB2]">Monday to Saturday<br/>9:00 AM - 6:00 PM (PKT)</p>
+                      <p className="mt-1 text-[#A1A1AA]">Monday to Saturday<br/>9:00 AM - 6:00 PM (PKT)</p>
                     </div>
                   </div>
                 </div>
@@ -73,7 +73,7 @@ export default function ContactPage() {
 
               <div className="border-t border-border pt-10">
                 <h2 className="font-mono text-[13px] uppercase tracking-[0.06em] text-accent-dark">What happens next</h2>
-                <ol className="mt-6 space-y-4 text-[16px] leading-[1.6] text-[#A9ACB2] list-decimal list-inside marker:font-semibold marker:text-foreground">
+                <ol className="mt-6 space-y-4 text-[16px] leading-[1.6] text-[#A1A1AA] list-decimal list-inside marker:font-semibold marker:text-foreground">
                   <li>We read your message.</li>
                   <li>We reply within one business day.</li>
                   <li>We schedule a free call.</li>
