@@ -6,6 +6,15 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: "/security-audit",
+        destination: "/services/cybersecurity",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

@@ -81,7 +81,7 @@ export default function AboutPage() {
       <Section number="04" title="Where we work">
         <div className="p-8 py-16 md:p-14 lg:p-24 border-b border-border">
           <p className="max-w-[60ch] text-[20px] leading-[1.6] text-[#F2F2EE]">
-            A remote-first studio with no physical office yet. We work remotely with clients worldwide.
+            Drexa AI is a small remote-first studio in Chakwal, Pakistan. We take projects from businesses anywhere.
           </p>
         </div>
       </Section>

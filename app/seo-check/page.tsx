@@ -65,7 +65,7 @@ export default function SeoCheckPage() {
               Get the full $5 checklist <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-[3px]" />
             </a>
             <Link
-              href="/security-audit"
+              href="/services/cybersecurity"
               className="inline-flex min-h-12 items-center justify-center rounded-lg border border-border bg-[#141416] px-6 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent-dark"
             >
               Get a full security audit

@@ -10,7 +10,7 @@ const services = [
   { num: '01', title: 'AI Development & Automation', href: '/services/ai-automation', copy: 'Automate repetitive work with AI agents, chatbots, and workflow automation.\nWhatsApp support bots, lead capture, document processing, and internal tools.', tags: ['Python', 'Anthropic', 'Node.js'] },
   { num: '02', title: 'Web Development', href: '/services/web-development', copy: 'Fast, clear, search-friendly websites and web apps.\nBusiness sites, landing pages, WordPress, and custom Next.js builds.', tags: ['Next.js', 'React', 'Tailwind'] },
   { num: '03', title: 'Custom Software', href: '/services/software-development', copy: 'Dashboards, management systems, SaaS products, and internal tools\nbuilt around how your business actually works.', tags: ['Node.js', 'PostgreSQL', 'Express'] },
-  { num: '04', title: 'Cybersecurity', href: '/security-audit', copy: 'Web application security checks, security monitoring support, and staff awareness training.\nFind weak points before attackers do.', tags: ['Pentesting', 'Audit', 'Monitoring'] },
+  { num: '04', title: 'Cybersecurity', href: '/services/cybersecurity', copy: 'Web application security checks, security monitoring support, and staff awareness training.\nFind weak points before attackers do.', tags: ['Pentesting', 'Audit', 'Monitoring'] },
 ]
 
 type Project = {
@@ -123,7 +123,7 @@ export function ModernHome() {
                   Free 30-minute call. No obligation.
                 </p>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                  <span className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#F2F2EE]">3 AI products shipped</span>
+                  <span className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#F2F2EE]">3 internal builds shipped</span>
                   <span className="h-3.5 w-px bg-[#2A2D33]" aria-hidden="true" />
                   <div className="flex flex-wrap items-center gap-x-3 text-[13px] font-medium text-[#8A8D93]">
                     <span>React</span><span>Python</span><span>PostgreSQL</span><span>Anthropic</span>
@@ -183,7 +183,7 @@ export function ModernHome() {
 
       <div className="border-t border-[#2A2D33]">
          <div className="mx-auto max-w-[1440px] border-x border-[#2A2D33] p-4 text-center font-mono text-[13px] uppercase tracking-[0.06em] text-[#A1A1AA]">
-            Independent studio / Remote-first / Working worldwide
+            Independent studio / Remote-first / Open to projects worldwide
          </div>
       </div>
 
@@ -275,9 +275,6 @@ export function ModernHome() {
                  <div className="mt-8 flex items-center gap-6">
                    <Link href={project.href} className="group inline-flex items-center gap-2 font-semibold text-accent-dark hover:text-accent-dark-hover decoration-2 underline-offset-4 hover:underline">
                      Read case study <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-1" />
-                   </Link>
-                   <Link href="#" className="font-semibold text-[#F2F2EE] underline decoration-[#2A2D33] decoration-2 underline-offset-4 hover:decoration-white transition-colors">
-                     GitHub
                    </Link>
                  </div>
                </div>
