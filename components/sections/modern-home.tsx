@@ -78,8 +78,8 @@ export function ModernHome() {
     <main className="bg-[#09090B]">
       {/* HERO */}
       <Section noBorderTop dark>
-        <div className="grid gap-12 overflow-x-clip px-6 py-14 md:px-10 lg:grid-cols-[1fr_1.1fr] lg:px-16 lg:py-28">
-          <div className="relative isolate flex flex-col justify-center pt-8">
+        <div className="grid gap-12 overflow-x-clip px-6 pb-14 pt-28 md:px-10 md:pb-16 md:pt-28 lg:grid-cols-[1fr_1.1fr] lg:px-16 lg:pb-16 lg:pt-28">
+          <div className="relative isolate flex flex-col justify-center">
             {/* Decorative ghost wordmark — adds depth only, sits behind the copy.
                 Purely visual (aria-hidden); no gradient/glow, just a muted tone. */}
             <span
@@ -99,17 +99,17 @@ export function ModernHome() {
             </FadeUp>
 
             <FadeUp animateOnMount delay={0.1} y={32} duration={0.8}>
-              <h1 className="mt-6 font-display text-[40px] font-[800] leading-[1.02] tracking-[-0.03em] md:text-[72px]">
+              <h1 className="mt-6 font-display text-[40px] font-[800] leading-[1.02] tracking-[-0.03em] md:text-[60px] lg:text-[64px]">
                 Websites that are secure, found on Google, and <em className="font-serif text-accent-dark italic font-normal">recommended by AI.</em>
               </h1>
             </FadeUp>
             <FadeUp animateOnMount delay={0.2}>
-              <p className="mt-8 max-w-[60ch] text-[18px] leading-[1.6] text-[#A1A1AA]">
+              <p className="mt-6 max-w-[60ch] text-[18px] leading-[1.6] text-[#A1A1AA]">
                 Drexa AI helps businesses protect their websites, show up when customers ask ChatGPT or Google, and build the software they need. Based in Chakwal, Pakistan. Open to projects worldwide. You deal directly with the person doing the work.
               </p>
             </FadeUp>
             <FadeUp animateOnMount delay={0.32}>
-              <div className="mt-10 flex flex-wrap gap-4">
+              <div className="mt-8 flex flex-wrap gap-4">
                 <Magnetic strength={8}><Button href="/contact">Book a free consultation</Button></Magnetic>
                 <Magnetic strength={8}><Button href="/work" secondary>See what we have built</Button></Magnetic>
                 <Magnetic strength={8}><Button href="/security-score" secondary>Free security score check</Button></Magnetic>
@@ -119,7 +119,7 @@ export function ModernHome() {
               </p>
             </FadeUp>
             <FadeUp animateOnMount delay={0.44}>
-              <div className="mt-8 flex flex-col gap-4">
+              <div className="mt-6 flex flex-col gap-4">
                 <p className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#A1A1AA]">
                   Free 30-minute call. No obligation.
                 </p>
