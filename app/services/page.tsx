@@ -6,6 +6,22 @@ import { Section } from '@/components/layout/Section'
 export const metadata: Metadata = {
   title: 'Services: AI, Web, Software & Security | Drexa AI',
   description: 'AI automation, website development, custom software, and cybersecurity services from Drexa AI. See what we offer and book a free consultation.',
+  alternates: { canonical: 'https://drexa.tech/services' },
+  openGraph: {
+    title: 'Services: AI, Web, Software & Security | Drexa AI',
+    description: 'AI automation, website development, custom software, and cybersecurity services from Drexa AI. See what we offer and book a free consultation.',
+    url: 'https://drexa.tech/services',
+    siteName: 'Drexa AI',
+    type: 'website',
+    images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Services: AI, Web, Software & Security | Drexa AI',
+    description: 'AI automation, website development, custom software, and cybersecurity services from Drexa AI. See what we offer and book a free consultation.',
+    images: ['/logo.png'],
+  },
+
 }
 
 const servicesList = [

@@ -1,6 +1,55 @@
 import Link from 'next/link'
 import { ArrowRight, Plus } from 'lucide-react'
 
+export function JsonLd({ data }: { data: Record<string, unknown> | Record<string, unknown>[] }) {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  )
+}
+
+export function serviceSchema(name: string, description: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name,
+    description,
+    provider: { '@type': 'ProfessionalService', name: 'Drexa AI', url: 'https://drexa.tech' },
+    areaServed: [
+      { '@type': 'City', name: 'Chakwal' },
+      { '@type': 'Country', name: 'Pakistan' },
+      'Worldwide',
+    ],
+  }
+}
+
+export function faqSchema(items: [string, string][]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map(([q, a]) => ({
+      '@type': 'Question',
+      name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  }
+}
+
+export function breadcrumbSchema(items: { label: string; href?: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.label,
+      ...(item.href ? { item: `https://drexa.tech${item.href}` } : {}),
+    })),
+  }
+}
+
 export function Breadcrumb({ items }: { items: { label: string; href?: string }[] }) {
   return (
     <nav aria-label="Breadcrumb" className="mx-auto max-w-[1440px] border-x border-border bg-[#141416] px-6 py-6 md:px-10 lg:px-16">

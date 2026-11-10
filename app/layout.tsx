@@ -12,12 +12,12 @@ const instrumentSerif = localFont({ src: './fonts/instrument-serif-italic.woff2'
 const jetbrainsMono = localFont({ src: './fonts/jetbrains-mono-var.woff2', variable: '--font-jetbrains', display: 'swap', preload: false })
 
 export const metadata: Metadata = {
-  title: 'Drexa AI | AI Automation, Web & Software Development',
-  description: 'Remote-first independent studio building AI automation, websites, custom software and cybersecurity services for growing businesses. Free consultation.',
+  title: 'Drexa AI | Website Security, AI Visibility & Web Development',
+  description: 'Chakwal-based, remote-first studio. Website security testing, AI search visibility, web and software development, AI automation. Free consultation.',
   metadataBase: new URL('https://drexa.tech'),
   alternates: { canonical: 'https://drexa.tech' },
-  openGraph: { title: 'Drexa AI | Build smarter. Run safer.', description: 'AI automation, web and software development, and cybersecurity for growing businesses.', url: 'https://drexa.tech', siteName: 'Drexa AI', type: 'website', images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }] },
-  twitter: { card: 'summary_large_image', title: 'Drexa AI | Build smarter. Run safer.', description: 'AI automation, web and software development, and cybersecurity for growing businesses.', images: ['/logo.png'] },
+  openGraph: { title: 'Drexa AI | Website Security, AI Visibility & Web Development', description: 'Chakwal-based, remote-first studio. Website security testing, AI search visibility, web and software development, AI automation. Free consultation.', url: 'https://drexa.tech', siteName: 'Drexa AI', type: 'website', images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }] },
+  twitter: { card: 'summary_large_image', title: 'Drexa AI | Website Security, AI Visibility & Web Development', description: 'Chakwal-based, remote-first studio. Website security testing, AI search visibility, web and software development, AI automation. Free consultation.', images: ['/logo.png'] },
 }
 
 export const viewport: Viewport = { colorScheme: 'dark', themeColor: '#09090b' }
@@ -41,10 +41,21 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               url: "https://drexa.tech",
               logo: "https://drexa.tech/logo.png",
               description:
-                "Remote-first independent technology studio building AI automation, web and software development, and cybersecurity services.",
+                "Remote-first technology studio offering website security, AI visibility, web development, software development, and AI automation.",
               email: "hello@drexa.tech",
               telephone: "+923715082737",
-              areaServed: ["Pakistan", "Worldwide"],
+              founder: { "@type": "Person", name: "Ahmed Bilal" },
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Chakwal",
+                addressRegion: "Punjab",
+                addressCountry: "PK",
+              },
+              areaServed: [
+                { "@type": "City", name: "Chakwal" },
+                { "@type": "Country", name: "Pakistan" },
+                "Worldwide",
+              ],
               sameAs: ["https://github.com/Raja468"],
             }),
           }}

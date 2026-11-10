@@ -7,6 +7,22 @@ import { Section } from '@/components/layout/Section'
 export const metadata: Metadata = {
   title: 'About Drexa AI | Independent Technology Studio',
   description: 'Drexa AI is a remote-first independent studio building AI automation, web and software development, and security services. Meet the founder.',
+  alternates: { canonical: 'https://drexa.tech/about' },
+  openGraph: {
+    title: 'About Drexa AI | Independent Technology Studio',
+    description: 'Drexa AI is a remote-first independent studio building AI automation, web and software development, and security services. Meet the founder.',
+    url: 'https://drexa.tech/about',
+    siteName: 'Drexa AI',
+    type: 'website',
+    images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Drexa AI | Independent Technology Studio',
+    description: 'Drexa AI is a remote-first independent studio building AI automation, web and software development, and security services. Meet the founder.',
+    images: ['/logo.png'],
+  },
+
 }
 
 export default function AboutPage() {

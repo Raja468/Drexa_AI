@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { Section } from '@/components/layout/Section'
-import { AlsoFromUs, Breadcrumb, ServiceCta, ServiceFaq } from '@/components/layout/ServicePageBits'
+import { AlsoFromUs, Breadcrumb, breadcrumbSchema, faqSchema, JsonLd, ServiceCta, ServiceFaq, serviceSchema } from '@/components/layout/ServicePageBits'
 
 export const metadata: Metadata = {
   title: 'AI Visibility Service: Get Recommended by ChatGPT & Google AI | Drexa AI',
@@ -41,6 +41,11 @@ const faqs: [string, string][] = [
 export default function AiVisibilityPage() {
   return (
     <main className="bg-[#141416] pt-[88px]">
+      <JsonLd data={[
+        serviceSchema('AI Visibility', 'We check if ChatGPT, Claude, Gemini, and Perplexity mention your business, then fix why they don\'t. Honest process, no guarantees.'),
+        faqSchema(faqs),
+        breadcrumbSchema([{ label: 'Home', href: '/' }, { label: 'Services', href: '/services' }, { label: 'AI Visibility' }]),
+      ]} />
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services' }, { label: 'AI Visibility' }]} />
       <section className="relative border-b border-border bg-[#141416]">
         <div className="mx-auto flex max-w-[1440px] flex-col border-x border-border lg:flex-row">

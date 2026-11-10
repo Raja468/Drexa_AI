@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { Section } from '@/components/layout/Section'
-import { AlsoFromUs, Breadcrumb, ServiceCta, ServiceFaq } from '@/components/layout/ServicePageBits'
+import { AlsoFromUs, Breadcrumb, breadcrumbSchema, faqSchema, JsonLd, ServiceCta, ServiceFaq, serviceSchema } from '@/components/layout/ServicePageBits'
 
 export const metadata: Metadata = {
   title: 'Website Security & Penetration Testing | Drexa AI',
@@ -51,6 +51,11 @@ const faqs: [string, string][] = [
 export default function CybersecurityPage() {
   return (
     <main className="bg-[#141416] pt-[88px]">
+      <JsonLd data={[
+        serviceSchema('Website Security & Penetration Testing', 'Penetration testing and security fixes for WordPress, Shopify, Wix, and custom websites. Clear report, fixed price. Free security score check.'),
+        faqSchema(faqs),
+        breadcrumbSchema([{ label: 'Home', href: '/' }, { label: 'Services', href: '/services' }, { label: 'Cybersecurity' }]),
+      ]} />
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services' }, { label: 'Cybersecurity' }]} />
       <section className="relative border-b border-border bg-[#141416]">
         <div className="mx-auto flex max-w-[1440px] flex-col border-x border-border lg:flex-row">

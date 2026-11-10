@@ -8,6 +8,22 @@ export const metadata: Metadata = {
   title: 'Free Website Security Score | Drexa AI',
   description:
     'Get a free, public-surface security score out of 100 for your website in plain language. No login, no code access, report only. For the full check, see the $5 checklist or the Drexa security audit.',
+  alternates: { canonical: 'https://drexa.tech/security-score' },
+  openGraph: {
+    title: 'Free Website Security Score | Drexa AI',
+    description: 'Get a free, public-surface security score out of 100 for your website in plain language. No login, no code access, report only. For the full check, see the $5 checklist or the Drexa security audit.',
+    url: 'https://drexa.tech/security-score',
+    siteName: 'Drexa AI',
+    type: 'website',
+    images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free Website Security Score | Drexa AI',
+    description: 'Get a free, public-surface security score out of 100 for your website in plain language. No login, no code access, report only. For the full check, see the $5 checklist or the Drexa security audit.',
+    images: ['/logo.png'],
+  },
+
 }
 
 export default function SecurityScorePage() {

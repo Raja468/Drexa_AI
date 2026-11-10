@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { Section } from '@/components/layout/Section'
-import { Breadcrumb } from '@/components/layout/ServicePageBits'
+import { Breadcrumb, breadcrumbSchema, JsonLd } from '@/components/layout/ServicePageBits'
 
 export const metadata: Metadata = {
   title: 'Free Website Tools | Drexa AI',
@@ -43,6 +43,7 @@ const tools = [
 export default function ToolsPage() {
   return (
     <main className="bg-[#141416] pt-[88px]">
+      <JsonLd data={breadcrumbSchema([{ label: 'Home', href: '/' }, { label: 'Free Tools' }])} />
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Free Tools' }]} />
       <section className="relative border-b border-border bg-[#141416]">
         <div className="mx-auto flex max-w-[1440px] flex-col border-x border-border lg:flex-row">

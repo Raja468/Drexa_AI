@@ -7,6 +7,22 @@ import { ProjectFrame } from '@/components/mockups/MockFrame'
 export const metadata: Metadata = {
   title: 'School Management System in Flask | Drexa AI',
   description: 'Case study of a school management system with admin, teacher, and student roles, attendance, fee tracking, and notices.',
+  alternates: { canonical: 'https://drexa.tech/work/iqra-school-management' },
+  openGraph: {
+    title: 'School Management System in Flask | Drexa AI',
+    description: 'Case study of a school management system with admin, teacher, and student roles, attendance, fee tracking, and notices.',
+    url: 'https://drexa.tech/work/iqra-school-management',
+    siteName: 'Drexa AI',
+    type: 'website',
+    images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'School Management System in Flask | Drexa AI',
+    description: 'Case study of a school management system with admin, teacher, and student roles, attendance, fee tracking, and notices.',
+    images: ['/logo.png'],
+  },
+
 }
 
 export default function IqraSchoolManagementPage() {

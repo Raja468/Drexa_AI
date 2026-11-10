@@ -8,6 +8,22 @@ export const metadata: Metadata = {
   title: 'Free SEO Check | Drexa AI',
   description:
     'Get a free, on-page SEO basics score out of 100 for your website in plain language. No login, report only. This is not a Google ranking or keyword position check.',
+  alternates: { canonical: 'https://drexa.tech/seo-check' },
+  openGraph: {
+    title: 'Free SEO Check | Drexa AI',
+    description: 'Get a free, on-page SEO basics score out of 100 for your website in plain language. No login, report only. This is not a Google ranking or keyword position check.',
+    url: 'https://drexa.tech/seo-check',
+    siteName: 'Drexa AI',
+    type: 'website',
+    images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free SEO Check | Drexa AI',
+    description: 'Get a free, on-page SEO basics score out of 100 for your website in plain language. No login, report only. This is not a Google ranking or keyword position check.',
+    images: ['/logo.png'],
+  },
+
 }
 
 export default function SeoCheckPage() {

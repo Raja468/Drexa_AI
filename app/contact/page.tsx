@@ -5,6 +5,22 @@ import { Mail, MessageSquare, MapPin, Clock } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'Contact Drexa AI | Free 30-Minute Consultation',
   description: 'Book a free consultation with Drexa AI. Tell us about your AI, web, software, or security project. We reply within one business day.',
+  alternates: { canonical: 'https://drexa.tech/contact' },
+  openGraph: {
+    title: 'Contact Drexa AI | Free 30-Minute Consultation',
+    description: 'Book a free consultation with Drexa AI. Tell us about your AI, web, software, or security project. We reply within one business day.',
+    url: 'https://drexa.tech/contact',
+    siteName: 'Drexa AI',
+    type: 'website',
+    images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Drexa AI | Free 30-Minute Consultation',
+    description: 'Book a free consultation with Drexa AI. Tell us about your AI, web, software, or security project. We reply within one business day.',
+    images: ['/logo.png'],
+  },
+
 }
 
 export default function ContactPage() {

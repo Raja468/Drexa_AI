@@ -1,15 +1,42 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Section } from '@/components/layout/Section'
-import { AlsoFromUs, Breadcrumb } from '@/components/layout/ServicePageBits'
+import { AlsoFromUs, Breadcrumb, breadcrumbSchema, JsonLd, serviceSchema } from '@/components/layout/ServicePageBits'
 
 const pages = {
-  'ai-automation': { title: 'AI automation and development for real business work', label: 'AI Development & Automation', intro: 'We build AI systems that handle repetitive tasks, answer customer questions, and connect your tools, so your team can focus on work that needs people.', items: ['WhatsApp and website chatbots', 'AI agents', 'Workflow automation', 'LLM integration', 'Document and data processing', 'Voice and desktop assistants'] },
-  'web-development': { title: 'Websites that load fast and bring in customers', label: 'Web Development', intro: 'Clear design, clean code, and pages built to be found on Google. Your site should explain what you do in five seconds and make it easy to contact you.', items: ['Business websites', 'Landing pages', 'WordPress sites', 'Custom web apps', 'Redesign and speed fixes', 'Website care'], note: 'Every site we build ships with HTTPS, security headers, and search-ready structure.' },
-  'software-development': { title: 'Custom software built around how your business works', label: 'Custom Software Development', intro: 'If spreadsheets and off-the-shelf tools are slowing you down, we build the system that fits your process.', items: ['Management systems', 'Dashboards and reporting', 'SaaS products', 'Internal tools', 'APIs and integrations', 'Desktop and automation tools'] },
+  'ai-automation': { title: 'AI automation and development for real business work', label: 'AI Development & Automation', intro: 'We build AI systems that handle repetitive tasks, answer customer questions, and connect your tools, so your team can focus on work that needs people.', items: ['WhatsApp and website chatbots', 'AI agents', 'Workflow automation', 'LLM integration', 'Document and data processing', 'Voice and desktop assistants'], schemaName: 'AI Automation', schemaDescription: 'AI automation and development for real business work: chatbots, AI agents, workflow automation, and LLM integration.' },
+  'web-development': { title: 'Websites that load fast and bring in customers', label: 'Web Development', intro: 'Clear design, clean code, and pages built to be found on Google. Your site should explain what you do in five seconds and make it easy to contact you.', items: ['Business websites', 'Landing pages', 'WordPress sites', 'Custom web apps', 'Redesign and speed fixes', 'Website care'], note: 'Every site we build ships with HTTPS, security headers, and search-ready structure.', schemaName: 'Web Development', schemaDescription: 'Fast, secure, search-ready websites that bring in enquiries, not just look good.' },
+  'software-development': { title: 'Custom software built around how your business works', label: 'Custom Software Development', intro: 'If spreadsheets and off-the-shelf tools are slowing you down, we build the system that fits your process.', items: ['Management systems', 'Dashboards and reporting', 'SaaS products', 'Internal tools', 'APIs and integrations', 'Desktop and automation tools'], schemaName: 'Software Development', schemaDescription: 'Custom web apps, internal tools, and mobile apps built to your process.' },
 } as const
 
 export function generateStaticParams() { return Object.keys(pages).map(slug => ({ slug })) }
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const page = pages[slug as keyof typeof pages]
+  if (!page) return {}
+  const url = `https://drexa.tech/services/${slug}`
+  return {
+    title: `${page.title} | Drexa AI`,
+    description: page.intro,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${page.title} | Drexa AI`,
+      description: page.intro,
+      url,
+      siteName: 'Drexa AI',
+      type: 'website',
+      images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${page.title} | Drexa AI`,
+      description: page.intro,
+      images: ['/logo.png'],
+    },
+  }
+}
 
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -17,6 +44,10 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   if (!page) notFound()
   return (
     <main className="bg-[#141416] pt-[88px]">
+      <JsonLd data={[
+        serviceSchema(page.schemaName, page.schemaDescription),
+        breadcrumbSchema([{ label: 'Home', href: '/' }, { label: 'Services', href: '/services' }, { label: page.label }]),
+      ]} />
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Services', href: '/services' }, { label: page.label }]} />
       <section className="bg-muted">
         <div className="mx-auto max-w-[1200px] px-6 py-20 lg:px-10 lg:py-28">

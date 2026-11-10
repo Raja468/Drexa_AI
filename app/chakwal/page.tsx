@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { Section } from '@/components/layout/Section'
-import { Breadcrumb, ServiceCta, ServiceFaq } from '@/components/layout/ServicePageBits'
+import { Breadcrumb, breadcrumbSchema, faqSchema, JsonLd, ServiceCta, ServiceFaq } from '@/components/layout/ServicePageBits'
 
 export const metadata: Metadata = {
   title: 'Web Development, Cybersecurity & AI Visibility in Chakwal | Drexa AI',
@@ -48,6 +48,10 @@ const faqs: [string, string][] = [
 export default function ChakwalPage() {
   return (
     <main className="bg-[#141416] pt-[88px]">
+      <JsonLd data={[
+        faqSchema(faqs),
+        breadcrumbSchema([{ label: 'Home', href: '/' }, { label: 'Chakwal' }]),
+      ]} />
       <Breadcrumb items={[{ label: 'Home', href: '/' }, { label: 'Chakwal' }]} />
       <section className="relative border-b border-border bg-[#141416]">
         <div className="mx-auto flex max-w-[1440px] flex-col border-x border-border lg:flex-row">
