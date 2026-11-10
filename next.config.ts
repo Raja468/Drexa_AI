@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
       {
         source: "/security-audit",
         destination: "/services/cybersecurity",
-        permanent: true,
+        statusCode: 301,
       },
     ];
   },

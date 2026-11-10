@@ -80,7 +80,7 @@ export default function AiVisibilityPage() {
               <li key={title} className="flex flex-col gap-2 md:flex-row md:gap-8">
                 <span className="font-mono text-sm font-bold text-accent-dark">{i + 1}</span>
                 <div>
-                  <h3 className="text-[20px] font-bold leading-tight">{title}</h3>
+                  <h2 className="text-[20px] font-bold leading-tight">{title}</h2>
                   <p className="mt-2 max-w-[60ch] text-[16px] leading-[1.6] text-[#A1A1AA]">{copy}</p>
                 </div>
               </li>

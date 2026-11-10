@@ -52,7 +52,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-[#2A2D33] overflow-hidden leading-none pt-4 pb-2 text-center text-[18vw] font-display font-bold text-[#2A2D33] tracking-tighter">
+        <div aria-hidden="true" className="border-t border-[#2A2D33] overflow-hidden leading-none pt-4 pb-2 text-center text-[18vw] font-display font-bold text-[#2A2D33] tracking-tighter">
           Drexa
         </div>
       </div>

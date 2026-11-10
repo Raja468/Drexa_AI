@@ -117,7 +117,7 @@ export function AlsoFromUs({ links }: { links: { label: string; href: string; co
     <div className="grid gap-4 md:grid-cols-2">
       {links.map((link) => (
         <Link key={link.href} href={link.href} className="group rounded-[12px] border border-border p-6 transition-colors hover:border-accent">
-          <h3 className="text-[20px] font-bold leading-tight group-hover:text-accent-dark">{link.label}</h3>
+          <h2 className="text-[20px] font-bold leading-tight group-hover:text-accent-dark">{link.label}</h2>
           <p className="mt-2 text-[16px] leading-[1.6] text-[#A1A1AA]">{link.copy}</p>
         </Link>
       ))}

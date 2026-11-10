@@ -78,13 +78,13 @@ export default function HeroVisual() {
       </div>
 
       <div className="hv-card hv-ai">
-        <div className="hv-tag" style={{ color: '#111' }}>AI search · illustrative</div>
+        <div className="hv-tag" style={{ color: '#111', opacity: 1 }}>AI search · illustrative</div>
         <div style={{ fontSize: 13, margin: '8px 0', fontWeight: 600 }}>
           Who can secure my online store?
         </div>
         {answers.map((a, i) => (
           <div key={a} className={i === 0 ? 'hv-hit' : ''}
-            style={{ padding: '6px 10px', fontSize: 13, marginTop: 4, opacity: i === 0 ? 1 : .55 }}>
+            style={{ padding: '6px 10px', fontSize: 13, marginTop: 4, opacity: i === 0 ? 1 : .75 }}>
             {i + 1}. {a}
           </div>
         ))}

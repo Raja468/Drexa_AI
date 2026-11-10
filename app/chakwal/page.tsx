@@ -102,7 +102,7 @@ export default function ChakwalPage() {
           <div className="grid gap-4 md:grid-cols-2">
             {services.map((service) => (
               <Link key={service.href} href={service.href} className="group rounded-[12px] border border-border p-6 transition-colors hover:border-accent md:p-8">
-                <h3 className="text-[20px] font-bold leading-tight group-hover:text-accent-dark">{service.title}</h3>
+                <h2 className="text-[20px] font-bold leading-tight group-hover:text-accent-dark">{service.title}</h2>
                 <p className="mt-2 text-[16px] leading-[1.6] text-[#A1A1AA]">{service.copy}</p>
               </Link>
             ))}
