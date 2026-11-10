@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, CircuitBoard, Globe, Shield, Terminal, type LucideIcon } from "lucide-react";
+import { ArrowLeft, ArrowRight, CircuitBoard, Eye, Globe, Shield, Terminal, type LucideIcon } from "lucide-react";
 
 export type ServiceCarouselItem = {
   num: string;
@@ -12,13 +12,14 @@ export type ServiceCarouselItem = {
   tags: string[];
 };
 
-const ICONS: LucideIcon[] = [CircuitBoard, Globe, Terminal, Shield];
+const ICONS: LucideIcon[] = [Shield, Eye, Globe, Terminal, CircuitBoard];
 
 const EXAMPLES = [
-  "A bot that answers customers and captures leads at any hour.",
+  "A check that finds weak points before attackers do.",
+  "Your business, named when customers ask AI.",
   "A fast business site that turns visits into enquiries.",
   "A dashboard that replaces scattered spreadsheets.",
-  "A check that finds weak points before attackers do.",
+  "A bot that answers customers and captures leads at any hour.",
 ];
 
 const AUTO_MS = 2000;

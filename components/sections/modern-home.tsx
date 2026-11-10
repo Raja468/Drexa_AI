@@ -1,16 +1,17 @@
 import Link from 'next/link'
-import { ArrowRight, Plus, UserPlus } from 'lucide-react'
+import { ArrowRight, Plus } from 'lucide-react'
 import { ProjectFrame, type MockName } from '@/components/mockups/MockFrame'
 import { FadeUp, StaggerContainer, StaggerItem } from '@/components/motion/FadeUp'
 import { Magnetic } from '@/components/motion/Magnetic'
-import { Parallax } from '@/components/motion/Parallax'
 import { ServicesCarousel } from '@/components/sections/services-carousel'
+import HeroVisual from '@/components/HeroVisual'
 
 const services = [
-  { num: '01', title: 'AI Development & Automation', href: '/services/ai-automation', copy: 'Automate repetitive work with AI agents, chatbots, and workflow automation.\nWhatsApp support bots, lead capture, document processing, and internal tools.', tags: ['Python', 'Anthropic', 'Node.js'] },
-  { num: '02', title: 'Web Development', href: '/services/web-development', copy: 'Fast, clear, search-friendly websites and web apps.\nBusiness sites, landing pages, WordPress, and custom Next.js builds.', tags: ['Next.js', 'React', 'Tailwind'] },
-  { num: '03', title: 'Custom Software', href: '/services/software-development', copy: 'Dashboards, management systems, SaaS products, and internal tools\nbuilt around how your business actually works.', tags: ['Node.js', 'PostgreSQL', 'Express'] },
-  { num: '04', title: 'Cybersecurity', href: '/services/cybersecurity', copy: 'Web application security checks, security monitoring support, and staff awareness training.\nFind weak points before attackers do.', tags: ['Pentesting', 'Audit', 'Monitoring'] },
+  { num: '01', title: 'Website Security', href: '/services/cybersecurity', copy: 'We test your website the way an attacker would, then fix what we find. WordPress, Shopify, Wix, or custom-built. Clear report, plain language, no scare tactics.', tags: ['Pentesting', 'Audit', 'Monitoring'] },
+  { num: '02', title: 'AI Visibility', href: '/services/ai-visibility', copy: 'More customers now ask ChatGPT, Claude, and Google AI instead of searching. We check if AI mentions your business, then fix the reasons it does not.', tags: ['ChatGPT', 'Claude', 'Gemini'] },
+  { num: '03', title: 'Web Development', href: '/services/web-development', copy: 'Fast, secure, search-ready websites that bring in enquiries, not just look good.', tags: ['Next.js', 'React', 'Tailwind'] },
+  { num: '04', title: 'Software and App Development', href: '/services/software-development', copy: 'Custom web apps, internal tools, and mobile apps built to your process.', tags: ['Node.js', 'PostgreSQL', 'Express'] },
+  { num: '05', title: 'AI Automation', href: '/services/ai-automation', copy: 'WhatsApp bots, lead capture, document processing, workflow automation.', tags: ['Python', 'Anthropic', 'Node.js'] },
 ]
 
 type Project = {
@@ -99,12 +100,12 @@ export function ModernHome() {
 
             <FadeUp animateOnMount delay={0.1} y={32} duration={0.8}>
               <h1 className="mt-6 font-display text-[40px] font-[800] leading-[1.02] tracking-[-0.03em] md:text-[72px]">
-                Technology that helps your business <em className="font-serif text-accent-dark italic font-normal">run better.</em>
+                Websites that are secure, found on Google, and <em className="font-serif text-accent-dark italic font-normal">recommended by AI.</em>
               </h1>
             </FadeUp>
             <FadeUp animateOnMount delay={0.2}>
               <p className="mt-8 max-w-[60ch] text-[18px] leading-[1.6] text-[#A1A1AA]">
-                Drexa AI builds AI automation, websites, custom software, and security services for small and growing businesses. Start free: check your website in seconds, no login. You work directly with the people building it.
+                Drexa AI helps businesses protect their websites, show up when customers ask ChatGPT or Google, and build the software they need. Based in Chakwal, Pakistan. Open to projects worldwide. You deal directly with the person doing the work.
               </p>
             </FadeUp>
             <FadeUp animateOnMount delay={0.32}>
@@ -133,51 +134,9 @@ export function ModernHome() {
             </FadeUp>
           </div>
 
-          <Parallax className="relative" distance={40}>
-            <div className="relative z-10">
-              <ProjectFrame mock="chatconnect" alt="ChatConnect AI dashboard showing today's conversations, captured leads, and the recent conversation list" />
-            </div>
-
-            {/* Floating "new lead" toast — a third layer in the composition, flat
-                like the rest. Fades in after the demo conversation resolves. */}
-            <div
-              className="absolute -right-4 -top-5 z-30 flex animate-fade-up items-center gap-2.5 rounded-lg border border-border bg-white px-3.5 py-2.5 shadow-[0_1px_2px_rgba(22,24,29,0.06)]"
-              style={{ animationDelay: "1.4s" }}
-            >
-              <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-accent-tint text-accent">
-                <UserPlus size={16} aria-hidden="true" />
-              </span>
-              <span className="flex flex-col">
-                <span className="text-[12.5px] font-semibold leading-tight text-foreground">New lead captured</span>
-                <span className="text-[11px] leading-tight text-[#54585F]">Bulk order enquiry</span>
-              </span>
-            </div>
-
-            <div className="absolute -bottom-8 -left-8 z-20 w-[260px] animate-float overflow-hidden rounded-[16px] border border-border bg-white shadow-[0_1px_2px_rgba(22,24,29,0.06)]">
-               <div className="bg-[#21F48B] px-4 py-3 text-[#09090B]">
-                 <p className="text-[13px] font-semibold">Support Team</p>
-                 <p className="text-[11px] opacity-80">Typically replies instantly</p>
-               </div>
-               <div className="flex flex-col gap-3 bg-[#EAE6DF] p-4 text-[13px]">
-                  <div className="msg self-end rounded-lg rounded-tr-none bg-[#D9FDD3] p-2 px-3 shadow-[0_1px_2px_rgba(22,24,29,0.06)]" style={{ '--i': 0 } as React.CSSProperties}>
-                    What is the price and timing?
-                  </div>
-                  <div className="typing self-start" style={{ '--i': 1 } as React.CSSProperties} aria-hidden="true">
-                    <i /><i /><i />
-                  </div>
-                  <div className="msg self-start rounded-lg rounded-tl-none bg-white p-2 px-3 shadow-[0_1px_2px_rgba(22,24,29,0.06)]" style={{ '--i': 1 } as React.CSSProperties}>
-                    Pricing starts at $500, takes 2 weeks.
-                  </div>
-                  <div className="msg mt-2 text-center text-[10px] uppercase text-[#54585F]" style={{ '--i': 1.5 } as React.CSSProperties}>
-                    Handed to a human agent
-                  </div>
-               </div>
-            </div>
-            
-            <p className="mt-12 text-right font-mono text-[13px] uppercase tracking-[0.06em] text-[#A1A1AA]">
-              Demo conversation. ChatConnect AI.
-            </p>
-          </Parallax>
+          <div className="relative flex items-center justify-center lg:justify-end">
+            <HeroVisual />
+          </div>
         </div>
       </Section>
 
@@ -211,11 +170,28 @@ export function ModernHome() {
             <FadeUp>
               <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-[#A1A1AA]">01 / Services</p>
               <h2 className="mt-4 font-display text-[28px] font-bold tracking-[-0.02em] md:text-[44px]">
-                Four services. <em className="font-serif font-normal italic text-accent-dark">One team.</em>
+                Five services. <em className="font-serif font-normal italic text-accent-dark">One team.</em>
               </h2>
             </FadeUp>
           </div>
           <ServicesCarousel services={services} />
+        </div>
+      </section>
+
+      {/* FREE TOOLS STRIP */}
+      <section className="border-t border-[#2A2D33] bg-[#141416]">
+        <div className="mx-auto flex max-w-[1280px] flex-col gap-6 border-x border-[#2A2D33] p-8 md:flex-row md:items-center md:justify-between md:p-10 lg:p-12">
+          <p className="max-w-[60ch] text-[18px] leading-[1.6] text-[#F2F2EE]">
+            Check your website in seconds. No login. Security score and SEO check. Both run on our own site first.
+          </p>
+          <div className="flex shrink-0 flex-wrap gap-4">
+            <Link href="/security-score" className="group inline-flex min-h-12 items-center gap-2 rounded-lg bg-accent px-6 text-sm font-semibold text-accent-foreground transition hover:bg-accent-hover">
+              Free security score check <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-[3px]" />
+            </Link>
+            <Link href="/seo-check" className="group inline-flex min-h-12 items-center gap-2 rounded-lg border border-white/20 px-6 text-sm font-semibold text-white transition hover:bg-white/5">
+              Free SEO check <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-[3px]" />
+            </Link>
+          </div>
         </div>
       </section>
 
