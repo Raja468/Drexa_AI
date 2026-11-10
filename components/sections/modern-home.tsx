@@ -111,7 +111,7 @@ export function ModernHome() {
             <FadeUp animateOnMount delay={0.32}>
               <div className="mt-10 flex flex-wrap gap-4">
                 <Magnetic strength={8}><Button href="/contact">Book a free consultation</Button></Magnetic>
-                <Magnetic strength={8}><Button href="/work" secondary>See our work</Button></Magnetic>
+                <Magnetic strength={8}><Button href="/work" secondary>See what we have built</Button></Magnetic>
                 <Magnetic strength={8}><Button href="/security-score" secondary>Free security score check</Button></Magnetic>
               </div>
               <p className="mt-4 max-w-[60ch] rounded-lg border border-highlight bg-highlight-tint px-4 py-3 text-[14px] leading-[1.6] text-foreground">
@@ -219,14 +219,17 @@ export function ModernHome() {
          </div>
       </Section>
 
-      {/* 03 WORK SECTION */}
-      <Section number="03" title="Work" dark>
+      {/* 03 INTERNAL BUILDS SECTION */}
+      <Section number="03" title="Internal builds" dark>
          <div className="flex flex-col">
            <div className="border-b border-[#2A2D33] px-8 pt-12 md:px-12 md:pt-16 lg:px-16 lg:pt-20">
              <FadeUp>
                <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">
                  What we have <em className="font-serif font-normal italic text-accent-dark">built.</em>
                </h2>
+               <p className="mt-4 max-w-[60ch] text-[16px] leading-[1.6] text-[#A1A1AA]">
+                 Our own products and R&D builds, not client work. Client projects will be added as they are completed, with permission.
+               </p>
              </FadeUp>
            </div>
            {projects.map((project, i) => (
