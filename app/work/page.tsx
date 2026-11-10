@@ -5,12 +5,12 @@ import { Section } from '@/components/layout/Section'
 import { ProjectFrame, type MockName } from '@/components/mockups/MockFrame'
 
 export const metadata: Metadata = {
-  title: 'Our Work: AI, Software and Automation Projects | Drexa AI',
-  description: 'Explore ChatConnect AI, Drex AI Assistant, and the Iqra School Management System. Real systems built by Drexa AI.',
+  title: 'What We Have Built: Internal Builds and R&D Projects | Drexa AI',
+  description: 'ChatConnect AI, Drex AI Assistant, and the Iqra School Management System. Our own internal builds, not client work.',
   alternates: { canonical: 'https://drexa.tech/work' },
   openGraph: {
-    title: 'Our Work: AI, Software and Automation Projects | Drexa AI',
-    description: 'Explore ChatConnect AI, Drex AI Assistant, and the Iqra School Management System. Real systems built by Drexa AI.',
+    title: 'What We Have Built: Internal Builds and R&D Projects | Drexa AI',
+    description: 'ChatConnect AI, Drex AI Assistant, and the Iqra School Management System. Our own internal builds, not client work.',
     url: 'https://drexa.tech/work',
     siteName: 'Drexa AI',
     type: 'website',
@@ -18,8 +18,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Our Work: AI, Software and Automation Projects | Drexa AI',
-    description: 'Explore ChatConnect AI, Drex AI Assistant, and the Iqra School Management System. Real systems built by Drexa AI.',
+    title: 'What We Have Built: Internal Builds and R&D Projects | Drexa AI',
+    description: 'ChatConnect AI, Drex AI Assistant, and the Iqra School Management System. Our own internal builds, not client work.',
     images: ['/logo.png'],
   },
 
@@ -49,12 +49,12 @@ export default function WorkListPage() {
         <div className="mx-auto flex max-w-[1440px] flex-col lg:flex-row border-x border-border">
           <div className="lg:w-80 shrink-0 border-b lg:border-b-0 lg:border-r border-border p-6 md:p-8 lg:p-10">
             <div className="sticky top-28 font-mono text-[13px] uppercase tracking-[0.06em] text-[#A1A1AA]">
-              Work
+              Internal builds
             </div>
           </div>
           <div className="flex flex-col justify-center p-8 py-20 md:p-14 lg:p-24">
             <h1 className="font-display text-[40px] md:text-[56px] font-[800] leading-[1.02] tracking-[-0.03em] text-foreground">
-              Our work
+              What we have built
             </h1>
             <p className="mt-6 max-w-[60ch] text-[20px] md:text-[24px] font-semibold leading-[1.4] text-[#F2F2EE]">
               These are our own products and R&D projects. We build real working systems and publish the code where we can. Client projects will be added as they are completed with permission.
