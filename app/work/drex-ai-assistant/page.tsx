@@ -7,6 +7,22 @@ import { Section } from '@/components/layout/Section'
 export const metadata: Metadata = {
   title: 'Drex AI Assistant: Windows Voice AI Assistant | Drexa AI',
   description: 'Case study of Drex AI Assistant, a Windows desktop assistant with voice input and output, app control, web search, and screenshots.',
+  alternates: { canonical: 'https://drexa.tech/work/drex-ai-assistant' },
+  openGraph: {
+    title: 'Drex AI Assistant: Windows Voice AI Assistant | Drexa AI',
+    description: 'Case study of Drex AI Assistant, a Windows desktop assistant with voice input and output, app control, web search, and screenshots.',
+    url: 'https://drexa.tech/work/drex-ai-assistant',
+    siteName: 'Drexa AI',
+    type: 'website',
+    images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Drex AI Assistant: Windows Voice AI Assistant | Drexa AI',
+    description: 'Case study of Drex AI Assistant, a Windows desktop assistant with voice input and output, app control, web search, and screenshots.',
+    images: ['/logo.png'],
+  },
+
 }
 
 export default function DrexAIAssistantPage() {

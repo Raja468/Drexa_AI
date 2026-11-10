@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-const services = [['AI Development & Automation', '/services/ai-automation'], ['Web Development', '/services/web-development'], ['Software Development', '/services/software-development'], ['Cybersecurity', '/services/cybersecurity']]
-const company = [['Work', '/work'], ['About', '/about'], ['Blog', '/blog'], ['Contact', '/contact']]
+const services = [['Cybersecurity', '/services/cybersecurity'], ['AI Visibility', '/services/ai-visibility'], ['Web Development', '/services/web-development'], ['Software Development', '/services/software-development'], ['AI Automation', '/services/ai-automation']]
+const company = [['Work', '/work'], ['About', '/about'], ['Blog', '/blog'], ['Contact', '/contact'], ['Free Tools', '/tools'], ['Chakwal', '/chakwal']]
 
 export function Footer() {
   return (
@@ -15,7 +15,7 @@ export function Footer() {
             </Link>
             <p className="mt-5 text-[18px] font-bold">Build smarter. Run safer.</p>
             <p className="mt-4 max-w-[30ch] text-[16px] leading-[1.6] text-[#A1A1AA]">
-              Drexa AI is a remote-first technology studio, working with clients worldwide.
+              Drexa AI is a remote-first technology studio based in Chakwal, Pakistan. Open to projects worldwide.
             </p>
           </div>
           <div>
@@ -52,7 +52,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-[#2A2D33] overflow-hidden leading-none pt-4 pb-2 text-center text-[18vw] font-display font-bold text-[#2A2D33] tracking-tighter">
+        <div aria-hidden="true" className="border-t border-[#2A2D33] overflow-hidden leading-none pt-4 pb-2 text-center text-[18vw] font-display font-bold text-[#2A2D33] tracking-tighter">
           Drexa
         </div>
       </div>

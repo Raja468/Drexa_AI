@@ -7,6 +7,22 @@ import { ProjectFrame, type MockName } from '@/components/mockups/MockFrame'
 export const metadata: Metadata = {
   title: 'Our Work: AI, Software and Automation Projects | Drexa AI',
   description: 'Explore ChatConnect AI, Drex AI Assistant, and the Iqra School Management System. Real systems built by Drexa AI.',
+  alternates: { canonical: 'https://drexa.tech/work' },
+  openGraph: {
+    title: 'Our Work: AI, Software and Automation Projects | Drexa AI',
+    description: 'Explore ChatConnect AI, Drex AI Assistant, and the Iqra School Management System. Real systems built by Drexa AI.',
+    url: 'https://drexa.tech/work',
+    siteName: 'Drexa AI',
+    type: 'website',
+    images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Our Work: AI, Software and Automation Projects | Drexa AI',
+    description: 'Explore ChatConnect AI, Drex AI Assistant, and the Iqra School Management System. Real systems built by Drexa AI.',
+    images: ['/logo.png'],
+  },
+
 }
 
 type Project = {

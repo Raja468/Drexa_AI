@@ -5,6 +5,22 @@ import { Mail, MessageSquare, MapPin, Clock } from 'lucide-react'
 export const metadata: Metadata = {
   title: 'Contact Drexa AI | Free 30-Minute Consultation',
   description: 'Book a free consultation with Drexa AI. Tell us about your AI, web, software, or security project. We reply within one business day.',
+  alternates: { canonical: 'https://drexa.tech/contact' },
+  openGraph: {
+    title: 'Contact Drexa AI | Free 30-Minute Consultation',
+    description: 'Book a free consultation with Drexa AI. Tell us about your AI, web, software, or security project. We reply within one business day.',
+    url: 'https://drexa.tech/contact',
+    siteName: 'Drexa AI',
+    type: 'website',
+    images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Drexa AI | Free 30-Minute Consultation',
+    description: 'Book a free consultation with Drexa AI. Tell us about your AI, web, software, or security project. We reply within one business day.',
+    images: ['/logo.png'],
+  },
+
 }
 
 export default function ContactPage() {
@@ -57,8 +73,8 @@ export default function ContactPage() {
                   <div className="flex items-start gap-4">
                     <MapPin className="mt-1 h-5 w-5 shrink-0 text-accent-dark" />
                     <div>
-                      <p className="font-semibold text-foreground">Office</p>
-                      <p className="mt-1 text-[#A1A1AA]">Remote — no physical office yet.<br/>Working remotely worldwide.</p>
+                      <p className="font-semibold text-foreground">Location</p>
+                      <p className="mt-1 text-[#A1A1AA]">Based in Chakwal, Pakistan.<br/>Open to projects worldwide.</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">

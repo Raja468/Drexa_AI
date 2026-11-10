@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, CircuitBoard, Globe, Shield, Terminal, type LucideIcon } from "lucide-react";
+import { ArrowLeft, ArrowRight, CircuitBoard, Eye, Globe, Shield, Terminal, type LucideIcon } from "lucide-react";
 
 export type ServiceCarouselItem = {
   num: string;
@@ -12,13 +12,14 @@ export type ServiceCarouselItem = {
   tags: string[];
 };
 
-const ICONS: LucideIcon[] = [CircuitBoard, Globe, Terminal, Shield];
+const ICONS: LucideIcon[] = [Shield, Eye, Globe, Terminal, CircuitBoard];
 
 const EXAMPLES = [
-  "A bot that answers customers and captures leads at any hour.",
+  "A check that finds weak points before attackers do.",
+  "Your business, named when customers ask AI.",
   "A fast business site that turns visits into enquiries.",
   "A dashboard that replaces scattered spreadsheets.",
-  "A check that finds weak points before attackers do.",
+  "A bot that answers customers and captures leads at any hour.",
 ];
 
 const AUTO_MS = 2000;
@@ -102,7 +103,7 @@ export function ServicesCarousel({ services }: { services: ServiceCarouselItem[]
           </div>
         </div>
 
-        <button type="button" onClick={() => goTo(index + 1)} aria-label={`Next service: ${next.title}`} className="group relative overflow-hidden rounded-[16px] border border-[#2A2D33] bg-[#09090B] p-8 text-left transition hover:border-accent-dark md:p-10">
+        <button type="button" onClick={() => goTo(index + 1)} className="group relative overflow-hidden rounded-[16px] border border-[#2A2D33] bg-[#09090B] p-8 text-left transition hover:border-accent-dark md:p-10">
           <span className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#8A8D93]">Up next</span>
           <span className="mt-6 grid h-12 w-12 place-items-center rounded-full bg-[#141416] text-accent-dark">
             <NextIcon size={24} strokeWidth={1.5} />
@@ -116,7 +117,7 @@ export function ServicesCarousel({ services }: { services: ServiceCarouselItem[]
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="flex flex-wrap gap-2">
             {services.map((service, i) => (
-              <button key={service.num} type="button" onClick={() => goTo(i)} aria-label={`Go to ${service.title}`} aria-current={i === index ? "true" : undefined} className={`rounded-full border px-4 py-2 font-mono text-[12px] uppercase tracking-[0.06em] transition ${i === index ? "border-accent-dark bg-accent-dark text-[#09090B]" : "border-[#2A2D33] text-[#A1A1AA] hover:border-accent-dark hover:text-[#F2F2EE]"}`}>
+              <button key={service.num} type="button" onClick={() => goTo(i)} aria-current={i === index ? "true" : undefined} className={`rounded-full border px-4 py-2 font-mono text-[12px] uppercase tracking-[0.06em] transition ${i === index ? "border-accent-dark bg-accent-dark text-[#09090B]" : "border-[#2A2D33] text-[#A1A1AA] hover:border-accent-dark hover:text-[#F2F2EE]"}`}>
                 {service.num} {service.title.split(" &")[0]}
               </button>
             ))}

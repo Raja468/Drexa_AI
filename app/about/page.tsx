@@ -7,6 +7,22 @@ import { Section } from '@/components/layout/Section'
 export const metadata: Metadata = {
   title: 'About Drexa AI | Independent Technology Studio',
   description: 'Drexa AI is a remote-first independent studio building AI automation, web and software development, and security services. Meet the founder.',
+  alternates: { canonical: 'https://drexa.tech/about' },
+  openGraph: {
+    title: 'About Drexa AI | Independent Technology Studio',
+    description: 'Drexa AI is a remote-first independent studio building AI automation, web and software development, and security services. Meet the founder.',
+    url: 'https://drexa.tech/about',
+    siteName: 'Drexa AI',
+    type: 'website',
+    images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About Drexa AI | Independent Technology Studio',
+    description: 'Drexa AI is a remote-first independent studio building AI automation, web and software development, and security services. Meet the founder.',
+    images: ['/logo.png'],
+  },
+
 }
 
 export default function AboutPage() {
@@ -81,7 +97,7 @@ export default function AboutPage() {
       <Section number="04" title="Where we work">
         <div className="p-8 py-16 md:p-14 lg:p-24 border-b border-border">
           <p className="max-w-[60ch] text-[20px] leading-[1.6] text-[#F2F2EE]">
-            A remote-first studio with no physical office yet. We work remotely with clients worldwide.
+            Drexa AI is a small remote-first studio in Chakwal, Pakistan. We take projects from businesses anywhere.
           </p>
         </div>
       </Section>

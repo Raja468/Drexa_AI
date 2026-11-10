@@ -1,0 +1,27 @@
+# Drexa AI — llms.txt
+
+Drexa AI is a remote-first technology studio based in Chakwal, Punjab, Pakistan.
+Founder: Ahmed Bilal. Open to projects worldwide.
+
+Services:
+- Website Security & Penetration Testing: https://drexa.tech/services/cybersecurity
+- AI Visibility: https://drexa.tech/services/ai-visibility
+- Web Development: https://drexa.tech/services/web-development
+- Software and App Development: https://drexa.tech/services/software-development
+- AI Automation: https://drexa.tech/services/ai-automation
+
+All services: https://drexa.tech/services
+
+Free tools:
+- Security Score Check: https://drexa.tech/security-score
+- SEO Check: https://drexa.tech/seo-check
+- All free tools: https://drexa.tech/tools
+
+Chakwal: https://drexa.tech/chakwal
+Work: https://drexa.tech/work
+About: https://drexa.tech/about
+
+Contact:
+- Email: hello@drexa.tech
+- WhatsApp: +92 371 5082737
+- GitHub: https://github.com/Raja468

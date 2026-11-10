@@ -7,8 +7,8 @@ import { usePathname } from 'next/navigation'
 import { ChevronDown, Menu, X, ArrowRight } from 'lucide-react'
 import { Magnetic } from '@/components/motion/Magnetic'
 
-const links = [['Work', '/work'], ['About', '/about'], ['Blog', '/blog'], ['Contact', '/contact']] as const
-const services = [['AI Development & Automation', '/services/ai-automation'], ['Web Development', '/services/web-development'], ['Software Development', '/services/software-development'], ['Cybersecurity', '/security-audit']] as const
+const links = [['Free Tools', '/tools'], ['Work', '/work'], ['About', '/about'], ['Blog', '/blog'], ['Contact', '/contact']] as const
+const services = [['Cybersecurity', '/services/cybersecurity'], ['AI Visibility', '/services/ai-visibility'], ['Web Development', '/services/web-development'], ['Software Development', '/services/software-development'], ['AI Automation', '/services/ai-automation']] as const
 
 export function Navbar() {
   const [open, setOpen] = useState(false)

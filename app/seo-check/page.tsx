@@ -8,6 +8,22 @@ export const metadata: Metadata = {
   title: 'Free SEO Check | Drexa AI',
   description:
     'Get a free, on-page SEO basics score out of 100 for your website in plain language. No login, report only. This is not a Google ranking or keyword position check.',
+  alternates: { canonical: 'https://drexa.tech/seo-check' },
+  openGraph: {
+    title: 'Free SEO Check | Drexa AI',
+    description: 'Get a free, on-page SEO basics score out of 100 for your website in plain language. No login, report only. This is not a Google ranking or keyword position check.',
+    url: 'https://drexa.tech/seo-check',
+    siteName: 'Drexa AI',
+    type: 'website',
+    images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free SEO Check | Drexa AI',
+    description: 'Get a free, on-page SEO basics score out of 100 for your website in plain language. No login, report only. This is not a Google ranking or keyword position check.',
+    images: ['/logo.png'],
+  },
+
 }
 
 export default function SeoCheckPage() {
@@ -65,7 +81,7 @@ export default function SeoCheckPage() {
               Get the full $5 checklist <ArrowRight size={16} className="transition-transform duration-150 group-hover:translate-x-[3px]" />
             </a>
             <Link
-              href="/security-audit"
+              href="/services/cybersecurity"
               className="inline-flex min-h-12 items-center justify-center rounded-lg border border-border bg-[#141416] px-6 text-sm font-semibold text-foreground transition hover:border-accent hover:text-accent-dark"
             >
               Get a full security audit

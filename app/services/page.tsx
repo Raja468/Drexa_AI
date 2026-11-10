@@ -6,29 +6,50 @@ import { Section } from '@/components/layout/Section'
 export const metadata: Metadata = {
   title: 'Services: AI, Web, Software & Security | Drexa AI',
   description: 'AI automation, website development, custom software, and cybersecurity services from Drexa AI. See what we offer and book a free consultation.',
+  alternates: { canonical: 'https://drexa.tech/services' },
+  openGraph: {
+    title: 'Services: AI, Web, Software & Security | Drexa AI',
+    description: 'AI automation, website development, custom software, and cybersecurity services from Drexa AI. See what we offer and book a free consultation.',
+    url: 'https://drexa.tech/services',
+    siteName: 'Drexa AI',
+    type: 'website',
+    images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Services: AI, Web, Software & Security | Drexa AI',
+    description: 'AI automation, website development, custom software, and cybersecurity services from Drexa AI. See what we offer and book a free consultation.',
+    images: ['/logo.png'],
+  },
+
 }
 
 const servicesList = [
-  { 
-    title: 'AI Development & Automation', href: '/services/ai-automation', 
-    copy: 'Automate repetitive work with AI agents, chatbots, and workflow automation. WhatsApp support bots, lead capture, document processing, and internal tools.',
-    items: ['WhatsApp and website chatbots', 'AI agents', 'Workflow automation', 'LLM integration']
+  {
+    title: 'Website Security', href: '/services/cybersecurity',
+    copy: 'We test your website the way an attacker would, then fix what we find. WordPress, Shopify, Wix, or custom-built. Clear report, plain language, no scare tactics.',
+    items: ['Website penetration testing', 'WordPress security hardening', 'Security monitoring support', 'Malware cleanup and hardening']
   },
-  { 
-    title: 'Web Development', href: '/services/web-development', 
-    copy: 'Fast, clear, search-friendly websites and web apps. Business sites, landing pages, WordPress, and custom Next.js builds.',
+  {
+    title: 'AI Visibility', href: '/services/ai-visibility',
+    copy: 'More customers now ask ChatGPT, Claude, and Google AI instead of searching. We check if AI mentions your business, then fix the reasons it does not.',
+    items: ['AI visibility audit', 'Website fixes for AI', 'Search engine base', 'Off-site mentions']
+  },
+  {
+    title: 'Web Development', href: '/services/web-development',
+    copy: 'Fast, secure, search-ready websites that bring in enquiries, not just look good.',
     items: ['Business websites', 'Landing pages', 'WordPress sites', 'Custom web apps']
   },
-  { 
-    title: 'Custom Software', href: '/services/software-development', 
-    copy: 'Dashboards, management systems, SaaS products, and internal tools built around how your business actually works.',
+  {
+    title: 'Software and App Development', href: '/services/software-development',
+    copy: 'Custom web apps, internal tools, and mobile apps built to your process.',
     items: ['Management systems', 'Dashboards and reporting', 'SaaS products', 'Internal tools']
   },
-  { 
-    title: 'Cybersecurity', href: '/services/cybersecurity', 
-    copy: 'Web application security checks, security monitoring support, and staff awareness training. Find weak points before attackers do.',
-    items: ['Web app security assessment', 'WordPress security hardening', 'Security monitoring support', 'Security awareness training']
-  }
+  {
+    title: 'AI Automation', href: '/services/ai-automation',
+    copy: 'WhatsApp bots, lead capture, document processing, workflow automation.',
+    items: ['WhatsApp and website chatbots', 'AI agents', 'Workflow automation', 'LLM integration']
+  },
 ]
 
 export default function ServicesOverviewPage() {
@@ -77,7 +98,7 @@ export default function ServicesOverviewPage() {
         ))}
       </div>
 
-      <Section number="05" title="Common combinations">
+      <Section number="06" title="Common combinations">
         <div className="p-8 py-16 md:p-14 lg:p-24">
           <div className="grid gap-8 md:grid-cols-3">
             {[

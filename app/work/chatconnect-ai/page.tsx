@@ -7,6 +7,22 @@ import { ProjectFrame } from '@/components/mockups/MockFrame'
 export const metadata: Metadata = {
   title: 'ChatConnect AI: WhatsApp Support Automation | Drexa AI',
   description: 'Case study of ChatConnect AI, a WhatsApp support platform with knowledge-base answers, lead capture, and human handoff.',
+  alternates: { canonical: 'https://drexa.tech/work/chatconnect-ai' },
+  openGraph: {
+    title: 'ChatConnect AI: WhatsApp Support Automation | Drexa AI',
+    description: 'Case study of ChatConnect AI, a WhatsApp support platform with knowledge-base answers, lead capture, and human handoff.',
+    url: 'https://drexa.tech/work/chatconnect-ai',
+    siteName: 'Drexa AI',
+    type: 'website',
+    images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ChatConnect AI: WhatsApp Support Automation | Drexa AI',
+    description: 'Case study of ChatConnect AI, a WhatsApp support platform with knowledge-base answers, lead capture, and human handoff.',
+    images: ['/logo.png'],
+  },
+
 }
 
 export default function ChatConnectAIPage() {
