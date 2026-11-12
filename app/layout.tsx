@@ -12,12 +12,12 @@ const instrumentSerif = localFont({ src: './fonts/instrument-serif-italic.woff2'
 const jetbrainsMono = localFont({ src: './fonts/jetbrains-mono-var.woff2', variable: '--font-jetbrains', display: 'swap', preload: false })
 
 export const metadata: Metadata = {
-  title: 'Drexa AI | Website Security, AI Visibility & Web Development',
+  title: 'Drexa AI | Development Studio Based in Chakwal',
   description: 'Chakwal-based, remote-first studio. Website security testing, AI search visibility, web and software development, AI automation. Free consultation.',
   metadataBase: new URL('https://drexa.tech'),
   alternates: { canonical: 'https://drexa.tech' },
-  openGraph: { title: 'Drexa AI | Website Security, AI Visibility & Web Development', description: 'Chakwal-based, remote-first studio. Website security testing, AI search visibility, web and software development, AI automation. Free consultation.', url: 'https://drexa.tech', siteName: 'Drexa AI', type: 'website', images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }] },
-  twitter: { card: 'summary_large_image', title: 'Drexa AI | Website Security, AI Visibility & Web Development', description: 'Chakwal-based, remote-first studio. Website security testing, AI search visibility, web and software development, AI automation. Free consultation.', images: ['/logo.png'] },
+  openGraph: { title: 'Drexa AI | Development Studio Based in Chakwal', description: 'Chakwal-based, remote-first studio. Website security testing, AI search visibility, web and software development, AI automation. Free consultation.', url: 'https://drexa.tech', siteName: 'Drexa AI', type: 'website', images: [{ url: '/logo.png', width: 1672, height: 941, alt: 'Drexa AI — Build smarter. Run safer.' }] },
+  twitter: { card: 'summary_large_image', title: 'Drexa AI | Development Studio Based in Chakwal', description: 'Chakwal-based, remote-first studio. Website security testing, AI search visibility, web and software development, AI automation. Free consultation.', images: ['/logo.png'] },
 }
 
 export const viewport: Viewport = { colorScheme: 'dark', themeColor: '#09090b' }
