@@ -19,8 +19,9 @@ missing, ordered by what blocks work next. Phase 0 additions first.
 - [x] **Legal text — Privacy Policy (§7.13):** real copy for `/privacy`
       (draft PR, 2026-11-17; retention 90 days). Confirm the Vercel Web
       Analytics toggle is off before merging.
-- [ ] **Legal text — Terms (§7.13):** real Terms copy for `/terms`
-      (honest stub ships today).
+- [x] **Legal text — Terms (§7.13):** real Terms copy for `/terms`
+      (draft PR, 2026-11-17; needed as the Terms of Service URL to publish
+      the chatconnectai Meta app).
 - [ ] **WhatsApp number as a single source:** `wa.me/923715082737` is correct
       and already used site-wide; confirm it stays the primary CTA.
 - [ ] **Email provider key (§7.12):** `RESEND_API_KEY` in `.env.local`
