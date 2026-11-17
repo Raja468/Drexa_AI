@@ -16,8 +16,11 @@ missing, ordered by what blocks work next. Phase 0 additions first.
 - [ ] **Booking URL (§7.12):** Cal.com / Calendly link. Set
       `bookingUrl` in `content/site.ts` — the "Book a call" button renders
       nothing (no fake link) until then; WhatsApp stays primary.
-- [ ] **Legal text (§7.13):** real Privacy Policy and Terms copy for
-      `/privacy` and `/terms` (honest stubs ship today).
+- [x] **Legal text — Privacy Policy (§7.13):** real copy for `/privacy`
+      (draft PR, 2026-11-17; retention 90 days). Confirm the Vercel Web
+      Analytics toggle is off before merging.
+- [ ] **Legal text — Terms (§7.13):** real Terms copy for `/terms`
+      (honest stub ships today).
 - [ ] **WhatsApp number as a single source:** `wa.me/923715082737` is correct
       and already used site-wide; confirm it stays the primary CTA.
 - [ ] **Email provider key (§7.12):** `RESEND_API_KEY` in `.env.local`
