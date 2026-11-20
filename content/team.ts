@@ -23,7 +23,7 @@ export const teamPage = {
     items: [
       {
         icon: "cpu" as const,
-        name: "Raja",
+        name: "Ahmed Bilal",
         role: "Founder & Lead AI Architect",
         bio: "Leads engineering architecture and applied AI systems at Drexa. Specialized in autonomous agents, voice intelligence, and end-to-end automation pipelines.",
         specialties: ["Autonomous Agents", "LLM Pipelines", "Voice AI", "System Architecture"],
@@ -102,15 +102,15 @@ export const teamPage = {
    * [AGENT DRAFTS → OWNER APPROVES]). Everything factual is drawn from copy
    * already live on /about and /contact.
    *
-   * `portrait` — [OWNER PROVIDES] /public/team/raja.webp; the monogram below
+   * `portrait` — [OWNER PROVIDES] /public/team/ahmed-bilal.webp; the monogram below
    * renders until then (never a stock photo).
    * `certifications` — hidden until real certificates with verification URLs
    * are supplied (§2 rule 2).
    */
   founder: {
-    name: "Raja",
+    name: "Ahmed Bilal",
     role: "Founder, Drexa",
-    monogram: "R",
+    monogram: "AB",
     portrait: null as string | null,
     story: [
       "I started Drexa because most \"AI agencies\" ship demos, not products. We build agents, automation, and web software that has to survive production — ours first.",
