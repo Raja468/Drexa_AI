@@ -36,21 +36,21 @@ export default function HeroVisual() {
   return (
     <div className="hv">
       <style>{`
-        .hv{position:relative;width:100%;max-width:480px;font-family:inherit;margin-bottom:90px}
+        .hv{position:relative;width:100%;max-width:480px;font-family:inherit}
         .hv-card{background:#0f1115;border:1px solid #23262d;border-radius:18px;
           box-shadow:0 30px 80px rgba(0,0,0,.55);color:#e8eaee}
-        .hv-sec{padding:22px;animation:hvfloat 6s ease-in-out infinite}
-        .hv-ai{position:absolute;right:-12px;bottom:-70px;width:78%;padding:16px;
+        .hv-sec{padding:22px 22px 56px;animation:hvfloat 6s ease-in-out infinite}
+        .hv-ai{position:relative;z-index:1;width:78%;margin:-32px -12px 0 auto;padding:16px;
           background:#f4f1ea;color:#111;border:0;animation:hvfloat 7s ease-in-out infinite reverse}
         .hv-row{display:flex;align-items:center;gap:10px;font-size:14px;padding:7px 0;
           opacity:0;animation:hvrow .5s ease forwards}
         .hv-dot{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;
           font-size:11px;font-weight:700;color:#06120b}
-        .hv-tag{font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.55}
+        .hv-tag{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
         .hv-hit{background:#21F48B;color:#06120b;border-radius:8px;font-weight:600}
         @keyframes hvfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
         @keyframes hvrow{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-        @media (max-width:640px){.hv{margin-bottom:0}.hv-ai{position:static;width:100%;margin-top:16px}}
+        @media (max-width:640px){.hv-sec{padding-bottom:22px}.hv-ai{width:100%;margin:16px 0 0}}
         @media (prefers-reduced-motion:reduce){.hv-sec,.hv-ai,.hv-row{animation:none;opacity:1}}
       `}</style>
 
@@ -66,7 +66,7 @@ export default function HeroVisual() {
           </svg>
           <div>
             <div style={{ fontSize: 18, fontWeight: 600 }}>Security score</div>
-            <div style={{ fontSize: 13, opacity: .6 }}>Scan any site in seconds</div>
+            <div style={{ fontSize: 14, opacity: .75 }}>Scan any site in seconds</div>
           </div>
         </div>
         {checks.map((c, i) => (

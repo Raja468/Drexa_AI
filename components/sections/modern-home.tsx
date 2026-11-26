@@ -3,7 +3,7 @@ import { ArrowRight, Plus } from 'lucide-react'
 import { ProjectFrame, type MockName } from '@/components/mockups/MockFrame'
 import { FadeUp, StaggerContainer, StaggerItem } from '@/components/motion/FadeUp'
 import { Magnetic } from '@/components/motion/Magnetic'
-import { ServicesCarousel } from '@/components/sections/services-carousel'
+import { ServicesGrid } from '@/components/sections/services-grid'
 import HeroVisual from '@/components/HeroVisual'
 
 const services = [
@@ -92,7 +92,7 @@ export function ModernHome() {
             <FadeUp animateOnMount y={24} duration={0.6}>
               <div className="flex items-center gap-3">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-                <span className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#F2F2EE]">
+                <span className="font-mono text-[13px] uppercase tracking-[0.06em] text-[#F2F2EE]">
                   Independent AI technology studio
                 </span>
               </div>
@@ -120,13 +120,13 @@ export function ModernHome() {
             </FadeUp>
             <FadeUp animateOnMount delay={0.44}>
               <div className="mt-6 flex flex-col gap-4">
-                <p className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#A1A1AA]">
+                <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-[#A1A1AA]">
                   Free 30-minute call. No obligation.
                 </p>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                  <span className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#F2F2EE]">3 internal builds shipped</span>
+                  <span className="font-mono text-[13px] uppercase tracking-[0.06em] text-[#F2F2EE]">3 internal builds shipped</span>
                   <span className="h-3.5 w-px bg-[#2A2D33]" aria-hidden="true" />
-                  <div className="flex flex-wrap items-center gap-x-3 text-[13px] font-medium text-[#8A8D93]">
+                  <div className="flex flex-wrap items-center gap-x-3 text-[13px] font-medium text-[#A1A1AA]">
                     <span>React</span><span>Python</span><span>PostgreSQL</span><span>Anthropic</span>
                   </div>
                 </div>
@@ -174,7 +174,7 @@ export function ModernHome() {
               </h2>
             </FadeUp>
           </div>
-          <ServicesCarousel services={services} />
+          <ServicesGrid services={services} />
         </div>
       </section>
 
@@ -248,7 +248,7 @@ export function ModernHome() {
                  <p className="mt-4 text-[18px] leading-[1.6] text-[#A1A1AA]">{project.copy}</p>
                  <div className="mt-6 flex flex-wrap gap-2">
                    {project.tags.map(tag => (
-                     <span key={tag} className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#A1A1AA]">[{tag}]</span>
+                     <span key={tag} className="font-mono text-[13px] uppercase tracking-[0.06em] text-[#A1A1AA]">[{tag}]</span>
                    ))}
                  </div>
                  <div className="mt-8 flex items-center gap-6">
@@ -313,7 +313,7 @@ export function ModernHome() {
       <section className="border-t border-[#2A2D33] bg-[#141416]">
         <div className="mx-auto flex flex-col md:flex-row md:items-center justify-between max-w-[1440px] border-x border-[#2A2D33] p-6 md:px-10">
           <p className="font-mono text-[13px] uppercase tracking-[0.06em] text-[#A1A1AA] mb-4 md:mb-0 shrink-0 mr-8">Tools we build with</p>
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-4 text-[15px] font-semibold text-[#8A8D93] uppercase tracking-wider">
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-4 text-[15px] font-semibold text-[#A1A1AA] uppercase tracking-wider">
             <span className="transition-colors hover:text-white">Python</span>
             <span className="transition-colors hover:text-white">Next.js</span>
             <span className="transition-colors hover:text-white">React</span>
