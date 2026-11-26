@@ -65,7 +65,7 @@ export function ProjectFrame({
         <span /><span /><span />
       </div>
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted">
-        <Image src={image ?? ''} alt={alt} fill sizes={sizes} priority={priority} className="object-cover object-top" />
+        <Image src={image ?? ''} alt={alt} fill sizes={sizes} priority={priority} loading={priority ? undefined : 'eager'} className="object-cover object-top" />
       </div>
     </div>
   )
