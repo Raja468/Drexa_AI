@@ -65,7 +65,7 @@ export default function AboutPage() {
              </div>
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">Raja, founder.</h2>
+            <h2 className="font-display text-[28px] md:text-[44px] font-bold tracking-[-0.02em]">Ahmed Bilal, founder.</h2>
             <p className="mt-6 max-w-[50ch] text-[18px] leading-[1.6] text-[#A1A1AA]">
               I am a software developer and BS Computer Science student at Virtual University of Pakistan. I work across web development, AI automation, and cybersecurity, and I hold certifications from Cisco, EC-Council, IBM, and Google.
             </p>
